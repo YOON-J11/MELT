@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -142,6 +141,3 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
-=======
-.DS_Store
->>>>>>> 89e3546 (gitignore 설정 및 프로젝트 초기화)
