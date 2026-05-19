@@ -1,0 +1,521 @@
+@charset "utf-8";
+
+:root {
+  /* MELT Brand Colors */
+  --main-color: #d4ccb9; /* 세 번째: 샌드 그레이 (메인 컬러) */
+  --bg-color: #fdfaf3;
+  --bg-cream: #fff8e6; /* 첫 번째: 크림 아이보리 */
+  --bg-oatmeal: #f2e8d0; /* 두 번째: 오트밀 베이지 */
+
+  --black: #333;
+  --white: #fff;
+  --gray: #999;
+
+  --inner-width: 1700px; /* 프로젝트마다 다르니 수정해서 사용 */
+}
+
+/* -------------- inner -------------- */
+/* 중앙 정렬 이너 */
+.inner {
+  width: 100%;
+  max-width: var(--inner-width); /* --inner-width는 common.css에서 정함 */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 오른쪽이 뚫린 이너 (왼쪽은 이너라인에 고정) */
+.inner-right-open {
+  width: calc(50% + (var(--inner-width) / 2));
+  margin-left: calc(50% - (var(--inner-width) / 2));
+  padding-left: 20px;
+  overflow: hidden;
+}
+
+/* 왼쪽이 뚫린 이너 (오른쪽은 이너라인에 고정) */
+.inner-left-open {
+  width: calc(50% + (var(--inner-width) / 2));
+  margin-right: calc(50% - (var(--inner-width) / 2));
+  margin-left: auto;
+  padding-right: 20px;
+  overflow: hidden;
+}
+
+/* [반응형 이너 조절] 
+   1520px 이하에서는 뚫린 구조를 해제하고 일반 이너처럼 100%로 동작하게 함
+*/
+@media (max-width: 1700px) {
+  .inner {
+    padding: 0 40px;
+  }
+  .inner-right-open,
+  .inner-left-open {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 40px;
+  }
+}
+
+/* -------------- 유틸리티: 텍스트 제어 -------------- */
+/* 한 줄 말줄임 */
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+/* 여러 줄 말줄임 */
+.ellipsis-2,
+.ellipsis-3,
+.ellipsis-4 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ellipsis-2 {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+.ellipsis-3 {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+.ellipsis-4 {
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
+/* -------------- 유틸리티: 포지션 (Position) -------------- */
+.pos-rel {
+  position: relative;
+}
+.pos-abs {
+  position: absolute;
+}
+.pos-fix {
+  position: fixed;
+}
+/* 중앙 정렬 시리즈 (부모가 relative여야 함) */
+.pos-center {
+  /* 상하좌우 정렬 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pos-center-x {
+  /* 좌우 정렬 */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.pos-center-y {
+  /* 상하 정렬 */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* -------------- 유틸리티: Flex 중앙 정렬 -------------- */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex {
+  display: flex;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------- 스크린 리더 전용 숨김 (IR 기법) -------------- */
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* -------------- 유틸리티: 반응형 가시성 제어 -------------- */
+.m-only {
+  display: none;
+} /* 모바일에서만 보임 */
+
+@media (max-width: 768px) {
+  /* 모바일에서 숨기기 (PC 전용) */
+  .pc-only {
+    display: none;
+  }
+  /* 모바일에서 보이기 */
+  .m-only {
+    display: block;
+  }
+}
+
+/* =========================================================
+                            커스텀
+=========================================================== */
+
+/* -------------- li 리스트 커스텀 -------------- */
+/* 점 목록 스타일 */
+.list-dot li {
+  position: relative;
+  padding-left: 14px; /* 점이 들어갈 공간 */
+  line-height: 1.6;
+}
+.list-dot li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em; /* 텍스트 높이에 맞춰 중앙 정렬 (1.6 행간 기준) */
+  width: 4px; /* 점 크기 원하는 사이즈로 조절하기 */
+  height: 4px;
+  background-color: #333; /* 원하는 컬러로 변경하기 */
+  border-radius: 50%;
+}
+
+/* 숫자 목록 스타일 */
+.list-num {
+  counter-reset: custom-count; /* 계산기 이름을 'custom-count'로 초기화 */
+}
+.list-num li {
+  position: relative;
+  padding-left: 32px; /* 숫자 박스 너비 + 여백 */
+  margin-bottom: 12px;
+  line-height: 24px; /* 숫자 박스 높이와 맞춰주면 정렬이 편함 */
+}
+.list-num li::before {
+  counter-increment: custom-count; /* li가 나올 때마다 숫자 +1 */
+  content: counter(custom-count); /* 현재 숫자를 출력 */
+
+  /* 디자인 설정 원하는 형태로 바꾸기 */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #e31b23;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 4px;
+
+  /* 숫자를 박스 정중앙에 배치 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* -------------- 체크,라디오 커스텀 -------------- */
+/* 기본 요소 숨기기 */
+.chk-custom input,
+.radio-custom input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.chk-custom label,
+.radio-custom label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 28px;
+  min-height: 20px;
+  line-height: 1; /* 텍스트 수직 정렬용 */
+}
+
+/* 아이콘 기본 형태 (공통) */
+.chk-custom label::before,
+.radio-custom label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px; /* 박스 크기 정하기 */
+  background-color: var(--white);
+  border: 1px solid #ccc;
+  transition: all 0.2s;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.chk-custom label::before {
+  border-radius: 3px;
+}
+.radio-custom label::before {
+  border-radius: 50%;
+}
+
+/* [체크 시 상태] */
+/* 체크박스: 메인컬러 배경 + 흰색 체크 SVG */
+.chk-custom input:checked + label::before {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+  background-size: 90%; /* 체크모양 크기 정하기 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* 라디오: 흰색 배경 + 메인컬러 테두리 + 메인컬러 중앙 점 SVG */
+.radio-custom input:checked + label::before {
+  background-color: var(--white);
+  border-color: var(--main-color); /* 점모양 색상 정하기 */
+  background-size: 80%; /* 점모양 크기 정하기 */
+  /* %23123456 부분은 --main-color 값에 맞춰 변경 가능 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23123456'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3C/svg%3E");
+}
+
+/* -------------- 폼 태그들 기본 스타일 설정 -------------- */
+.input-base,
+.select-base,
+.textarea-base {
+  width: 100%;
+  height: 48px;
+  padding: 0 15px;
+  border: 1px solid var(--border-color);
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.select-base {
+  /* 셀렉트박스 화살표 커스텀 */
+  cursor: pointer;
+  appearance: none; /* 브라우저 기본 화살표 제거 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px; /* 화살표와 글자가 겹치지 않게 */
+}
+
+.textarea-base {
+  height: auto;
+  padding: 15px;
+  resize: none;
+}
+
+/* Placeholder 스타일 */
+.input-base::placeholder,
+.textarea-base::placeholder {
+  color: var(--gray);
+}
+
+/* 포커스 시 강조 */
+.input-base:focus,
+.select-base:focus,
+.textarea-base:focus {
+  border-color: var(--main-color);
+}
+
+/* 읽기 전용/비활성화 */
+.input-base:read-only,
+.input-base:disabled {
+  background-color: var(--gray);
+  cursor: not-allowed;
+}
+
+/* 셀렉트 박스 기본 컬러 (Placeholder처럼 연하게) */
+.select-base {
+  color: var(--gray); /* 아까 설정한 placeholder 색상과 맞춤 */
+}
+
+/* 실제 옵션이 선택되었을 때나, 안의 옵션들은 진하게 */
+.select-base option {
+  color: var(--black);
+}
+
+/* 값이 선택되었을 때 진하게 만드는 클래스 (JS 연동 필요) */
+.select-base.selected {
+  color: var(--black);
+}
+
+/* -------------- 버튼 커스텀 -------------- */
+.btn-main {
+  color: var(--black);
+  border: 1px solid var(--black);
+
+  font-size: 14px;
+  padding: 10px 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+.btn-main--white {
+  color: var(--white);
+  border-color: var(--white);
+}
+.icon-arrow-right {
+  transition: transform 0.2s ease;
+}
+.btn-main:hover .icon-arrow-right {
+  transform: translateX(4px);
+}
+.btn-main--white:hover {
+  background-color: #ffffff2c;
+}
+
+/* -------------- 커스텀 셀렉트 (ul, li를 사용함) 스타일 설정 -------------- */
+.select-custom {
+  position: relative; /* 목록이 절대좌표로 뜰 수 있게 */
+  width: 100%;
+  max-width: 400px; /* 상황에 맞게 조절 */
+}
+
+/* 클릭하는 버튼 영역 */
+.select-trigger {
+  width: 100%;
+  height: 48px;
+  padding: 0 40px 0 15px;
+  border: 1px solid var(--border-color);
+  background-color: var(--white);
+  color: var(--gray); /* 초기값은 연하게 */
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+/* 화살표 아이콘 */
+.select-trigger::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: transform 0.3s;
+}
+
+/* 활성화 시 (목록이 열렸을 때) */
+.select-custom.active .select-trigger {
+  border-color: var(--main-color);
+}
+.select-custom.active .select-trigger::after {
+  transform: translateY(-50%) rotate(180deg); /* 화살표 회전 */
+}
+
+/* 옵션 목록 박스 */
+.select-options {
+  display: none; /* 기본은 숨김 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 5px;
+  background-color: var(--white);
+  border: 1px solid var(--main-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.select-custom.active .select-options {
+  display: block; /* 활성화 시 보임 */
+}
+
+/* 개별 옵션 li */
+.select-options li {
+  padding: 12px 15px;
+  font-size: 15px;
+  color: var(--black);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.select-options li:hover {
+  background-color: var(--lightgray); /* 호버 시 배경색 */
+  color: var(--main-color); /* 호버 시 텍스트색 */
+}
+
+/* 값이 선택된 상태의 텍스트 색상 */
+.select-trigger.selected {
+  color: var(--black);
+}
+
+/* 아이콘 기본 스타일 */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.icon-search {
+  background-image: url(../images/icon-search.svg);
+}
+.icon-bag {
+  background-image: url(../images/icon-bag.svg);
+}
+.icon-user {
+  background-image: url(../images/icon-user.svg);
+}
+.icon-arrow-right {
+  background-image: url(../images/icon-arrow-right.svg);
+}
+.icon-24 {
+  width: 24px;
+  height: 24px;
+}
+.icon-17 {
+  width: 17px;
+  height: 17px;
+}
+/* 흰 버튼 하위에 아이콘 있으면 아이콘도 흰색 */
+.btn-main--white .icon {
+  filter: brightness(0) invert(1);
+}
+
+/*--- 섹션 타이틀 공통 스타일 ---*/
+.sec-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sec-title.sec-title--left {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.sec-title__main {
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+.sec-title__sub {
+  font-size: 16px;
+  font-weight: 300;
+}

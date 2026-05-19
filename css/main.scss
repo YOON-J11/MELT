@@ -1,0 +1,476 @@
+:root {
+    /* MELT Brand Colors */
+    --main-color: #d4ccb9; /* 세 번째: 샌드 그레이 (메인 컬러) */
+    --bg-color: #fdfaf3;
+    --bg-cream: #fff8e6; /* 첫 번째: 크림 아이보리 */
+    --bg-oatmeal: #f2e8d0; /* 두 번째: 오트밀 베이지 */
+
+    --black: #333;
+    --white: #fff;
+    --gray: #999;
+
+    --inner-width: 1700px; /* 프로젝트마다 다르니 수정해서 사용 */
+}
+.section01 {
+    .main-slide {
+        /* 유저가 텍스트를 드래그해서 선택하는 것을 막음 */
+        -webkit-user-select: none; /* 사파리용 */
+        -moz-user-select: none; /* 파이어폭스용 */
+        -ms-user-select: none; /* 익스플로러용 */
+        user-select: none; /* 표준 */
+        /* 추가로 이미지 드래그(파일 끌기)도 막고 싶다면 */
+        -webkit-user-drag: none;
+
+        width: 100%;
+        aspect-ratio: 1920 / 800;
+
+        .swiper-wrapper {
+            width: 100%;
+            height: 100%;
+
+            .swiper-slide {
+                position: relative;
+                &::before {
+                    //이미지 위에 검은필터
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                &.slide01 {
+                    background-image: url(../images/main-slide1.png);
+                }
+                &.slide02 {
+                    background-image: url(../images/main-slide2.png);
+                }
+                &.slide03 {
+                    background-image: url(../images/main-slide3.png);
+                }
+
+                .inner {
+                    height: 100%;
+                    position: relative;
+                    .main-slide__content {
+                        color: var(--white);
+                        position: absolute;
+                        left: 20px;
+                        bottom: 15%;
+
+                        .main-slide__title {
+                            font-size: 26px;
+                            font-weight: 300;
+                            strong {
+                                font-weight: 700;
+                            }
+                        }
+                        .main-slide__desc {
+                            font-size: 16px;
+                            font-weight: 300;
+                        }
+                        .main-slide__btn {
+                            margin-top: 30px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .swiper-pagination {
+            .swiper-pagination-bullet {
+                width: 30px;
+                height: 2px;
+                background-color: #e5e5e5;
+                opacity: 0.5;
+                border-radius: 0;
+
+                transition: width 0.3s ease;
+
+                &.swiper-pagination-bullet-active {
+                    width: 60px;
+                    background-color: var(--white);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.section02 {
+    padding: 170px 0;
+    .inner-right-open {
+        .selection-display {
+            margin-top: 80px;
+            .selection-display__main {
+                display: flex;
+                align-items: stretch;
+                gap: 40px;
+
+                .selection-display__img-box {
+                    flex: 1;
+
+                    width: 100%;
+                    max-width: 800px;
+                    aspect-ratio: 1 / 1;
+
+                    border-radius: 24px;
+                    overflow: hidden;
+                }
+                .selection-display__content {
+                    flex: 1;
+                    min-width: 0;
+                    padding-top: 40px;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .selection-display__text-box {
+                        .num {
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+                        .title {
+                            margin-top: 10px;
+                            font-size: 36px;
+                            font-weight: 600;
+                            span {
+                                font-size: 24px;
+                                font-weight: 300;
+                                display: block;
+                                margin-top: -10px;
+                            }
+                        }
+                        .desc {
+                            margin-top: 50px;
+                            font-size: 16px;
+                            font-weight: 400;
+                            line-height: 1.7;
+                        }
+                        .btn-main {
+                            margin-top: 50px;
+                        }
+                    }
+
+                    .selection-display__thumbs {
+                        width: 100%;
+                        min-width: 0;
+                        cursor: pointer;
+                        .swiper-wrapper {
+                            .swiper-slide {
+                                width: 144px;
+                                aspect-ratio: 1 / 1;
+                                border-radius: 12px;
+                                overflow: hidden;
+                                border: 1px solid transparent;
+                                opacity: 0.6;
+                                cursor: pointer;
+
+                                &.is-active {
+                                    opacity: 1;
+                                    border-color: var(--black);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section03 {
+    padding: 80px 0;
+    .iconic-slide {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .swiper-wrapper {
+            display: flex;
+            align-items: center;
+            height: 45vw;
+            max-height: 864px;
+
+            .swiper-slide {
+                width: auto;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                .item-box {
+                    width: 100%;
+                    left: 0;
+                    overflow: hidden;
+                    position: absolute;
+
+                    img {
+                        transition: transform 0.4s ease;
+                        position: absolute;
+                    }
+                }
+                .slide-info {
+                    display: none;
+                }
+                &:hover {
+                    .item-box {
+                        cursor: none;
+                        img {
+                            transform: scale(1.06);
+                        }
+                    }
+                }
+
+                &.slide01 {
+                    width: 27.34vw;
+                    max-width: 525px;
+                    .item-box {
+                        aspect-ratio: 27.34 / 40.47;
+                        background-color: #f6f0e1;
+                        border-radius: 56px;
+
+                        img {
+                            width: 80%;
+                            inset: 0;
+                            margin: auto;
+                        }
+                    }
+                }
+                &.slide02 {
+                    width: 18.49vw;
+                    max-width: 355px;
+                    .item-box {
+                        aspect-ratio: 18.49 / 25.1;
+                        background-color: #f6f3ea;
+                        border-radius: 149px;
+
+                        img {
+                            width: 90%;
+                            bottom: 0;
+                            right: 0;
+                        }
+                    }
+                }
+                &.slide03 {
+                    width: 22.14vw;
+                    max-width: 425px;
+
+                    .item-box {
+                        aspect-ratio: 22.14 / 30.26;
+                        background-color: #dfcfbe;
+                        border-radius: 70px;
+
+                        top: 20%;
+
+                        img {
+                            width: 48%;
+                            top: 0;
+                            left: 50%;
+                            translate: -50% 0;
+                        }
+                    }
+                }
+                &.slide04 {
+                    width: 15.36vw;
+                    max-width: 295px;
+                    .item-box {
+                        aspect-ratio: 15.36 / 16.25;
+                        background-color: #d4ccb9;
+                        border-radius: 50%;
+
+                        top: 15%;
+
+                        img {
+                            width: 29%;
+                            inset: 0;
+                            margin: auto;
+                        }
+                    }
+                }
+                &.slide05 {
+                    width: 15.42vw;
+                    max-width: 296px;
+                    .item-box {
+                        aspect-ratio: 15.42 / 33.49;
+                        background-color: #f6f2e1;
+                        border-radius: 170px;
+
+                        img {
+                            width: 100%;
+                            top: 50%;
+                            translate: 0 -50%;
+                            right: -26%;
+                        }
+                    }
+                }
+                &.slide06 {
+                    width: 21.67vw;
+                    max-width: 416px;
+                    .item-box {
+                        aspect-ratio: 21.67 / 23.91;
+                        background-color: #f1ede7;
+                        border-radius: 75px;
+
+                        bottom: 20%;
+
+                        img {
+                            max-width: none;
+                            width: 120%;
+                            bottom: -18%;
+                            right: -33%;
+                        }
+                    }
+                }
+                &.slide07 {
+                    width: 22.14vw;
+                    max-width: 425px;
+                    .item-box {
+                        aspect-ratio: 1 / 1;
+                        background-color: #f5eadf;
+                        border-radius: 50%;
+
+                        img {
+                            width: 68%;
+                            left: 50%;
+                            bottom: -25%;
+                            translate: -50% 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .swiper-navigation {
+            display: flex;
+            align-items: center;
+            gap: 2vw;
+            > div {
+                position: static;
+                display: inline-block;
+                width: 7.14vw;
+                max-width: 137px;
+                aspect-ratio: 7.14 / 2.14;
+
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100% 100%;
+
+                inset: 0;
+                margin-top: 0;
+                transform: none;
+
+                &.swiper-button-prev {
+                    background-image: url("../images/arrow-prev.svg");
+                }
+                &.swiper-button-next {
+                    background-image: url("../images/arrow-next.svg");
+                }
+                svg,
+                .swiper-navigation-icon {
+                    display: none !important;
+                }
+            }
+        }
+
+        .cursor-follow-group {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            pointer-events: none;
+
+            visibility: hidden; // 그룹 자체는 좌표 연산의 시작점 역할만 하고 숨겨두기
+
+            .cursor-dot {
+                position: fixed;
+                translate: -50% -50%;
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.1s ease;
+                opacity: 0;
+                transform: scale(0);
+
+                background-color: var(--white);
+
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .info-box {
+                position: fixed;
+                translate: 0% -100%;
+                margin-left: 19px; // 점 반지름(9px) + 원하는 간격(10px) = 19px
+                margin-top: -10px; // 위로 10px 띄우기
+
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.25s ease,
+                    translate 0.2s ease;
+                opacity: 0;
+                transform: scale(0);
+
+                width: auto;
+                height: auto;
+                padding: 12px;
+                background-color: #fff;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+
+                &.flip-left {
+                    translate: -100% -100%;
+                    margin-left: -19px;
+                }
+
+                .info-box-inner {
+                    width: 100%;
+                    height: 100%;
+                    border: 1px solid #d4ccb9;
+                    padding: 20px 30px;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+
+                    .info-en-name {
+                        font-size: 24px;
+                        font-weight: 600;
+                    }
+
+                    // 2. 한글 상품 이름
+                    .info-ko-name {
+                        font-size: 18px;
+                        font-weight: 300;
+                        margin-top: 8px;
+                    }
+
+                    // 3. 가격 (거대함)
+                    .info-price {
+                        font-size: 24px;
+                        font-weight: 600;
+                        margin-top: 30px;
+                    }
+                }
+            }
+
+            &.active {
+                visibility: visible;
+
+                .cursor-dot {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                .info-box {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}

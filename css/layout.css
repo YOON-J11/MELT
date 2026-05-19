@@ -1,0 +1,140 @@
+@charset "UTF-8";
+header {
+  /* position: fixed; 상단 고정이 필요할 때 사용 */
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+header .top-banner {
+  height: 38px;
+}
+header .top-banner .swiper-slide {
+  width: 100%;
+}
+header .top-banner .swiper-slide.bg-cream {
+  background-color: var(--bg-cream);
+}
+header .top-banner .swiper-slide.bg-oatmeal {
+  background-color: var(--bg-oatmeal);
+}
+header .top-banner .swiper-slide.bg-main {
+  background-color: var(--main-color);
+}
+header .top-banner .swiper-slide a {
+  font-size: 12px;
+  font-weight: 400;
+}
+header .top-banner .swiper-slide a span {
+  text-decoration: underline;
+  font-weight: 500;
+}
+header .header-main {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  transition: all 0.3s ease-in-out;
+}
+header .header-main .inner .logo {
+  width: 91px;
+  height: 24px;
+  background: url("../images/logo-white.svg") no-repeat center/contain;
+  text-indent: -9999px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+header .header-main .inner .gnb ul {
+  gap: 46px;
+}
+header .header-main .inner .gnb ul li a {
+  padding: 20px;
+  color: #fff;
+}
+header .header-main .inner .header-util {
+  gap: 20px;
+}
+header .header-main .inner .header-util button .icon {
+  filter: brightness(0) invert(1);
+}
+header .mega-menu {
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+header .mega-menu .inner {
+  max-width: 1520px;
+}
+header .mega-menu .inner .mega-menu__nav {
+  flex: 1;
+  padding: 30px 0 50px;
+  border-right: 1px solid #f0f0f0;
+  padding-right: 50px;
+}
+header .mega-menu .inner .mega-menu__nav .sub-nav {
+  align-items: flex-start;
+  gap: 20px;
+}
+header .mega-menu .inner .mega-menu__nav .sub-nav dl {
+  width: 100%;
+}
+header .mega-menu .inner .mega-menu__nav .sub-nav dl dt {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+header .mega-menu .inner .mega-menu__nav .sub-nav dl dd {
+  margin-bottom: 10px;
+}
+header .mega-menu .inner .mega-menu__promo {
+  flex-shrink: 0;
+  padding: 30px 0 50px;
+  padding-left: 50px;
+}
+header .mega-menu .inner .mega-menu__promo .mega-promo {
+  width: 253px;
+}
+header .mega-menu .inner .mega-menu__promo .mega-promo .swiper-slide > a {
+  width: 100%;
+}
+header .mega-menu .inner .mega-menu__promo .mega-promo .swiper-slide > a .mega-promo__thumb {
+  width: 100%;
+  aspect-ratio: 253/155;
+  border-radius: 6px;
+  overflow: hidden;
+}
+header .mega-menu .inner .mega-menu__promo .mega-promo .swiper-slide > a p {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+header.active .header-main {
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.1);
+}
+header.active .header-main .inner .logo {
+  background: url("../images/logo-black.svg") no-repeat center/contain;
+}
+header.active .header-main .inner .gnb ul li a {
+  color: #333;
+}
+header.active .header-main .inner .header-util button .icon {
+  filter: none;
+}
+header.hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.1);
+}
+header.scrolled {
+  transform: translateY(-38px);
+}
+
+footer {
+  width: 100%;
+}
+
+/* 메인 컨텐츠 영역 */
+.container {
+  position: relative;
+  width: 100%;
+  /* header가 fixed일 경우 header 높이만큼 padding-top을 주거나 
+   section에 첫 여백을 조절할 때 기준점이 됨 */
+}/*# sourceMappingURL=layout.css.map */
