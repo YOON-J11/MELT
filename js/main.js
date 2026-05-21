@@ -199,7 +199,7 @@ function initIconicSlideMouseFollower() {
     slide.addEventListener("mouseenter", () => {
       const targetInfo = slide.querySelector(".slide-info");
       if (targetInfo) {
-        infoBoxInner.innerHTML = targetInfo.innerHTML; 
+        infoBoxInner.innerHTML = targetInfo.innerHTML;
         FollowGroup.classList.add("active");
       }
     });
@@ -211,7 +211,40 @@ function initIconicSlideMouseFollower() {
     });
   });
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   initIconicSlideMouseFollower();
 });
+
+
+function marqueeTrack() {
+  const track = document.getElementById('marquee-track');
+  const content = track.innerHTML;
+  track.innerHTML += content; 
+}
+marqueeTrack();
+
+
+
+const items = document.querySelectorAll('.value-item');
+
+function syncMediaPosition() {
+    items.forEach(item => {
+        const placeholder = item.querySelector('.value-item__placeholder');
+        const media = item.querySelector('.value-item__media');
+        
+        // placeholder의 부모(value-item) 대비 상대 좌표 계산
+        const placeholderRect = placeholder.getBoundingClientRect();
+        const parentRect = item.getBoundingClientRect();
+        
+        // 부모의 왼쪽 끝을 기준으로 placeholder가 얼마나 떨어져 있는지 계산
+        const relativeLeft = placeholderRect.left - parentRect.left;
+        
+        // media에 left 값 적용
+        media.style.left = `${relativeLeft}px`;
+    });
+}
+
+// 화면이 바뀔 때마다 좌표 갱신
+window.addEventListener('resize', syncMediaPosition);
+// 초기 실행
+syncMediaPosition();

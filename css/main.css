@@ -1,21 +1,29 @@
 @charset "UTF-8";
 :root {
   /* MELT Brand Colors */
-  --main-color: #d4ccb9; /* 세 번째: 샌드 그레이 (메인 컬러) */
+  --main-color: #d4ccb9;
+  /* 세 번째: 샌드 그레이 (메인 컬러) */
   --bg-color: #fdfaf3;
-  --bg-cream: #fff8e6; /* 첫 번째: 크림 아이보리 */
-  --bg-oatmeal: #f2e8d0; /* 두 번째: 오트밀 베이지 */
+  --bg-cream: #fff8e6;
+  /* 첫 번째: 크림 아이보리 */
+  --bg-oatmeal: #f2e8d0;
+  /* 두 번째: 오트밀 베이지 */
   --black: #333;
   --white: #fff;
   --gray: #999;
-  --inner-width: 1700px; /* 프로젝트마다 다르니 수정해서 사용 */
+  --inner-width: 1700px;
+  /* 프로젝트마다 다르니 수정해서 사용 */
 }
 
 .section01 .main-slide {
   /* 유저가 텍스트를 드래그해서 선택하는 것을 막음 */
-  -webkit-user-select: none; /* 사파리용 */
-  -moz-user-select: none; /* 파이어폭스용 */ /* 익스플로러용 */
-  user-select: none; /* 표준 */
+  -webkit-user-select: none;
+  /* 사파리용 */
+  -moz-user-select: none;
+  /* 파이어폭스용 */
+  /* 익스플로러용 */
+  user-select: none;
+  /* 표준 */
   /* 추가로 이미지 드래그(파일 끌기)도 막고 싶다면 */
   -webkit-user-drag: none;
   width: 100%;
@@ -402,4 +410,142 @@
 .section03 .iconic-slide .cursor-follow-group.active .info-box {
   opacity: 1;
   transform: scale(1);
+}
+
+.section04 {
+  background-color: var(--main-color);
+  padding: 40px 0;
+  overflow: hidden;
+}
+.section04 .marquee {
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  animation: marqueeScroll 30s linear infinite;
+}
+.section04 .marquee h1 {
+  white-space: nowrap;
+  font-size: 100px;
+  font-weight: 800;
+  color: var(--white);
+  margin-right: 10px;
+}
+.section04 .marquee .marquee-img {
+  margin-right: 10px;
+  width: 280px;
+  height: 100px;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.section05 .inner .value-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.section05 .inner .value-list .value-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 150px;
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.section05 .inner .value-list .value-item__label {
+  color: #535353;
+  font-size: 120px;
+  font-weight: 800;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.section05 .inner .value-list .value-item__placeholder {
+  width: 358px;
+  height: 130px;
+  flex-shrink: 0;
+  visibility: hidden;
+}
+.section05 .inner .value-list .value-item__media {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 358px;
+  height: 130px;
+  transition: all 0.4s ease;
+  z-index: 2;
+  border-radius: 999px;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+.section05 .inner .value-list .value-item__media.media01 {
+  background-image: url(../images/value-img-01.png);
+}
+.section05 .inner .value-list .value-item__media.media02 {
+  background-image: url(../images/value-img-02.png);
+}
+.section05 .inner .value-list .value-item__media.media03 {
+  background-image: url(../images/value-img-03.png);
+}
+.section05 .inner .value-list .value-item__media.media04 {
+  background-image: url(../images/value-img-04.png);
+}
+.section05 .inner .value-list .value-item__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background 0.4s ease;
+  z-index: 1;
+}
+.section05 .inner .value-list .value-item__media h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+.section05 .inner .value-list .value-item__media p {
+  font-size: 16px;
+  font-weight: 500;
+}
+.section05 .inner .value-list .value-item__media h2,
+.section05 .inner .value-list .value-item__media p {
+  transition: opacity 0s, transform 0s;
+  opacity: 0;
+  transform: translateY(20px);
+  position: relative;
+  z-index: 2;
+}
+.section05 .inner .value-list .value-item__media:hover {
+  width: 110%;
+  height: 100%;
+  left: -5% !important;
+  z-index: 10;
+}
+.section05 .inner .value-list .value-item__media:hover::before {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.section05 .inner .value-list .value-item__media:hover h2,
+.section05 .inner .value-list .value-item__media:hover p {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }/*# sourceMappingURL=main.css.map */

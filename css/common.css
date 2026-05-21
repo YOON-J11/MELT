@@ -3,7 +3,7 @@
 :root {
   /* MELT Brand Colors */
   --main-color: #d4ccb9; /* 세 번째: 샌드 그레이 (메인 컬러) */
-  --bg-color: #fdfaf3;
+  --bg-sub: #fdfaf3;
   --bg-cream: #fff8e6; /* 첫 번째: 크림 아이보리 */
   --bg-oatmeal: #f2e8d0; /* 두 번째: 오트밀 베이지 */
 
@@ -12,6 +12,12 @@
   --gray: #999;
 
   --inner-width: 1700px; /* 프로젝트마다 다르니 수정해서 사용 */
+}
+.color-main {
+  color: var(--main-color) !important;
+}
+.bg-sub {
+  background: var(--bg-sub);
 }
 
 /* -------------- inner -------------- */
