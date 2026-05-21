@@ -41,7 +41,6 @@
                 position: relative;
 
                 &::before {
-                    //이미지 위에 검은필터
                     content: "";
                     position: absolute;
                     inset: 0;
@@ -120,8 +119,11 @@
     padding: 170px 0;
 
     .inner-right-open {
+        .sec-title {
+            margin-bottom: 80px;
+        }
+
         .selection-display {
-            margin-top: 80px;
 
             .selection-display__main {
                 display: flex;
@@ -485,20 +487,20 @@
                     .info-en-name {
                         font-size: 24px;
                         font-weight: 600;
+                        line-height: 1.1;
                     }
 
                     // 2. 한글 상품 이름
                     .info-ko-name {
                         font-size: 18px;
                         font-weight: 300;
-                        margin-top: 8px;
                     }
 
                     // 3. 가격 (거대함)
                     .info-price {
                         font-size: 24px;
                         font-weight: 600;
-                        margin-top: 30px;
+                        margin-top: 20px;
                     }
                 }
             }
@@ -553,13 +555,19 @@
 }
 
 .section05 {
+    padding: 160px 0;
+
     .inner {
-        .sec-title {}
+        .sec-title {
+            margin-bottom: 80px;
+        }
 
         .value-list {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            width: fit-content;
+            margin: 0 auto;
 
             .value-item {
                 display: flex;
@@ -567,8 +575,6 @@
                 justify-content: center;
                 position: relative;
                 height: 150px;
-                margin: auto;
-                width: fit-content;
 
                 &__label {
                     color: #535353;
@@ -602,7 +608,7 @@
                     background-repeat: no-repeat;
 
                     display: flex;
-                    gap: 10px;
+                    gap: 16px;
                     justify-content: center;
                     align-items: center;
 
@@ -637,12 +643,12 @@
 
                     h2 {
                         font-size: 24px;
-                        font-weight: 600;
+                        font-weight: 500;
                     }
 
                     p {
                         font-size: 16px;
-                        font-weight: 500;
+                        font-weight: 400;
                     }
 
                     h2,
@@ -659,9 +665,9 @@
 
 
                     &:hover {
-                        width: 110%;
+                        width: 105%;
                         height: 100%;
-                        left: -5% !important;
+                        left: -2.5% !important;
                         z-index: 10;
 
                         &::before {

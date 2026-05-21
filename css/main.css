@@ -97,8 +97,8 @@
 .section02 {
   padding: 170px 0;
 }
-.section02 .inner-right-open .selection-display {
-  margin-top: 80px;
+.section02 .inner-right-open .sec-title {
+  margin-bottom: 80px;
 }
 .section02 .inner-right-open .selection-display .selection-display__main {
   display: flex;
@@ -389,16 +389,16 @@
 .section03 .iconic-slide .cursor-follow-group .info-box .info-box-inner .info-en-name {
   font-size: 24px;
   font-weight: 600;
+  line-height: 1.1;
 }
 .section03 .iconic-slide .cursor-follow-group .info-box .info-box-inner .info-ko-name {
   font-size: 18px;
   font-weight: 300;
-  margin-top: 8px;
 }
 .section03 .iconic-slide .cursor-follow-group .info-box .info-box-inner .info-price {
   font-size: 24px;
   font-weight: 600;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .section03 .iconic-slide .cursor-follow-group.active {
   visibility: visible;
@@ -440,10 +440,19 @@
   overflow: hidden;
 }
 
+.section05 {
+  padding: 160px 0;
+}
+.section05 .inner .sec-title {
+  margin-bottom: 80px;
+}
 .section05 .inner .value-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
 }
 .section05 .inner .value-list .value-item {
   display: flex;
@@ -451,9 +460,6 @@
   justify-content: center;
   position: relative;
   height: 150px;
-  margin: auto;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 .section05 .inner .value-list .value-item__label {
   color: #535353;
@@ -482,7 +488,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
-  gap: 10px;
+  gap: 16px;
   justify-content: center;
   align-items: center;
   color: var(--white);
@@ -511,11 +517,11 @@
 }
 .section05 .inner .value-list .value-item__media h2 {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .section05 .inner .value-list .value-item__media p {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
 }
 .section05 .inner .value-list .value-item__media h2,
 .section05 .inner .value-list .value-item__media p {
@@ -526,9 +532,9 @@
   z-index: 2;
 }
 .section05 .inner .value-list .value-item__media:hover {
-  width: 110%;
+  width: 105%;
   height: 100%;
-  left: -5% !important;
+  left: -2.5% !important;
   z-index: 10;
 }
 .section05 .inner .value-list .value-item__media:hover::before {
