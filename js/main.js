@@ -1,3 +1,29 @@
+// [resize최적화용 변수]
+let resizeTimer = null;
+const DELAY = 300; //0.3초
+
+function initAllScripts() { //전체 기능을 하나로 묶은 통합 함수
+    mainSlideSwiper();
+    selectionDisplay();
+    iconicSlideSwiper();
+    initIconicSlideMouseFollower();
+    marqueeTrack();
+    
+
+    //resize : document view의 크기가 변경될때마다 이벤트가 발생
+    // 최적화 전 : 화면 줄이는중, 늘리는중에도 이벤트 계속 발생 (1초에 30~60번 계속 발생)
+    // 최적화 후 : 사용자가 사이즈 조절을 완전히 멈출때까지 기다리다가 이벤트를 발생시킴
+  
+    // 리사이즈 이벤트
+    window.addEventListener('resize', () => { 
+        clearTimeout(resizeTimer); // clearTimeout() : setTimeout()으로 생성한 타임아웃을 취소하는 매서드 (resizeTimer에 값이 있을때 취소됨)
+        //리사이징 하기 전에 resizeTimer에 값이 있으면 타임아웃(취소)를 하고나서 setTimeout를 해야한다.
+        resizeTimer = setTimeout(syncMediaPosition, DELAY); // setTimeout() : 특정 시간이 지난 다음에 코드를 실행하는 함수
+    });
+    syncMediaPosition();
+}
+
+
 function mainSlideSwiper() {
   //메인 슬라이더 스와이퍼
   const mainSlideSwiper = new Swiper(".swiper.main-slide", {
@@ -19,7 +45,6 @@ function mainSlideSwiper() {
     },
   });
 }
-mainSlideSwiper();
 
 function selectionDisplay() {
   //섹션02 OUR SELECTION영역 슬라이드 로직
@@ -145,7 +170,6 @@ function selectionDisplay() {
   // 함수가 정의되었으니 최초에 딱 한 번 수동 실행해서 첫 화면 띄우기
   updateScreen();
 }
-selectionDisplay();
 
 function iconicSlideSwiper() {
   const iconicSlideSwiper = new Swiper(".swiper.iconic-slide", {
@@ -157,7 +181,6 @@ function iconicSlideSwiper() {
     },
   });
 }
-iconicSlideSwiper();
 
 function initIconicSlideMouseFollower() {
   const iconicSlider = document.querySelector(".iconic-slide");
@@ -211,40 +234,33 @@ function initIconicSlideMouseFollower() {
     });
   });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  initIconicSlideMouseFollower();
-});
 
 
 function marqueeTrack() {
   const track = document.getElementById('marquee-track');
   const content = track.innerHTML;
-  track.innerHTML += content; 
+  track.innerHTML += content;
 }
 marqueeTrack();
 
 
 
-const items = document.querySelectorAll('.value-item');
-
 function syncMediaPosition() {
-    items.forEach(item => {
-        const placeholder = item.querySelector('.value-item__placeholder');
-        const media = item.querySelector('.value-item__media');
-        
-        // placeholder의 부모(value-item) 대비 상대 좌표 계산
-        const placeholderRect = placeholder.getBoundingClientRect();
-        const parentRect = item.getBoundingClientRect();
-        
-        // 부모의 왼쪽 끝을 기준으로 placeholder가 얼마나 떨어져 있는지 계산
-        const relativeLeft = placeholderRect.left - parentRect.left;
-        
-        // media에 left 값 적용
-        media.style.left = `${relativeLeft}px`;
-    });
+
+  const items = document.querySelectorAll('.value-item');// 모든 value-item 요소 찾기
+
+  items.forEach(item => {
+    const placeholder = item.querySelector('.value-item__placeholder'); //영역만 차지하는 투명 공간
+    const media = item.querySelector('.value-item__media'); // 실제 컨텐츠가 들어갈 공간
+
+    if (placeholder && media) {
+      const placeholderRect = placeholder.getBoundingClientRect(); // getBoundingClientRect() : element의 크기, 위치 정보를 담은 DOMRect 객체를 반환하는 메서드
+      const parentRect = item.getBoundingClientRect();
+      const relativeLeft = placeholderRect.left - parentRect.left; // 부모인 item(value-item)에서 자식요소인 placeholder(value-item__placeholder)의 왼쪽 좌표값을 빼서,부모에서 얼마나 떨어져 있는지 계산한다.
+      media.style.left = `${relativeLeft}px`; // 위에서 나온 값을 media에 left 값으로 적용
+    }
+  });
 }
 
-// 화면이 바뀔 때마다 좌표 갱신
-window.addEventListener('resize', syncMediaPosition);
-// 초기 실행
-syncMediaPosition();
+// DOMContentLoaded : HTML문서를 완전히 읽어 들였을때 (DOM이 모두 완성되었을때) 발생하는 이벤트 
+document.addEventListener("DOMContentLoaded", initAllScripts); //DOM을 다 읽어들이면 모든 함수 실행
