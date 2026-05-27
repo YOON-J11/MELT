@@ -68,9 +68,11 @@ header {
 
     .mega-menu {
         transition: all 0.3s ease-in-out;
+        height: 0;
         opacity: 0;
-        visibility: hidden;
-        background-color: rgb(255 255 255 / 80%);
+        overflow: hidden;
+        pointer-events: none;
+        background-color: rgba(250, 250, 250, 0.9);
         .inner {
             max-width: 1520px;
             .mega-menu__nav {
@@ -155,7 +157,8 @@ header {
     &.hover {
         .mega-menu {
             opacity: 1;
-            visibility: visible;
+            height: 270px;
+            pointer-events: auto;
             box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.1);
         }
     }

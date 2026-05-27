@@ -3,24 +3,25 @@ let resizeTimer = null;
 const DELAY = 300; //0.3초
 
 function initAllScripts() { //전체 기능을 하나로 묶은 통합 함수
-    mainSlideSwiper();
-    selectionDisplay();
-    iconicSlideSwiper();
-    initIconicSlideMouseFollower();
-    marqueeTrack();
-    
+  mainSlideSwiper();
+  selectionDisplay();
+  iconicSlideSwiper();
+  initIconicSlideMouseFollower();
+  marqueeTrack();
 
-    //resize : document view의 크기가 변경될때마다 이벤트가 발생
-    // 최적화 전 : 화면 줄이는중, 늘리는중에도 이벤트 계속 발생 (1초에 30~60번 계속 발생)
-    // 최적화 후 : 사용자가 사이즈 조절을 완전히 멈출때까지 기다리다가 이벤트를 발생시킴
-  
-    // 리사이즈 이벤트
-    window.addEventListener('resize', () => { 
-        clearTimeout(resizeTimer); // clearTimeout() : setTimeout()으로 생성한 타임아웃을 취소하는 매서드 (resizeTimer에 값이 있을때 취소됨)
-        //리사이징 하기 전에 resizeTimer에 값이 있으면 타임아웃(취소)를 하고나서 setTimeout를 해야한다.
-        resizeTimer = setTimeout(syncMediaPosition, DELAY); // setTimeout() : 특정 시간이 지난 다음에 코드를 실행하는 함수
-    });
-    syncMediaPosition();
+  //resize : document view의 크기가 변경될때마다 이벤트가 발생
+  // 최적화 전 : 화면 줄이는중, 늘리는중에도 이벤트 계속 발생 (1초에 30~60번 계속 발생)
+  // 최적화 후 : 사용자가 사이즈 조절을 완전히 멈출때까지 기다리다가 이벤트를 발생시킴
+  // 리사이즈 이벤트
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer); // clearTimeout() : setTimeout()으로 생성한 타임아웃을 취소하는 매서드 (resizeTimer에 값이 있을때 취소됨)
+    //리사이징 하기 전에 resizeTimer에 값이 있으면 타임아웃(취소)를 하고나서 setTimeout를 해야한다.
+    resizeTimer = setTimeout(syncMediaPosition, DELAY); // setTimeout() : 특정 시간이 지난 다음에 코드를 실행하는 함수
+  });
+  syncMediaPosition();
+
+  showroomMouseFollower();
+  initShowroomClick();
 }
 
 
@@ -184,7 +185,7 @@ function iconicSlideSwiper() {
 
 function initIconicSlideMouseFollower() {
   const iconicSlider = document.querySelector(".iconic-slide");
-  const FollowGroup = document.querySelector(".cursor-follow-group");
+  const FollowGroup = document.querySelector(".section03 .cursor-follow-group");
 
   // 페이지에 아이코닉슬라이더나 커서 그룹이 없으면 무시하기
   if (!iconicSlider || !FollowGroup) return;
@@ -235,15 +236,11 @@ function initIconicSlideMouseFollower() {
   });
 }
 
-
 function marqueeTrack() {
   const track = document.getElementById('marquee-track');
   const content = track.innerHTML;
   track.innerHTML += content;
 }
-marqueeTrack();
-
-
 
 function syncMediaPosition() {
 
@@ -259,6 +256,51 @@ function syncMediaPosition() {
       const relativeLeft = placeholderRect.left - parentRect.left; // 부모인 item(value-item)에서 자식요소인 placeholder(value-item__placeholder)의 왼쪽 좌표값을 빼서,부모에서 얼마나 떨어져 있는지 계산한다.
       media.style.left = `${relativeLeft}px`; // 위에서 나온 값을 media에 left 값으로 적용
     }
+  });
+}
+
+function showroomMouseFollower() {
+  const showroomSections = document.querySelectorAll('.showroom__section');
+  const FollowGroup = document.querySelector('.section06 .cursor-follow-group');
+
+  showroomSections.forEach(section => {
+    section.addEventListener('mouseenter', () => {
+      if (!section.classList.contains('active')) {
+        FollowGroup.classList.add('active');
+
+        section.addEventListener('mousemove', moveHandler);
+      }
+    });
+
+    section.addEventListener('mouseleave', () => {
+      FollowGroup.classList.remove('active');
+      section.removeEventListener('mousemove', moveHandler);
+    });
+  });
+
+  function moveHandler(e) {
+    const FollowGroup = document.querySelector('.section06 .cursor-follow-group');
+    FollowGroup.style.left = e.clientX + 'px';
+    FollowGroup.style.top = e.clientY + 'px';
+  }
+}
+
+function initShowroomClick() {
+  const sections = document.querySelectorAll('.showroom__section');
+
+  sections.forEach(section => {
+    section.addEventListener('click', () => {
+      if (section.classList.contains('active')) return;
+
+      // 2. 다른 모든 active 제거
+      sections.forEach(s => s.classList.remove('active'));
+
+      // 3. 클릭한 요소에 active 추가
+      section.classList.add('active');
+
+      // 4. 클릭하자마자 커스텀 커서는 숨김
+      document.querySelector('.section06 .cursor-follow-group').classList.remove('active');
+    });
   });
 }
 

@@ -564,6 +564,10 @@
   background-image: url(../images/icon-arrow-right.svg);
 }
 
+.icon-chevron-right {
+  background-image: url(../images/icon-chevron-right.svg);
+}
+
 .icon-24 {
   width: 24px;
   height: 24px;
