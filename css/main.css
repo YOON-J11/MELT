@@ -654,20 +654,20 @@
   left: 18%;
 }
 .section06 .showroom__section--03 .product-card:nth-child(2) {
-  top: 62%;
-  left: 30%;
+  top: 71%;
+  left: 9%;
 }
 .section06 .showroom__section--03 .product-card:nth-child(3) {
   top: 30%;
   left: 45%;
 }
 .section06 .showroom__section--03 .product-card:nth-child(4) {
-  top: 56%;
-  left: 64%;
+  top: 45%;
+  left: 54%;
 }
 .section06 .showroom__section--03 .product-card:nth-child(5) {
-  top: 74%;
-  left: 76%;
+  top: 75%;
+  left: 49%;
 }
 .section06 .showroom__section:hover::before {
   transform: scale(1.05);
