@@ -1,18 +1,17 @@
-// [resize최적화용 변수]
+// [resize 최적화용 변수]
 let resizeTimer = null;
 const DELAY = 300; //0.3초
 
-function initAllScripts() { //전체 기능을 하나로 묶은 통합 함수
+// initAllScripts: 모든 개별 로직을 관리하고, 페이지 로드 시 한 번에 초기화
+function initAllScripts() {
   mainSlideSwiper();
   selectionDisplay();
   iconicSlideSwiper();
   initIconicSlideMouseFollower();
   marqueeTrack();
 
-  //resize : document view의 크기가 변경될때마다 이벤트가 발생
-  // 최적화 전 : 화면 줄이는중, 늘리는중에도 이벤트 계속 발생 (1초에 30~60번 계속 발생)
-  // 최적화 후 : 사용자가 사이즈 조절을 완전히 멈출때까지 기다리다가 이벤트를 발생시킴
-  // 리사이즈 이벤트
+
+  // resize 최적화: 화면 크기 변화 시 이벤트가 과도하게 발생하는 것을 방지하기 위해 최적화를 함. 리사이징이 끝나고 0.3초 후에 syncMediaPosition를 실행한다.
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer); // clearTimeout() : setTimeout()으로 생성한 타임아웃을 취소하는 매서드 (resizeTimer에 값이 있을때 취소됨)
     //리사이징 하기 전에 resizeTimer에 값이 있으면 타임아웃(취소)를 하고나서 setTimeout를 해야한다.
@@ -22,9 +21,11 @@ function initAllScripts() { //전체 기능을 하나로 묶은 통합 함수
 
   showroomMouseFollower();
   initShowroomClick();
+  adjustLinkBoxPosition();
 }
 
 
+// mainSlideSwiper: 메인 배너용 스와이퍼 (페이드 효과, 자동 재생, 8초 전환)
 function mainSlideSwiper() {
   //메인 슬라이더 스와이퍼
   const mainSlideSwiper = new Swiper(".swiper.main-slide", {
@@ -47,6 +48,7 @@ function mainSlideSwiper() {
   });
 }
 
+// selectionDisplay: OUR SELECTION' 영역 로직. 데이터 객체 배열을 기반으로 메인 이미지와 텍스트를 동적으로 교체하고, 하단 썸네일 클릭 시 updateScreen을 통해 화면을 재구성
 function selectionDisplay() {
   //섹션02 OUR SELECTION영역 슬라이드 로직
   const furnitureList = [
@@ -172,6 +174,7 @@ function selectionDisplay() {
   updateScreen();
 }
 
+// iconicSlideSwiper: 일반 스와이퍼 내비게이션 기능
 function iconicSlideSwiper() {
   const iconicSlideSwiper = new Swiper(".swiper.iconic-slide", {
     slidesPerView: "auto",
@@ -183,6 +186,7 @@ function iconicSlideSwiper() {
   });
 }
 
+// initIconicSlideMouseFollower: 마우스 좌표를 추적하여 슬라이드 호버 시 정보 박스(infoBox)를 마우스 따라다니게 구현하고 화면 끝에 도달하면 박스 방향을 반전(flip-left)시킴
 function initIconicSlideMouseFollower() {
   const iconicSlider = document.querySelector(".iconic-slide");
   const FollowGroup = document.querySelector(".section03 .cursor-follow-group");
@@ -200,21 +204,23 @@ function initIconicSlideMouseFollower() {
     const mouseX = e.clientX;
     const mouseY = e.clientY;
 
+    // 박스의 실제 너비 구하기
+    const boxWidth = infoBox.offsetWidth;
+    const windowWidth = window.innerWidth;
+
     // 점(Dot) 위치 갱신
     cursorDot.style.left = `${mouseX}px`;
     cursorDot.style.top = `${mouseY}px`;
 
-    // 정보 박스(infoBox) 위치 갱신
+    // 정보 박스 위치 갱신
     infoBox.style.left = `${mouseX}px`;
     infoBox.style.top = `${mouseY}px`;
 
-    const windowWidth = window.innerWidth;
-
-    // 마우스 위치에서 박스가 오른쪽으로 뻗어나갈 공간이 부족하다면
-    if (mouseX + boxWidth > windowWidth) {
-      infoBox.classList.add("flip-left"); // flip-left 클래스 붙이기
+    // 마우스 위치 + 박스 너비가 창 너비를 넘어가면 반전하고, 여유 공간으로 20px 정도를 더해줌
+    if (mouseX + boxWidth + 20 > windowWidth) {
+      infoBox.classList.add("flip-left");
     } else {
-      infoBox.classList.remove("flip-left"); // flip-left 클래스 지우기
+      infoBox.classList.remove("flip-left");
     }
   });
 
@@ -236,12 +242,14 @@ function initIconicSlideMouseFollower() {
   });
 }
 
+// marqueeTrack: 흐르는 텍스트(마키)의 연속적인 흐름을 위해 내용을 복제하여 이어 붙임
 function marqueeTrack() {
   const track = document.getElementById('marquee-track');
   const content = track.innerHTML;
   track.innerHTML += content;
 }
 
+// syncMediaPosition: placeholder 요소의 위치를 계산(getBoundingClientRect)하여, 실제 컨텐츠(media)가 특정 영역(placeholder) 위에 정확히 겹치도록 좌표를 동기화
 function syncMediaPosition() {
 
   const items = document.querySelectorAll('.value-item');// 모든 value-item 요소 찾기
@@ -259,17 +267,20 @@ function syncMediaPosition() {
   });
 }
 
+// showroomMouseFollower: 특정 섹션 영역 진입 시 커스텀 커서(FollowGroup)를 활성화하고 마우스 좌표를 따라다니게 
 function showroomMouseFollower() {
   const showroomSections = document.querySelectorAll('.showroom__section');
   const FollowGroup = document.querySelector('.section06 .cursor-follow-group');
 
   showroomSections.forEach(section => {
     section.addEventListener('mouseenter', () => {
-      if (!section.classList.contains('active')) {
-        FollowGroup.classList.add('active');
 
-        section.addEventListener('mousemove', moveHandler);
+      if (section.classList.contains('active')) {
+        return; 
       }
+
+      FollowGroup.classList.add('active');
+      section.addEventListener('mousemove', moveHandler);
     });
 
     section.addEventListener('mouseleave', () => {
@@ -285,22 +296,80 @@ function showroomMouseFollower() {
   }
 }
 
+// initShowroomClick: 쇼룸 섹션 클릭 시 active 클래스를 토글하여 특정 섹션을 활성화하고, 커스텀 커서를 숨긴다
 function initShowroomClick() {
   const sections = document.querySelectorAll('.showroom__section');
 
-  sections.forEach(section => {
-    section.addEventListener('click', () => {
-      if (section.classList.contains('active')) return;
+  // 문서 전체에 클릭 이벤트
+  document.addEventListener('click', (e) => {
 
-      // 2. 다른 모든 active 제거
+    // 클릭한 곳이 쇼룸 섹션 내부인가 확인
+    const clickedSection = e.target.closest('.showroom__section');
+
+    // 외부 클릭 시 원래 형태로 되돌리기
+    if (!clickedSection) {
       sections.forEach(s => s.classList.remove('active'));
 
-      // 3. 클릭한 요소에 active 추가
-      section.classList.add('active');
+      // 외부 클릭 시 커서 팔로워는 즉시 숨김
+      const cursor = document.querySelector('.section06 .cursor-follow-group');
+      if (cursor) cursor.classList.remove('active');
+      return;
+    }
 
-      // 4. 클릭하자마자 커스텀 커서는 숨김
-      document.querySelector('.section06 .cursor-follow-group').classList.remove('active');
+    // 내부 클릭 시 선택된 섹션만 활성화
+    if (clickedSection.classList.contains('active')) return;
+
+    sections.forEach(s => s.classList.remove('active'));
+    clickedSection.classList.add('active');
+
+    // 커서 숨기기
+    const cursor = document.querySelector('.section06 .cursor-follow-group');
+    if (cursor) cursor.classList.remove('active');
+  });
+}
+
+// adjustLinkBoxPosition: 쇼룸 핫스팟 클릭 시, 링크 박스가 쇼룸 영역 밖으로 나가지 않도록 좌표를 계산하여 위치(분면별 배치)를 조정
+function adjustLinkBoxPosition() {
+  document.addEventListener('click', (e) => {
+    const hotspot = e.target.closest('.product-card__hotspot'); //closest() 메서드는 주어진 CSS 선택자와 일치하는 요소를 찾을 때까지, 자기 자신을 포함해 위쪽(부모 방향, 문서 루트까지)으로 문서 트리를 순회한다
+
+    if (!hotspot) { // hotspot이 없다면, 즉 클릭한곳이 hotspot 영역이 아니라면
+      document.querySelectorAll('.product-card').forEach(c => c.classList.remove('is-open')); //product-card에 is-open클래스를 지움
+      return;
+    }
+
+    const card = hotspot.closest('.product-card');
+    // 방금 클릭한 카드(card)를 제외한 '나머지 카드들'만 찾아서 닫기
+    document.querySelectorAll('.product-card').forEach(c => {
+      if (c !== card) {
+        c.classList.remove('is-open');
+      }
     });
+
+
+    const linkBox = card.querySelector('.product-card__link');
+    const section = card.closest('.showroom__section');
+
+    // 쇼룸 영역과 핫스팟의 좌표 계산
+    const sectionRect = section.getBoundingClientRect(); // Element.getBoundingClientRect() 메서드는 엘리먼트의 크기와 뷰포트에 상대적인 위치 정보를 제공하는 DOMRect 객체를 반환합니다.
+    const hotspotRect = hotspot.getBoundingClientRect();
+
+    // 쇼룸의 중심점 계산
+    const midX = sectionRect.left + sectionRect.width / 2; //가로 중심점 좌표
+    const midY = sectionRect.top + sectionRect.height / 2; //세로 중심점 좌표
+
+    // 핫스팟이 쇼룸의 어느 분면(Quadrant)에 있는지 판별
+    const isRight = hotspotRect.left > midX; //핫스팟의 왼쪽좌표값이 섹션 중심 좌표값 보다 클 경우, true반환(오른쪽에 위치). 반대의경우는 false반환(왼쪽에 위치)
+    const isBottom = hotspotRect.top > midY; //핫스팟의 상단좌표값이 섹션 중심 좌표값 보다 클 경우, true반환(하단에 위치). 반대의경우는 false반환(상단에 위치)
+
+    // 위치 조정: 영역 안쪽으로 들어오도록 속성 설정
+    linkBox.style.top = isBottom ? 'auto' : '30px';
+    linkBox.style.bottom = isBottom ? '30px' : 'auto';
+    linkBox.style.left = isRight ? 'auto' : '30px';
+    linkBox.style.right = isRight ? '30px' : 'auto';
+
+    // 토글 실행
+    card.classList.toggle('is-open');
   });
 }
 

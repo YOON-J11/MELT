@@ -370,6 +370,8 @@
   padding: 12px;
   background-color: #fff;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+  white-space: nowrap;
 }
 .section03 .iconic-slide .cursor-follow-group .info-box.flip-left {
   translate: -100% -100%;
@@ -607,13 +609,65 @@
 }
 .section06 .showroom__section--01 .product-card:nth-child(1) {
   top: 50%;
-  left: 28%;
+  left: 24%;
+}
+.section06 .showroom__section--01 .product-card:nth-child(2) {
+  top: 26%;
+  left: 50%;
+}
+.section06 .showroom__section--01 .product-card:nth-child(3) {
+  top: 64%;
+  left: 40%;
+}
+.section06 .showroom__section--01 .product-card:nth-child(4) {
+  top: 78%;
+  left: 60%;
 }
 .section06 .showroom__section--02::before {
   background-image: url(../images/showroom__section_02_bg.jpg);
 }
+.section06 .showroom__section--02 .product-card:nth-child(1) {
+  top: 30%;
+  left: 28%;
+}
+.section06 .showroom__section--02 .product-card:nth-child(2) {
+  top: 71%;
+  left: 15%;
+}
+.section06 .showroom__section--02 .product-card:nth-child(3) {
+  top: 45%;
+  left: 38%;
+}
+.section06 .showroom__section--02 .product-card:nth-child(4) {
+  top: 26%;
+  left: 70%;
+}
+.section06 .showroom__section--02 .product-card:nth-child(5) {
+  top: 60%;
+  left: 70%;
+}
 .section06 .showroom__section--03::before {
   background-image: url(../images/showroom__section_03_bg.jpg);
+}
+.section06 .showroom__section--03 .product-card:nth-child(1) {
+  top: 22%;
+  left: 18%;
+}
+.section06 .showroom__section--03 .product-card:nth-child(2) {
+  top: 62%;
+  left: 30%;
+}
+.section06 .showroom__section--03 .product-card:nth-child(3) {
+  top: 30%;
+  left: 45%;
+}
+.section06 .showroom__section--03 .product-card:nth-child(4) {
+  top: 56%;
+  left: 64%;
+}
+.section06 .showroom__section--03 .product-card:nth-child(5) {
+  top: 74%;
+  left: 76%;
 }
 .section06 .showroom__section:hover::before {
   transform: scale(1.05);
@@ -630,17 +684,21 @@
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.1s ease;
+  z-index: 1;
 }
 .section06 .showroom__section .product-card__hotspot {
+  position: relative;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  background-color: rgba(0, 0, 0, 0.2745098039);
-  border: 1px solid var(--white);
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.7058823529);
+  border: 2px solid var(--white);
+  opacity: 0.7;
+  transition: opacity 0.1s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 .section06 .showroom__section .product-card__hotspot::after {
   display: block;
@@ -651,13 +709,28 @@
   background-color: var(--white);
   transition: width 0.2s ease, height 0.2s ease;
 }
+.section06 .showroom__section .product-card__hotspot:hover {
+  opacity: 1;
+}
+.section06 .showroom__section .product-card__hotspot:hover::after {
+  width: 35%;
+  height: 35%;
+}
 .section06 .showroom__section .product-card__link {
   background-color: var(--white);
   border-radius: 6px;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   align-items: center;
-  display: none;
+  display: flex;
+  min-width: 200px;
+  white-space: nowrap;
+  position: absolute;
+  margin: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 2;
 }
 .section06 .showroom__section .product-card__link .thumb {
   width: 80px;
@@ -668,6 +741,7 @@
 .section06 .showroom__section .product-card__link .content {
   line-height: 1.1;
   margin-left: 14px;
+  flex-grow: 1;
 }
 .section06 .showroom__section .product-card__link .content__category {
   font-size: 14px;
@@ -684,15 +758,15 @@
 .section06 .showroom__section .product-card__link .icon {
   margin-left: 20px;
 }
-.section06 .showroom__section .product-card:hover .product-card__hotspot::after {
-  width: 30%;
-  height: 30%;
+.section06 .showroom__section .product-card.is-open {
+  z-index: 20;
 }
-.section06 .showroom__section .product-card:hover .product-card__link {
-  display: flex;
+.section06 .showroom__section .product-card.is-open .product-card__link {
+  opacity: 1;
+  visibility: visible;
 }
 .section06 .showroom__section.active {
-  flex: 0 0 70%;
+  flex: 0 0 60%;
   clip-path: initial;
   cursor: default;
 }
