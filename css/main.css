@@ -813,6 +813,9 @@
   line-height: 1;
   white-space: nowrap;
 }
+.section06 .btn-area {
+  margin: 70px auto 0;
+}
 
 .section07 {
   background-color: var(--main-color);
@@ -840,6 +843,48 @@
   height: 100px;
   border-radius: 99px;
   overflow: hidden;
+}
+
+.section08 {
+  padding: 210px 0;
+}
+.section08 .inner .sec8__header h1 {
+  font-size: 170px;
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: 0;
+  color: #535353;
+}
+.section08 .inner .sec8__footer {
+  display: flex;
+  margin-top: 100px;
+}
+.section08 .inner .sec8__footer__desc {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.7;
+  display: flex;
+  padding-left: 17%;
+}
+.section08 .inner .sec8__footer__desc__ko {
+  padding-bottom: 100px;
+}
+.section08 .inner .sec8__footer__desc__en {
+  padding-top: 100px;
+}
+.section08 .inner .sec8__footer__action {
+  flex: 0 0 auto;
+  padding-left: 1%;
+  margin-top: 50px;
+}
+.section08 .inner .sec8__footer__action a {
+  font-size: 18px;
+  font-weight: 500;
+}
+.section08 .inner .sec8__footer__action a i {
+  width: 54px;
+  height: 16px;
+  margin-left: 10px;
 }
 
 @keyframes marqueeScroll {
