@@ -7,7 +7,9 @@ function initAllScripts() {
   mainSlideSwiper();
   selectionDisplay();
   iconicSlideSwiper();
-  initIconicSlideMouseFollower();
+  if (window.innerWidth > 1024) {
+    initIconicSlideMouseFollower();
+  }
   marqueeTrack();
 
 

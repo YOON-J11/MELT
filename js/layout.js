@@ -14,6 +14,7 @@ async function loadHeader() { //외부 html파일을을 가져와서 화면에 �
     topBannerSwiper(); //탑배너 슬라이드 활성화
     megaPromoSwiper(); //메가프로모 슬라이드 활성화
     handleHeader(); //헤더(메뉴들)로직 활성화
+    initTopButton(); // 탑버튼 활성화
 
 
   } catch (error) { //파일경로가 틀렸거나 네트워크 문제가 발생했을경우 에러메세지 출력
@@ -57,39 +58,83 @@ function megaPromoSwiper() {//메가프로모 스와이퍼
 }
 
 function handleHeader() {
+  const header = document.querySelector('header');
+  const headerMain = document.querySelector('.header-main');
+  let lastScrollY = window.scrollY;
 
-  const header = document.querySelector('header'); //헤더 찾아서 변수에 넣기
-  const headerMain = document.querySelector('.header-main'); //헤더메인 찾아서 변수에 넣기
-
-  const activate = () => header.classList.add('active');//기능을 변수에 담아 선언. 나중에 activate를 호출하면 active클래스가 붙음
-
-  const deactivate = () => { //deactivate를 호출했을때 윈도우가 최상단에 있고, 마우스가 안올라가있을 경우(헤더에 hover클래스가 없는경우)에만 active제거
+  const activate = () => header.classList.add('active');
+  const deactivate = () => {
     if (window.scrollY === 0 && !header.classList.contains('hover')) {
       header.classList.remove('active');
     }
-  }
-
+  };
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-      activate(); //스크롤이 최상단이 아니면 activate함수 호출
-      header.classList.add('scrolled'); //scrolled 클래스 추가
-    } else {
-      header.classList.remove('scrolled'); //scrolled 클래스 제거
-      deactivate(); //스크롤이 최상단에 있으면 deactivate함수 호출
+    const currentScrollY = window.scrollY;
+
+    // 마우스 호버 중일 때는 스크롤 로직 무시
+    if (header.classList.contains('hover')) return;
+
+    if (currentScrollY > 0) {
+      activate();
+      
+      // 스크롤 다운 시
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        header.classList.add('hidden'); // 헤더 전체 숨김
+        header.classList.remove('scrolled'); // 탑배너 숨김은 해제
+      } 
+      // 스크롤 업 시
+      else if (currentScrollY < lastScrollY) {
+        header.classList.remove('hidden'); // 전체 숨김 해제
+        header.classList.add('scrolled');  // 탑배너만 숨긴 상태로 전환
+      }
+    } 
+    // 최상단 도달 시
+    else {
+      header.classList.remove('hidden', 'scrolled');
+      deactivate();
     }
+
+    lastScrollY = currentScrollY;
   });
 
-  headerMain.addEventListener('mouseover', () => { //헤더메인에 마우스 올렸을때 이벤트
-    activate(); //마우스 올렸을때 activate함수 호출
-    header.classList.add('hover'); //헤더에 hover클래스 붙임
+  // 호버 이벤트는 기존대로
+  headerMain.addEventListener('mouseover', () => {
+    header.classList.remove('hidden');
+    activate();
+    header.classList.add('hover');
   });
-
+  
   header.addEventListener('mouseleave', () => {
-    header.classList.remove('hover'); //헤더에서 마우스가 벗어났을때 hover클래스 제거
-    deactivate(); //헤더에서 마우스가 나갔을때 deactivate 함수 호출
+    header.classList.remove('hover');
+    deactivate();
   });
 }
 
+
+function initTopButton() {
+  // 1. 버튼 생성 (HTML에 미리 안 만들어뒀다면 여기서 생성)
+  const topBtn = document.createElement('button');
+  topBtn.id = 'topBtn';
+  topBtn.innerHTML = 'TOP'; // 아이콘을 쓰고 싶다면 <i class="icon-arrow"></i> 등으로 변경 가능
+  document.body.appendChild(topBtn);
+
+  // 2. 스크롤 이벤트 (보임/숨김)
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  });
+
+  // 3. 클릭 이벤트 (부드러운 이동)
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
 
 window.addEventListener('DOMContentLoaded', loadHeader); //브라우저가 기본 HTML구조를 모두 읽었을때 loadHeader를 실행

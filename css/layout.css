@@ -3,7 +3,9 @@ header {
   /* position: fixed; 상단 고정이 필요할 때 사용 */
   width: 100%;
   z-index: 1000;
+  top: 0;
   transition: all 0.3s ease-in-out;
+  transform: translateY(0);
 }
 header .top-banner {
   height: 38px;
@@ -123,6 +125,9 @@ header.hover .mega-menu {
   pointer-events: auto;
   box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.1);
 }
+header.hidden {
+  transform: translateY(-100%);
+}
 header.scrolled {
   transform: translateY(-38px);
 }
@@ -137,10 +142,33 @@ footer .inner {
   align-items: center;
   justify-content: space-between;
 }
+footer .inner .footer__left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 footer .inner .footer__left .logo {
   width: 91px;
   height: 24px;
   background-color: #535353;
+}
+footer .inner .footer__left__policy {
+  display: flex;
+  gap: 5%;
+}
+footer .inner .footer__left__policy li:first-child a {
+  font-weight: 500;
+}
+footer .inner .footer__left__info {
+  font-size: 14px;
+}
+footer .inner .footer__left__notice {
+  color: var(--gray);
+  font-size: 14px;
+}
+footer .inner .footer__left__notice .disclaimer {
+  margin-top: 5px;
+  line-height: 1.3em;
 }
 footer .inner .footer__right {
   font-size: 16px;
@@ -162,6 +190,26 @@ footer .inner .footer__right__sns {
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+#topBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  transition: opacity 0.3s;
+}
+
+#topBtn:hover {
+  background-color: #000;
 }
 
 /* 메인 컨텐츠 영역 */

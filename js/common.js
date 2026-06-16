@@ -1,6 +1,36 @@
+// initRevealOnScroll: 뷰포트 진입 시 .reveal 요소에 is-visible 클래스를 추가
+function initRevealOnScroll() {
+  const revealItems = document.querySelectorAll(".reveal");
+  if (!revealItems.length) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -8% 0px",
+    }
+  );
+
+  revealItems.forEach((item) => observer.observe(item));
+}
+
 // 페이지 로드 후 실행
 document.addEventListener("DOMContentLoaded", function () {
-
+  initRevealOnScroll();
 
   // 기본 셀렉트 박스
   const selects = document.querySelectorAll(".select-base");
