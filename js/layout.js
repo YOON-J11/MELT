@@ -14,15 +14,24 @@ async function loadHeader() { //외부 html파일을을 가져와서 화면에 �
     topBannerSwiper(); //탑배너 슬라이드 활성화
     megaPromoSwiper(); //메가프로모 슬라이드 활성화
     handleHeader(); //헤더(메뉴들)로직 활성화
-    initTopButton(); // 탑버튼 활성화
 
 
   } catch (error) { //파일경로가 틀렸거나 네트워크 문제가 발생했을경우 에러메세지 출력
-    console.error('헤더를 불러오는 데 실패했습니다:', error);
+    console.error('헤더를 불러오는 데 실패했습니다.', error);
   }
 
 }
-
+async function loadFooter() {
+  const footerContainer = document.querySelector('#footer');
+  if (!footerContainer) return;
+  try {
+    const response = await fetch('./inc/footer.html');
+    const data = await response.text();
+    footerContainer.innerHTML = data;
+  } catch (error) {
+    console.error('푸터를 불러오는 데 실패했습니다.', error)
+  }
+}
 
 function topBannerSwiper() {//탑배너 스와이퍼
   const topBannerSwiper = new Swiper(".swiper.top-banner", {
@@ -31,7 +40,7 @@ function topBannerSwiper() {//탑배너 스와이퍼
     loop: true, //무한반복 여부
     speed: 300, //슬라이드 전환 속도 1000=1초
     centeredSlides: true, //활성 슬라이드를 중앙에 배치
-     autoplay: {
+    autoplay: {
       //자동재생 설정
       delay: 3000, //슬라이드가 머무르는 시간
       disableOnInteraction: false, // 클릭 또는 스와이프시 멈춤 여부 (완전정지)
@@ -77,18 +86,18 @@ function handleHeader() {
 
     if (currentScrollY > 0) {
       activate();
-      
+
       // 스크롤 다운 시
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         header.classList.add('hidden'); // 헤더 전체 숨김
         header.classList.remove('scrolled'); // 탑배너 숨김은 해제
-      } 
+      }
       // 스크롤 업 시
       else if (currentScrollY < lastScrollY) {
         header.classList.remove('hidden'); // 전체 숨김 해제
         header.classList.add('scrolled');  // 탑배너만 숨긴 상태로 전환
       }
-    } 
+    }
     // 최상단 도달 시
     else {
       header.classList.remove('hidden', 'scrolled');
@@ -104,7 +113,7 @@ function handleHeader() {
     activate();
     header.classList.add('hover');
   });
-  
+
   header.addEventListener('mouseleave', () => {
     header.classList.remove('hover');
     deactivate();
@@ -112,29 +121,21 @@ function handleHeader() {
 }
 
 
-function initTopButton() {
-  // 1. 버튼 생성 (HTML에 미리 안 만들어뒀다면 여기서 생성)
-  const topBtn = document.createElement('button');
-  topBtn.id = 'topBtn';
-  topBtn.innerHTML = 'TOP'; // 아이콘을 쓰고 싶다면 <i class="icon-arrow"></i> 등으로 변경 가능
-  document.body.appendChild(topBtn);
+function initScrollBtns() {
+  const upBtn = document.querySelector('.btn-scroll.up');
+  const downBtn = document.querySelector('.btn-scroll.down');
 
-  // 2. 스크롤 이벤트 (보임/숨김)
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      topBtn.style.display = "block";
-    } else {
-      topBtn.style.display = "none";
-    }
+  upBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // 3. 클릭 이벤트 (부드러운 이동)
-  topBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
+  downBtn.addEventListener('click', () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  })
 }
 
-window.addEventListener('DOMContentLoaded', loadHeader); //브라우저가 기본 HTML구조를 모두 읽었을때 loadHeader를 실행
+window.addEventListener('DOMContentLoaded', () => {
+  loadHeader();
+  loadFooter();
+  initScrollBtns();
+}); //브라우저가 기본 HTML구조를 모두 읽었을때 loadHeader, loadFooter를 실행

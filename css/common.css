@@ -78,6 +78,20 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .inner {
+    padding: 0 20px;
+  }
+
+  .inner-right-open,
+  .inner-left-open {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 20px;
+  }
+}
+
 /* -------------- 유틸리티: 텍스트 제어 -------------- */
 /* 한 줄 말줄임 */
 .ellipsis {
@@ -563,12 +577,24 @@
   background-image: url(../images/icon-user.svg);
 }
 
+.icon-menu {
+  background-image: url(../images/icon-menu.svg);
+}
+
 .icon-arrow-right {
   background-image: url(../images/icon-arrow-right.svg);
 }
 
 .icon-chevron-right {
   background-image: url(../images/icon-chevron-right.svg);
+}
+
+.icon-up {
+  background-image: url(../images/icon-up.svg);
+}
+
+.icon-down {
+  background-image: url(../images/icon-down.svg);
 }
 
 .icon-next {
