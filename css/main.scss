@@ -33,6 +33,11 @@
         width: 100%;
         aspect-ratio: 1920 / 800;
 
+        @media (max-width: 1024px) {
+            aspect-ratio: auto;
+            height: 600px;
+        }
+
         .swiper-wrapper {
             width: 100%;
             height: 100%;

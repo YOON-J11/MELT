@@ -588,6 +588,9 @@
 .icon-chevron-right {
   background-image: url(../images/icon-chevron-right.svg);
 }
+.icon-chevron-down {
+  background-image: url(../images/icon-chevron-down.svg);
+}
 
 .icon-up {
   background-image: url(../images/icon-up.svg);
@@ -599,6 +602,9 @@
 
 .icon-next {
   background-image: url(../images/arrow-next.svg);
+}
+.icon-close {
+  background-image: url(../images/icon-close.svg);
 }
 
 .icon-insta {
