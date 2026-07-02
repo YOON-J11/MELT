@@ -15,6 +15,7 @@ async function loadHeader() { //외부 html파일을을 가져와서 화면에 �
     megaPromoSwiper(); //메가프로모 슬라이드 활성화
     handleHeader(); //헤더(메뉴들)로직 활성화
     initMobileMenu();
+    accordionMenu();
 
 
   } catch (error) { //파일경로가 틀렸거나 네트워크 문제가 발생했을경우 에러메세지 출력
@@ -89,7 +90,7 @@ function handleHeader() {
       // 마우스 호버중이 아니고 최상단일때 투명 배경 복귀
       if (!isHovering) {
         header.classList.remove('active', 'hidden', 'scrolled');
-    }
+      }
     } else {
       // 스크롤 시작: 흰색 배경 강제
       header.classList.add('active');
@@ -133,7 +134,6 @@ function initScrollBtns() {
   })
 }
 
-// 메뉴 상태를 한 번에 관리하는 함수
 function toggleMenu(isOpen) {
   const overlay = document.querySelector('.mobile-menu-overlay');
   const openBtn = document.querySelector('.btn-menu-trigger');
@@ -158,7 +158,6 @@ function toggleMenu(isOpen) {
   }
 }
 
-// 이벤트 초기화 (딱 한 번만 실행)
 function initMobileMenu() {
   const openBtn = document.querySelector('.btn-menu-trigger');
   const closeBtn = document.querySelector('.btn-menu-close');
@@ -169,7 +168,31 @@ function initMobileMenu() {
   closeBtn.onclick = () => toggleMenu(false);
 }
 
-// 리사이즈 시에는 클래스 정리만
+function accordionMenu() {
+
+  const headers = document.querySelectorAll('.mobile-accordion__header');//모든 헤더를 찾아서 저장
+
+  //forEach문으로 배열을 순차적으로 순회하면서 함수를 실행하기
+  headers.forEach((header) => {
+    header.addEventListener('click', () => {
+      //클릭한 헤더에 대한 서브메뉴(형제요소)를 찾아서 저장
+      const content = header.nextElementSibling;
+      //클릭한 헤더에 대한 아이콘을 찾아서 저장
+      const downIcon = header.querySelector('.icon-chevron-down');
+
+      if (!content) return; //서브메뉴가 없으면 실행중지
+
+      const isExpanded = content.classList.contains('is-open'); //.contains로 클래스가 붙어있는지 확인함. 클래스가 붙어있다면 true를 반환함
+
+      downIcon.classList.toggle('is-open', !isExpanded); //!isExpanded가 트루면, 클래스를 붙임. 즉 isExpanded가 false면 클래스를 붙임. 즉, is-open클래스가 안붙어있다면 클래스를 붙임
+      content.classList.toggle('is-open', !isExpanded);
+    })
+  })
+
+
+}
+
+// 리사이즈
 window.addEventListener('resize', () => {
   if (window.innerWidth > 1024) {
     toggleMenu(false); // PC 사이즈면 강제로 메뉴 닫기

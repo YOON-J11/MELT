@@ -225,7 +225,7 @@ header .mobile-menu-overlay {
     width: 100%;
     height: calc(100vh - 60px);
     background-color: var(--white);
-    z-index: 9999;
+    z-index: 900;
     overflow-y: auto;
     /* 내용이 길어지면 내부 스크롤 */
     transform: translateX(-100%);
@@ -240,7 +240,6 @@ header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion {
   flex-direction: column;
 }
 header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header {
-  background-color: aqua;
   width: 100%;
   display: flex;
   padding: 20px;
@@ -250,12 +249,22 @@ header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header {
 header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header span {
   font-weight: 600;
 }
+header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header .icon-chevron-down {
+  transition: transform 0.4s ease;
+}
+header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header .icon-chevron-down.is-open {
+  transform: rotate(180deg);
+}
 header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__content {
-  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
 }
 header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__content li a {
-  background-color: rosybrown;
   padding: 20px 30px;
+}
+header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__content.is-open {
+  max-height: 1000px;
 }
 
 footer {
@@ -322,7 +331,7 @@ footer .inner .footer__right__sns {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  z-index: 999;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   gap: 5px;

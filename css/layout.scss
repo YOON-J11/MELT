@@ -286,7 +286,7 @@ header {
             width: 100%;
             height: calc(100vh - 60px);
             background-color: var(--white);
-            z-index: 9999;
+            z-index: 900;
             overflow-y: auto;
             /* 내용이 길어지면 내부 스크롤 */
 
@@ -309,7 +309,6 @@ header {
                     &__item {}
 
                     &__header {
-                        background-color: aqua;
                         width: 100%;
                         display: flex;
                         padding: 20px;
@@ -319,16 +318,27 @@ header {
                         span {
                             font-weight: 600;
                         }
+                        .icon-chevron-down{
+                            transition: transform 0.4s ease;
+                            &.is-open {
+                                transform: rotate(180deg);
+                            }
+                        }
                     }
 
                     &__content {
-                        display: none;
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height .4s ease;
 
                         li {
                             a {
-                                background-color: rosybrown;
                                 padding: 20px 30px;
                             }
+                        }
+
+                        &.is-open {
+                            max-height: 1000px;
                         }
                     }
                 }
@@ -420,7 +430,7 @@ footer {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    z-index: 999;
+    z-index: 100;
 
     display: flex;
     flex-direction: column;
