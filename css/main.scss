@@ -124,9 +124,17 @@
 .section02 {
     padding: 170px 0;
 
+    @media (max-width:1024px) {
+        padding: 80px 0;
+    }
+
     .inner-right-open {
         .sec-title {
             margin-bottom: 80px;
+
+            @media (max-width:1024px) {
+                margin-bottom: 30px;
+            }
         }
 
         .selection-display {
@@ -176,6 +184,10 @@
                         font-size: 16px;
                         font-weight: 400;
                         line-height: 1.7;
+
+                        @media (max-width:1024px) {
+                            margin-top: 20px;
+                        }
                     }
 
                     .btn-main {
@@ -229,6 +241,8 @@
 
         }
     }
+
+
 }
 
 
@@ -542,6 +556,90 @@
                     transform: scale(1);
                 }
             }
+        }
+
+        @media (max-width:1024px) {
+            display: none;
+        }
+    }
+
+    .iconic-cont {
+        display: none;
+        background-color: #999;
+        width: 100%;
+        height: 720px;
+        position: relative;
+
+        &__item {
+            position: absolute;
+            display: flex;
+            gap: 16px;
+            .item-box {
+                position: relative;
+                overflow: hidden;
+                img {
+                    position: absolute;
+                }
+            }
+            &.item__01{
+                top: 0;
+                left: 0;
+                .item-box{
+                    background-color: #F6F0E1;
+                    border-radius: 22px;
+                    width: 20vw;
+                    aspect-ratio: 211 / 312;
+
+                    img {
+                        width: 86%;
+
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                .item-info {
+                    margin-top: 20px;
+                }
+            }
+            &.item__02 {
+                flex-direction: row-reverse;
+                align-items: end;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                .item-box{
+                    background-color: #F6F3EA;
+                    border-radius: 74px;
+                    width: 17.3vw;
+                    aspect-ratio: 178 / 240;
+                }
+
+                img {
+                    bottom: -10px;
+                    right: -20px;
+                }
+                .item-info {
+                    text-align: right;
+                    margin-bottom: 20px;
+                }
+            }
+
+            .item-info {
+                .info-en-name, .info-price{
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 1.2;
+                }
+                .info-ko-name {
+                    font-weight: 300;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        @media (max-width:1024px) {
+            display: block;
         }
     }
 

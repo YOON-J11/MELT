@@ -17,7 +17,13 @@ function initAllScripts() {
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer); // clearTimeout() : setTimeout()으로 생성한 타임아웃을 취소하는 매서드 (resizeTimer에 값이 있을때 취소됨)
     //리사이징 하기 전에 resizeTimer에 값이 있으면 타임아웃(취소)를 하고나서 setTimeout를 해야한다.
-    resizeTimer = setTimeout(syncMediaPosition, DELAY); // setTimeout() : 특정 시간이 지난 다음에 코드를 실행하는 함수
+    resizeTimer = setTimeout(() => {
+      syncMediaPosition();
+      if (thumbSwiper) {
+        thumbSwiper.params.spaceBetween = getSpaceBetween();
+        thumbSwiper.update();
+      }
+    }, DELAY); // setTimeout() : 특정 시간이 지난 다음에 코드를 실행하는 함수
   });
   syncMediaPosition();
 
@@ -26,6 +32,14 @@ function initAllScripts() {
   adjustLinkBoxPosition();
 }
 
+
+// 화면 너비에 따라 마진값을 지정하는 함수
+function getSpaceBetween() {
+  const width = window.innerWidth;
+  if (width <= 768) return 10;
+  if (width <= 1024) return 20;
+  return 33;
+}
 
 // mainSlideSwiper: 메인 배너용 스와이퍼 (페이드 효과, 자동 재생, 8초 전환)
 function mainSlideSwiper() {
@@ -51,9 +65,10 @@ function mainSlideSwiper() {
 }
 
 // selectionDisplay: OUR SELECTION' 영역 로직. 데이터 객체 배열을 기반으로 메인 이미지와 텍스트를 동적으로 교체하고, 하단 썸네일 클릭 시 updateScreen을 통해 화면을 재구성
+let thumbSwiper = null; // 스와이퍼 인스턴스 저장 공간
 function selectionDisplay() {
   let currentMainId = 1; // 현재 메인 화면에 크게 보여줄 가구 ID (초기에는 1로 지정)
-  let thumbSwiper = null; // 스와이퍼 인스턴스 저장 공간
+
 
   function updateScreen() {
     // 화면갈아 끼우고 재배치하는 핵심 로직
@@ -91,10 +106,11 @@ function selectionDisplay() {
     if (thumbSwiper === null) {
       thumbSwiper = new Swiper(".selection-display__thumbs", {
         slidesPerView: "auto",
-        spaceBetween: 33, //마진값
+        spaceBetween: getSpaceBetween(), //마진값 함수로 가져옴
         freeMode: true,
       });
     } else {
+      thumbSwiper.params.spaceBetween = getSpaceBetween(); // 리사이즈 시 갱신할 값
       thumbSwiper.update();
     }
 
