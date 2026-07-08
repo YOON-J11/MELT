@@ -6,6 +6,7 @@ const DELAY = 300; //0.3초
 function initAllScripts() {
   mainSlideSwiper();
   selectionDisplay();
+  renderIconicSection();
   iconicSlideSwiper();
   if (window.innerWidth > 1024) {
     initIconicSlideMouseFollower();
@@ -125,6 +126,55 @@ function selectionDisplay() {
   }
   // 함수가 정의되었으니 최초에 딱 한 번 수동 실행해서 첫 화면 띄우기
   updateScreen();
+}
+
+// toBrHtml: iconic-cont용 줄바꿈 텍스트 생성 (lines 배열이 있으면 <br>로 연결, 없으면 원문 반환)
+function toBrHtml(text, lines) {
+  if (lines) return lines.join("<br>");
+  return text;
+}
+
+// renderIconicSection: iconicList 데이터로 PC 슬라이드와 태블릿/모바일 콘텐츠 마크업 생성
+function renderIconicSection() {
+  const slideWrapper = document.querySelector(".iconic-slide .swiper-wrapper");
+  const iconicCont = document.querySelector(".iconic-cont");
+  if (!slideWrapper || !iconicCont) return;
+
+  let slideHtml = "";
+  let contHtml = "";
+
+  iconicList.forEach((item) => {
+    const num = String(item.id).padStart(2, "0");
+
+    slideHtml += `
+      <div class="swiper-slide slide${num}">
+        <div class="item-box">
+          <img src="${item.img}" alt="${item.enName}">
+        </div>
+        <div class="slide-info">
+          <h3 class="info-en-name">${item.enName}</h3>
+          <p class="info-ko-name">${item.koName}</p>
+          <span class="info-price">${item.price}</span>
+        </div>
+      </div>
+    `;
+
+    contHtml += `
+      <div class="iconic-cont__item item__${num}">
+        <div class="item-box">
+          <img src="${item.img}" alt="${item.enName}">
+        </div>
+        <div class="item-info">
+          <h3 class="info-en-name">${toBrHtml(item.enName, item.enNameLines)}</h3>
+          <p class="info-ko-name">${toBrHtml(item.koName, item.koNameLines)}</p>
+          <span class="info-price">${item.price}</span>
+        </div>
+      </div>
+    `;
+  });
+
+  slideWrapper.innerHTML = slideHtml;
+  iconicCont.innerHTML = contHtml;
 }
 
 // iconicSlideSwiper: 일반 스와이퍼 내비게이션 기능
