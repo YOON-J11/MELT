@@ -63,3 +63,62 @@ const furnitureList = [
         link: "#",
     },
 ];
+
+const iconicList = [
+    {
+        id: 1,
+        enName: "Melt Shell Chair", //슬라이드용 한 줄
+        enNameLines: ["Melt Shell", "Chair"], //콘텐츠용 줄바꿈
+        koName: "멜트 쉘 체어",
+        price: "580,000",
+        img: "./images/iconic-item-01.png",
+    },
+    {
+        id: 2,
+        enName: "Ondul Marble Table",
+        enNameLines: ["Ondul Marble", "Table"],
+        koName: "온듈 마블 테이블",
+        price: "2,250,000",
+        img: "./images/iconic-item-02.png",
+    },
+    {
+        id: 3,
+        enName: "Lumi Pleats Pendant",
+        enNameLines: ["Lumi Pleats", "Pendant"],
+        koName: "루미 플리츠 펜던트",
+        price: "485,000",
+        img: "./images/iconic-item-03.png",
+    },
+    {
+        id: 4,
+        enName: "Organic Glass Vase",
+        enNameLines: ["Organic Glass", "Vase"],
+        koName: "오가닉 글래스 베이스",
+        price: "92,000",
+        img: "./images/iconic-item-04.png",
+    },
+    {
+        id: 5,
+        enName: "Satellite Outdoor Floor Lamp",
+        enNameLines: ["Satellite", "Outdoor Floor", "Lamp"],
+        koName: "새틀라이트 야외용 장스탠드 조명", //슬라이드용 한 줄
+        koNameLines: ["새틀라이트 야외용", "장스탠드 조명"], //콘텐츠용 줄바꿈
+        price: "764,000",
+        img: "./images/iconic-item-05.png",
+    },
+    {
+        id: 6,
+        enName: "Lumi Handtufted Wool Rug",
+        enNameLines: ["Lumi Handtufted", "Wool Rug"],
+        koName: "루미 핸드터프티드 울 러그",
+        price: "1,226,000",
+        img: "./images/iconic-item-06.png",
+    },
+    {
+        id: 7,
+        enName: "Utzon Stool",
+        koName: "우존 스툴",
+        price: "392,000",
+        img: "./images/iconic-item-07.png",
+    },
+];
