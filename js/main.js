@@ -31,6 +31,7 @@ function initAllScripts() {
   showroomMouseFollower();
   initShowroomClick();
   adjustLinkBoxPosition();
+  initMobileSelection();
 }
 
 
@@ -72,7 +73,6 @@ function selectionDisplay() {
 
 
   function updateScreen() {
-    // 화면갈아 끼우고 재배치하는 핵심 로직
     const container = document.querySelector(".selection-display");
     if (!container) return;
 
@@ -126,6 +126,60 @@ function selectionDisplay() {
   }
   // 함수가 정의되었으니 최초에 딱 한 번 수동 실행해서 첫 화면 띄우기
   updateScreen();
+}
+
+//모바일용 our selection 스와이퍼
+// 1. 데이터를 가져올 컨테이너를 찾는다.
+// 2. furnitureList 데이터를 순회(map/forEach)한다.
+// 3. 순회하면서 각 데이터에 맞는 HTML 문자열을 만든다.
+// 4. 만들어진 문자열을 container.innerHTML에 꽂아준다.
+// 5. 스와이퍼를 초기화한다.
+function initMobileSelection() {
+  const imgWrapper = document.querySelector(".selection-mobile-img-slide .swiper-wrapper");
+  const textBox = document.querySelector(".selection-mobile-text-box");
+  
+  if (!imgWrapper || !textBox) return; // 요소가 없으면 함수 종료
+
+  let imgHtml = "";
+  furnitureList.forEach((item) => {
+    // 오타 수정: swiper-slide
+    imgHtml += `
+      <div class="swiper-slide">
+        <img src="${item.img}" alt="${item.title}" class="img-fit">
+      </div>
+    `;
+  });
+  imgWrapper.innerHTML = imgHtml;
+
+  function updateText(index) {
+    const item = furnitureList[index];
+    if (!item) return;
+    textBox.innerHTML = `
+      <span class="num">${item.num}</span>
+      <h3 class="title">${item.title} <span>${item.korTitle}</span></h3>
+      <p class="desc">${item.desc}</p>
+      <a href="${item.link}" class="btn-main">자세히 보기<i class="icon icon-17 icon-arrow-right"></i></a>
+    `;
+  }
+
+  // 스와이퍼 초기화
+  new Swiper(".selection-mobile-img-slide", {
+    slidesPerView: 1.5,
+    centeredSlides: true,     // 현재 슬라이드를 무조건 가운데로 정렬
+    spaceBetween: 0,         // 슬라이드 사이의 간격
+    loop: true,
+    pagination: {
+      el: ".selection-mobile-display .swiper-pagination",
+      clickable: true,
+    },
+    on: {
+      slideChange: function () {
+        updateText(this.realIndex);
+      },
+    },
+  });
+
+  updateText(0);
 }
 
 // toBrHtml: iconic-cont용 줄바꿈 텍스트 생성 (lines 배열이 있으면 <br>로 연결, 없으면 원문 반환)

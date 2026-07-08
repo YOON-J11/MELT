@@ -82,6 +82,10 @@
                             font-size: 26px;
                             font-weight: 300;
 
+                            br {
+                                display: none;
+                            }
+
                             strong {
                                 font-weight: 700;
                             }
@@ -90,10 +94,29 @@
                         .main-slide__desc {
                             font-size: 16px;
                             font-weight: 300;
+
+                            @media (max-width:768px) {
+                                display: none;
+                            }
                         }
 
                         .main-slide__btn {
                             margin-top: 30px;
+                        }
+
+                        @media (max-width:768px) {
+                            text-align: center;
+                            bottom: auto;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 100%;
+
+                            .main-slide__title {
+                                br {
+                                    display: block;
+                                }
+                            }
                         }
                     }
                 }
@@ -127,6 +150,9 @@
     @media (max-width:1024px) {
         padding: 80px 0;
     }
+    @media (max-width:768) {
+        padding: 50px 0;
+    }
 
     .inner-right-open {
         .sec-title {
@@ -134,6 +160,11 @@
 
             @media (max-width:1024px) {
                 margin-bottom: 30px;
+            }
+
+            @media (max-width:768px) {
+                text-align: center;
+                justify-content: center;
             }
         }
 
@@ -239,6 +270,94 @@
                 }
             }
 
+            @media (max-width:768px) {
+                display: none;
+            }
+
+        }
+    }
+
+    .selection-mobile-display {
+        display: none;
+
+        .swiper-pagination {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+
+            margin-bottom: 16px;
+
+            &-bullet {
+                width: 6px;
+                height: 6px;
+                background-color: #D4CCB9;
+                margin: 0;
+
+                transition: all .2s ease;
+
+                &-active {
+                    width: 12px;
+                    height: 12px;
+                    background-color: #AEA287;
+                }
+            }
+
+        }
+
+        .selection-mobile-img-slide {
+            .swiper-wrapper {
+                .swiper-slide {
+                    width: 100%;
+                    aspect-ratio: 282 / 346;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    transform: scale(0.8);
+
+                    transition: transform .3s ease;
+
+                    &-active {
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+
+        .selection-mobile-text-box {
+            padding: 0 40px;
+            margin-top: 30px;
+
+            .num {
+                font-weight: 600;
+            }
+
+            .title {
+                font-weight: 600;
+                font-size: 24px;
+                margin-bottom: 16px;
+                span{
+                    font-size: 18px;
+                    font-weight: 300;
+                    display: block;
+                }
+            }
+
+            .desc {
+                br {
+                    display: none;
+                }
+            }
+            .btn-main {
+                margin-top: 20px;
+                width: 100%;
+            }
+
+
+        }
+
+        @media (max-width:768px) {
+            display: block;
         }
     }
 
@@ -816,48 +935,64 @@
                     position: static;
 
                     &.item__01 {
-                        .item-box{
+                        .item-box {
                             width: 50%;
                         }
                     }
+
                     &.item__02 {
-                        .item-box{
+                        .item-box {
                             width: 50%;
                         }
                     }
+
                     &.item__03 {
-                        .item-box{
+                        .item-box {
                             width: 47%;
                         }
+
+                        .item-info {
+                            margin-top: 0;
+                            margin-bottom: 30px;
+                        }
                     }
+
                     &.item__04 {
                         flex-direction: column;
-                        .item-box{
+
+                        .item-box {
                             width: 50%;
                         }
+
                         .item-info {
                             text-align: center;
-                            br{
+
+                            br {
                                 display: none;
                             }
                         }
                     }
+
                     &.item__05 {
-                        .item-box{
-                            width: 30%;
+                        .item-box {
+                            width: 40%;
                         }
                     }
+
                     &.item__06 {
-                        .item-box{
-                            width: 30%;
+                        .item-box {
+                            width: 45%;
                         }
                     }
+
                     &.item__07 {
                         flex-direction: row-reverse;
                         align-items: center;
-                        .item-box{
+
+                        .item-box {
                             width: 55%;
                         }
+
                         .item-info {
                             text-align: end;
                         }

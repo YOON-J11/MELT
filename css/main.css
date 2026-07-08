@@ -76,6 +76,9 @@
   font-size: 26px;
   font-weight: 300;
 }
+.section01 .main-slide .swiper-wrapper .swiper-slide .inner .main-slide__content .main-slide__title br {
+  display: none;
+}
 .section01 .main-slide .swiper-wrapper .swiper-slide .inner .main-slide__content .main-slide__title strong {
   font-weight: 700;
 }
@@ -83,8 +86,26 @@
   font-size: 16px;
   font-weight: 300;
 }
+@media (max-width: 768px) {
+  .section01 .main-slide .swiper-wrapper .swiper-slide .inner .main-slide__content .main-slide__desc {
+    display: none;
+  }
+}
 .section01 .main-slide .swiper-wrapper .swiper-slide .inner .main-slide__content .main-slide__btn {
   margin-top: 30px;
+}
+@media (max-width: 768px) {
+  .section01 .main-slide .swiper-wrapper .swiper-slide .inner .main-slide__content {
+    text-align: center;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  .section01 .main-slide .swiper-wrapper .swiper-slide .inner .main-slide__content .main-slide__title br {
+    display: block;
+  }
 }
 .section01 .main-slide .swiper-pagination .swiper-pagination-bullet {
   width: 30px;
@@ -108,12 +129,23 @@
     padding: 80px 0;
   }
 }
+@media (max-width: 768) {
+  .section02 {
+    padding: 50px 0;
+  }
+}
 .section02 .inner-right-open .sec-title {
   margin-bottom: 80px;
 }
 @media (max-width: 1024px) {
   .section02 .inner-right-open .sec-title {
     margin-bottom: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .section02 .inner-right-open .sec-title {
+    text-align: center;
+    justify-content: center;
   }
 }
 .section02 .inner-right-open .selection-display .selection-display__main {
@@ -191,6 +223,74 @@
   }
   .section02 .inner-right-open .selection-display .selection-display__main .selection-display__text-box .desc br {
     display: none;
+  }
+}
+@media (max-width: 768px) {
+  .section02 .inner-right-open .selection-display {
+    display: none;
+  }
+}
+.section02 .selection-mobile-display {
+  display: none;
+}
+.section02 .selection-mobile-display .swiper-pagination {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.section02 .selection-mobile-display .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background-color: #D4CCB9;
+  margin: 0;
+  transition: all 0.2s ease;
+}
+.section02 .selection-mobile-display .swiper-pagination-bullet-active {
+  width: 12px;
+  height: 12px;
+  background-color: #AEA287;
+}
+.section02 .selection-mobile-display .selection-mobile-img-slide .swiper-wrapper .swiper-slide {
+  width: 100%;
+  aspect-ratio: 282/346;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+.section02 .selection-mobile-display .selection-mobile-img-slide .swiper-wrapper .swiper-slide-active {
+  transform: scale(1);
+}
+.section02 .selection-mobile-display .selection-mobile-text-box {
+  padding: 0 40px;
+  margin-top: 30px;
+}
+.section02 .selection-mobile-display .selection-mobile-text-box .num {
+  font-weight: 600;
+}
+.section02 .selection-mobile-display .selection-mobile-text-box .title {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.section02 .selection-mobile-display .selection-mobile-text-box .title span {
+  font-size: 18px;
+  font-weight: 300;
+  display: block;
+}
+.section02 .selection-mobile-display .selection-mobile-text-box .desc br {
+  display: none;
+}
+.section02 .selection-mobile-display .selection-mobile-text-box .btn-main {
+  margin-top: 20px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .section02 .selection-mobile-display {
+    display: block;
   }
 }
 
@@ -662,6 +762,10 @@
   .section03 .inner .iconic-cont__item.item__03 .item-box {
     width: 47%;
   }
+  .section03 .inner .iconic-cont__item.item__03 .item-info {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
   .section03 .inner .iconic-cont__item.item__04 {
     flex-direction: column;
   }
@@ -675,10 +779,10 @@
     display: none;
   }
   .section03 .inner .iconic-cont__item.item__05 .item-box {
-    width: 30%;
+    width: 40%;
   }
   .section03 .inner .iconic-cont__item.item__06 .item-box {
-    width: 30%;
+    width: 45%;
   }
   .section03 .inner .iconic-cont__item.item__07 {
     flex-direction: row-reverse;

@@ -588,6 +588,7 @@
 .icon-chevron-right {
   background-image: url(../images/icon-chevron-right.svg);
 }
+
 .icon-chevron-down {
   background-image: url(../images/icon-chevron-down.svg);
 }
@@ -603,6 +604,7 @@
 .icon-next {
   background-image: url(../images/arrow-next.svg);
 }
+
 .icon-close {
   background-image: url(../images/icon-close.svg);
 }
@@ -652,10 +654,24 @@
   font-weight: 300;
   letter-spacing: 0.1em;
 }
+.sec-title__main br { display: none;}
 
 .sec-title__sub {
   font-size: 16px;
   font-weight: 300;
+}
+
+@media (max-width:768px) {
+  .sec-title__main{
+    font-size: clamp(28px, 8vw, 46px);
+    line-height: 1.3;
+  }
+  .sec-title__main br {
+    display: block;
+  }
+  .sec-title__sub {
+    display: none;
+  }
 }
 
 .logo {
