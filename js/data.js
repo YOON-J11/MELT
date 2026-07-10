@@ -123,7 +123,7 @@ const iconicList = [
     },
 ];
 
-export const showroomData = {
+const showroomData = {
     livingRoom: [
         { id: 1, category: "조명", title: "블리드베데르 탁상스탠드", price: "99,900원", img: "./images/showroom_product-01.avif" },
         { id: 2, category: "소가구", title: "롬비켄 골드", price: "78,500원", img: "./images/showroom_product-02.avif" },
