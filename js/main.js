@@ -311,8 +311,8 @@ function syncMediaPosition() {
 
   const items = document.querySelectorAll('.value-item');// 모든 value-item 요소 찾기
 
-  // 1200px 미만이면 계산 로직을 멈추고, 미디어 요소의 인라인 스타일을 초기화
-  if (window.innerWidth < 1200) {
+  // 1024px 미만이면 계산 로직을 멈추고, 미디어 요소의 인라인 스타일을 초기화
+  if (window.innerWidth < 1024) {
     items.forEach(item => {
       const media = item.querySelector('.value-item__media');
       if (media) media.style.left = ''; // left 값 제거
@@ -320,7 +320,7 @@ function syncMediaPosition() {
     return;
   }
 
-  // 1200px 이상일 때만 계산 수행
+  // 1024px 이상일 때만 계산 수행
   items.forEach(item => {
     const placeholder = item.querySelector('.value-item__placeholder'); //영역만 차지하는 투명 공간
     const media = item.querySelector('.value-item__media'); // 실제 컨텐츠가 들어갈 공간
@@ -336,8 +336,8 @@ function syncMediaPosition() {
 
 // showroomMouseFollower: 특정 섹션 영역 진입 시 커스텀 커서(FollowGroup)를 활성화하고 마우스 좌표를 따라다니게 
 function showroomMouseFollower() {
-  const showroomSections = document.querySelectorAll('.showroom__section');
-  const FollowGroup = document.querySelector('.section06 .cursor-follow-group');
+  const showroomSections = document.querySelectorAll('.showroom-desktop .showroom__section');
+  const FollowGroup = document.querySelector('.showroom-desktop .cursor-follow-group');
 
   showroomSections.forEach(section => {
     section.addEventListener('mouseenter', () => {
@@ -357,7 +357,7 @@ function showroomMouseFollower() {
   });
 
   function moveHandler(e) {
-    const FollowGroup = document.querySelector('.section06 .cursor-follow-group');
+    const FollowGroup = document.querySelector('.showroom-desktop .cursor-follow-group');
     FollowGroup.style.left = e.clientX + 'px';
     FollowGroup.style.top = e.clientY + 'px';
   }
@@ -365,20 +365,20 @@ function showroomMouseFollower() {
 
 // initShowroomClick: 쇼룸 섹션 클릭 시 active 클래스를 토글하여 특정 섹션을 활성화하고, 커스텀 커서를 숨긴다
 function initShowroomClick() {
-  const sections = document.querySelectorAll('.showroom__section');
+  const sections = document.querySelectorAll('.showroom-desktop .showroom__section');
 
   // 문서 전체에 클릭 이벤트
   document.addEventListener('click', (e) => {
 
     // 클릭한 곳이 쇼룸 섹션 내부인가 확인
-    const clickedSection = e.target.closest('.showroom__section');
+    const clickedSection = e.target.closest('.showroom-desktop .showroom__section');
 
     // 외부 클릭 시 원래 형태로 되돌리기
     if (!clickedSection) {
       sections.forEach(s => s.classList.remove('active'));
 
       // 외부 클릭 시 커서 팔로워는 즉시 숨김
-      const cursor = document.querySelector('.section06 .cursor-follow-group');
+      const cursor = document.querySelector('.showroom-desktop .cursor-follow-group');
       if (cursor) cursor.classList.remove('active');
       return;
     }
@@ -390,7 +390,7 @@ function initShowroomClick() {
     clickedSection.classList.add('active');
 
     // 커서 숨기기
-    const cursor = document.querySelector('.section06 .cursor-follow-group');
+    const cursor = document.querySelector('.showroom-desktop .cursor-follow-group');
     if (cursor) cursor.classList.remove('active');
   });
 }
@@ -398,24 +398,24 @@ function initShowroomClick() {
 // adjustLinkBoxPosition: 쇼룸 핫스팟 클릭 시, 링크 박스가 쇼룸 영역 밖으로 나가지 않도록 좌표를 계산하여 위치(분면별 배치)를 조정
 function adjustLinkBoxPosition() {
   document.addEventListener('click', (e) => {
-    const hotspot = e.target.closest('.product-card__hotspot'); //closest() 메서드는 주어진 CSS 선택자와 일치하는 요소를 찾을 때까지, 자기 자신을 포함해 위쪽(부모 방향, 문서 루트까지)으로 문서 트리를 순회한다
+    const hotspot = e.target.closest('.showroom-desktop .product-card__hotspot'); //closest() 메서드는 주어진 CSS 선택자와 일치하는 요소를 찾을 때까지, 자기 자신을 포함해 위쪽(부모 방향, 문서 루트까지)으로 문서 트리를 순회한다
 
     if (!hotspot) { // hotspot이 없다면, 즉 클릭한곳이 hotspot 영역이 아니라면
-      document.querySelectorAll('.product-card').forEach(c => c.classList.remove('is-open')); //product-card에 is-open클래스를 지움
+      document.querySelectorAll('.showroom-desktop .product-card').forEach(c => c.classList.remove('is-open')); //product-card에 is-open클래스를 지움
       return;
     }
 
-    const card = hotspot.closest('.product-card');
+    const card = hotspot.closest('.showroom-desktop .product-card');
     // 방금 클릭한 카드(card)를 제외한 '나머지 카드들'만 찾아서 닫기
-    document.querySelectorAll('.product-card').forEach(c => {
+    document.querySelectorAll('.showroom-desktop .product-card').forEach(c => {
       if (c !== card) {
         c.classList.remove('is-open');
       }
     });
 
 
-    const linkBox = card.querySelector('.product-card__link');
-    const section = card.closest('.showroom__section');
+    const linkBox = card.querySelector('.showroom-desktop .product-card__link');
+    const section = card.closest('.showroom-desktop .showroom__section');
 
     // 쇼룸 영역과 핫스팟의 좌표 계산
     const sectionRect = section.getBoundingClientRect(); // Element.getBoundingClientRect() 메서드는 엘리먼트의 크기와 뷰포트에 상대적인 위치 정보를 제공하는 DOMRect 객체를 반환합니다.

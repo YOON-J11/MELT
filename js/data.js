@@ -122,3 +122,26 @@ const iconicList = [
         img: "./images/iconic-item-07.png",
     },
 ];
+
+export const showroomData = {
+    livingRoom: [
+        { id: 1, category: "조명", title: "블리드베데르 탁상스탠드", price: "99,900원", img: "./images/showroom_product-01.avif" },
+        { id: 2, category: "소가구", title: "롬비켄 골드", price: "78,500원", img: "./images/showroom_product-02.avif" },
+        { id: 3, category: "소파", title: "엑토르프 라이트베이지", price: "1,260,000원", img: "./images/showroom_product-03.avif" },
+        { id: 4, category: "화병", title: "VOLUTO 볼루토 화병", price: "39,900원", img: "./images/showroom_product-04.avif" }
+    ],
+    kitchen: [
+        { id: 5, category: "조명", title: "루미에르 키친 바 월라이트", price: "219,000원", img: "./images/showroom_product-05.avif" },
+        { id: 6, category: "의자", title: "노르딕 아일랜드 바 체어", price: "149,000원", img: "./images/showroom_product-06.avif" },
+        { id: 7, category: "주방", title: "아쿠아 플로우 키친 수전", price: "189,000원", img: "./images/showroom_product-07.avif" },
+        { id: 8, category: "주방", title: "스텔라 슬림 레인지 후드", price: "329,000원", img: "./images/showroom_product-08.avif" },
+        { id: 9, category: "주방", title: "메종 빌트인 전기 오븐", price: "890,000원", img: "./images/showroom_product-09.avif" }
+    ],
+    bedroom: [
+        { id: 10, category: "패브릭", title: "소프트 웨이브 암막 커튼", price: "129,000원", img: "./images/showroom_product-10.avif" },
+        { id: 11, category: "의자", title: "클라우드 라운지 1인 체어", price: "459,000원", img: "./images/showroom_product-11.avif" },
+        { id: 12, category: "데코", title: "모노 프레임 아트 포스터", price: "79,000원", img: "./images/showroom_product-12.avif" },
+        { id: 13, category: "조명", title: "루미너스 플로어 스탠드", price: "239,000원", img: "./images/showroom_product-13.avif" },
+        { id: 14, category: "스툴", title: "코지 롱 벤치 스툴", price: "198,000원", img: "./images/showroom_product-14.avif" }
+    ]
+};
