@@ -1039,6 +1039,10 @@
 .section06 {
   padding: 160px 20px;
 }
+.section06 .showroom-desktop {
+  max-width: 1920px;
+  margin: 0 auto;
+}
 .section06 .showroom-desktop .showroom {
   margin-top: 50px;
   width: 100%;

@@ -28,6 +28,8 @@ function initAllScripts() {
   });
   syncMediaPosition();
 
+  renderShoroomCards(".showroom-desktop .showroom__section");
+  renderShoroomCards(".showroom-mobile .showroom__section");
   showroomMouseFollower();
   initShowroomClick();
   adjustLinkBoxPosition();
@@ -137,7 +139,7 @@ function selectionDisplay() {
 function initMobileSelection() {
   const imgWrapper = document.querySelector(".selection-mobile-img-slide .swiper-wrapper");
   const textBox = document.querySelector(".selection-mobile-text-box");
-  
+
   if (!imgWrapper || !textBox) return; // 요소가 없으면 함수 종료
 
   let imgHtml = "";
@@ -332,6 +334,38 @@ function syncMediaPosition() {
       media.style.left = `${relativeLeft}px`; // 위에서 나온 값을 media에 left 값으로 적용
     }
   });
+}
+
+//showroom에 data.js에 있는 showroomData데이터 가져와서 뿌리기 (재사용 가능하도록)
+function renderShoroomCards(containerSelector) {
+    const sections = document.querySelectorAll(containerSelector);
+
+    sections.forEach(section => {
+      const key = section.dataset.key;
+      const product = showroomData[key];
+
+      if(!product) return;
+
+      section.innerHTML = product.map(item => 
+        `
+          <div class="product-card">
+            <button class="product-card__hotspot"></button>
+            <a href="#" class="product-card__link">
+              <div class="thumb">
+                <img src="${item.img}" alt="${item.title}" class="img-contain">
+              </div>
+              <div class="content">
+                <span class="content__category">${item.category}</span>
+                <h3 class="content__title">${item.title}</h3>
+                <p class="content__price">${item.price}</p>
+              </div>
+              <i class="icon icon-chevron-right icon-24"></i>
+            </a>
+          </div>
+        `
+      ).join('');
+
+    });
 }
 
 // showroomMouseFollower: 특정 섹션 영역 진입 시 커스텀 커서(FollowGroup)를 활성화하고 마우스 좌표를 따라다니게 
