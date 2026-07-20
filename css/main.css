@@ -1033,6 +1033,7 @@
 @media (max-width: 768px) {
   .section05 {
     height: auto;
+    background-attachment: scroll;
   }
 }
 

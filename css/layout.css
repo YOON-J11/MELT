@@ -241,6 +241,7 @@ header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header {
 }
 header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header span {
   font-weight: 600;
+  color: var(--black);
 }
 header .mobile-menu-overlay .mobile-menu__nav .mobile-accordion__header .icon-chevron-down {
   transition: transform 0.4s ease;

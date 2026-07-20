@@ -298,9 +298,6 @@ header {
                     display: flex;
                     flex-direction: column;
 
-
-                    &__item {}
-
                     &__header {
                         width: 100%;
                         display: flex;
@@ -310,6 +307,7 @@ header {
 
                         span {
                             font-weight: 600;
+                            color: var(--black);
                         }
                         .icon-chevron-down{
                             transition: transform 0.4s ease;
