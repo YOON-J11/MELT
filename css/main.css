@@ -895,9 +895,19 @@
   font-size: 24px;
   font-weight: 500;
 }
+@media (max-width: 480px) {
+  .section04 .inner .value-list .value-item__media h2 {
+    font-size: 20px;
+  }
+}
 .section04 .inner .value-list .value-item__media p {
   font-size: 16px;
   font-weight: 400;
+}
+@media (max-width: 480px) {
+  .section04 .inner .value-list .value-item__media p {
+    font-size: 14px;
+  }
 }
 .section04 .inner .value-list .value-item__media h2,
 .section04 .inner .value-list .value-item__media p {

@@ -1116,11 +1116,17 @@
                     h2 {
                         font-size: 24px;
                         font-weight: 500;
+                        @media (max-width:480px){
+                            font-size: 20px;
+                        }
                     }
 
                     p {
                         font-size: 16px;
                         font-weight: 400;
+                        @media (max-width:480px){
+                            font-size: 14px;
+                        }
                     }
 
                     h2,
