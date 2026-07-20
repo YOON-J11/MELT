@@ -1293,9 +1293,17 @@
 .section06 {
     padding: 160px 20px;
 
+    @media (max-width:768px) {
+        padding: 80px 20px;
+        .sec-title {
+            margin-bottom: 30px;
+        }
+    }
+
     .showroom-desktop {
         max-width: 1920px;
         margin: 0 auto;
+
         .showroom {
             margin-top: 50px;
             width: 100%;
@@ -1622,12 +1630,212 @@
                 white-space: nowrap;
             }
         }
+
+        @media (max-width:768px) {
+            display: none;
+        }
     }
 
+    .showroom-mobile {
+
+        .showroom {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+
+            &__bg {
+                position: relative;
+
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                width: 100%;
+                height: 45vw;
+
+                &__hotspot {
+                    position: absolute;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    background-color: #000000b4;
+                    border: 2px solid var(--white);
+                    opacity: 0.7;
+                    transition: opacity 0.1s ease;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    z-index: 1;
+
+                    &::after {
+                        display: block;
+                        content: "";
+                        width: 50%;
+                        height: 50%;
+                        border-radius: 50%;
+                        background-color: var(--white);
+
+                        transition: width .2s ease, height .2s ease;
+                    }
+                }
+
+                &[data-key="livingRoom"] {
+                    grid-column: 1 / span 10;
+                    /* 1번 선부터 11번 선까지(전체 10칸) 다 차지 */
+                    background-image: url(../images/showroom__section_01_bg.jpg);
+
+                    .showroom__bg__hotspot {
+                        top: 61%;
+                        left: 35%;
+                    }
+                }
+
+                &[data-key="kitchen"] {
+                    grid-column: 1 / span 4;
+                    /* 1번 선부터 4칸 차지 */
+                    background-image: url(../images/showroom__section_02_bg.jpg);
+
+                    .showroom__bg__hotspot {
+                        top: 30%;
+                        right: 13%;
+                    }
+                }
+
+                &[data-key="bedroom"] {
+                    grid-column: 5 / span 6;
+                    /* 5번 선부터 6칸 차지 */
+                    background-image: url(../images/showroom__section_03_bg.jpg);
+
+                    .showroom__bg__hotspot {
+                        bottom: 33%;
+                        left: 35%;
+                    }
+                }
+
+
+
+
+            }
+        }
+
+        .dimmed-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-section {
+            position: fixed;
+            z-index: 1002;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            transition: bottom .3s ease;
+
+            background-color: var(--white);
+            height: 90%;
+            border-radius: 16px 16px 0 0;
+            padding: 16px;
+
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            &__top {
+                display: flex;
+                justify-content: flex-end;
+                flex-shrink: 0;
+            }
+
+            &__list {
+                flex-grow: 1;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+
+                .showroom__section {
+                    .product-card {
+                        padding: 16px 0;
+                        border-bottom: 1px solid #e0e0e0;
+                        &__hotspot {
+                            display: none;
+                        }
+
+                        &__link {
+                            display: flex;
+                            gap: 16px;
+                            align-items: center;
+                            .thumb {
+                                flex-shrink: 0;
+                                width: 25vw;
+                                aspect-ratio: 1 / 1;
+                                background-color: var(--white);
+                            }
+
+                            .content {
+                                &__category {
+                                    font-size: 14px;
+                                    color: #777;
+                                }
+
+                                &__title {
+                                    font-size: 16px;
+                                }
+
+                                &__price {
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                    margin-top: 8px;
+                                }
+                            }
+
+                            .icon {
+                                margin-left: auto;
+                            }
+                        }
+
+                        &:last-child{
+                            border-bottom: none;
+                        }
+                    }
+                }
+            }
+
+            &.is-active {
+                bottom: 0;
+            }
+        }
+
+        display: none;
+
+        @media (max-width:768px) {
+            display: block;
+        }
+
+        &:has(.product-section.is-active) .dimmed-layer {
+            opacity: 1;
+            visibility: visible;
+        }
+
+    }
 
     .btn-area {
         margin-top: 70px;
         text-align: center;
+
+        @media (max-width:768px) {
+            margin-top: 30px;
+        }
     }
 }
 

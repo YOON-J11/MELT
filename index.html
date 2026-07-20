@@ -193,7 +193,8 @@
 
             <div class="showroom-desktop">
                 <div class="showroom">
-                    <div class="showroom__section showroom__section--01" aria-label="거실 쇼룸 보기" data-key="livingRoom"></div>
+                    <div class="showroom__section showroom__section--01" aria-label="거실 쇼룸 보기" data-key="livingRoom">
+                    </div>
                     <div class="showroom__section showroom__section--02" aria-label="주방 쇼룸 보기" data-key="kitchen"></div>
                     <div class="showroom__section showroom__section--03" aria-label="침실 쇼룸 보기" data-key="bedroom"></div>
                 </div>
@@ -206,134 +207,30 @@
             </div>
 
             <div class="showroom-mobile">
-                <div class="showroom"></div>
+                <div class="showroom">
+                    <div class="showroom__bg" data-key="livingRoom">
+                        <button class="showroom__bg__hotspot"></button>
+                    </div>
+                    <div class="showroom__bg" data-key="kitchen">
+                        <button class="showroom__bg__hotspot"></button>
+                    </div>
+                    <div class="showroom__bg" data-key="bedroom">
+                        <button class="showroom__bg__hotspot"></button>
+                    </div>
+                </div>
+                <div class="dimmed-layer"></div>
                 <div class="product-section">
-                    <!-- <ul class="product-list product-list__01" data-key="livingRoom">
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="product-list product-list__02" data-key="kitchen">
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="product-list product-list__03" data-key="bedroom">
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                        <li class="product-list__item">
-                            <a href="#" class="product-list__item__link">
-                                <div class="thumb"> <img src="./images/showroom_product-14.avif" alt="침실용 롱 벤치 스툴"
-                                        class="img-contain">
-                                </div>
-                                <div class="content">
-                                    <span class="content__category">스툴</span>
-                                    <h3 class="content__title">코지 롱 벤치 스툴</h3>
-                                    <p class="content__price">198,000원</p>
-                                </div>
-                                <i class="icon icon-chevron-right icon-24"></i>
-                            </a>
-                        </li>
-                    </ul> -->
-                    <div class="showroom__section showroom__section--01" aria-label="거실 쇼룸 보기" data-key="livingRoom"></div>
-                    <div class="showroom__section showroom__section--02" aria-label="주방 쇼룸 보기" data-key="kitchen"></div>
-                    <div class="showroom__section showroom__section--03" aria-label="침실 쇼룸 보기" data-key="bedroom"></div>
+                    <div class="product-section__top">
+                        <button title="닫기" class="btn-list-close"><i class="icon icon-32 icon-close"></i></button>
+                    </div>
+                    <div class="product-section__list">
+                        <div class="showroom__section showroom__section--01" aria-label="거실 쇼룸 보기"
+                            data-key="livingRoom"></div>
+                        <div class="showroom__section showroom__section--02" aria-label="주방 쇼룸 보기" data-key="kitchen">
+                        </div>
+                        <div class="showroom__section showroom__section--03" aria-label="침실 쇼룸 보기" data-key="bedroom">
+                        </div>
+                    </div>
                 </div>
             </div>
 

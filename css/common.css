@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+/* 메뉴가 열렸을 때 페이지 스크롤 방지 */
+html.menu-is-open,
+body.menu-is-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 :root {
   /* MELT Brand Colors */
   --main-color: #d4ccb9;
@@ -619,6 +626,11 @@
 
 .icon-x {
   background-image: url(../images/icon-sns-X.svg);
+}
+
+.icon-32 {
+  width: 32px;
+  height: 32px;
 }
 
 .icon-24 {

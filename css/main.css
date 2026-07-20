@@ -1039,6 +1039,14 @@
 .section06 {
   padding: 160px 20px;
 }
+@media (max-width: 768px) {
+  .section06 {
+    padding: 80px 20px;
+  }
+  .section06 .sec-title {
+    margin-bottom: 30px;
+  }
+}
 .section06 .showroom-desktop {
   max-width: 1920px;
   margin: 0 auto;
@@ -1298,9 +1306,170 @@
   line-height: 1;
   white-space: nowrap;
 }
+@media (max-width: 768px) {
+  .section06 .showroom-desktop {
+    display: none;
+  }
+}
+.section06 .showroom-mobile .showroom {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+.section06 .showroom-mobile .showroom__bg {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 45vw;
+}
+.section06 .showroom-mobile .showroom__bg__hotspot {
+  position: absolute;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.7058823529);
+  border: 2px solid var(--white);
+  opacity: 0.7;
+  transition: opacity 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.section06 .showroom-mobile .showroom__bg__hotspot::after {
+  display: block;
+  content: "";
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background-color: var(--white);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+.section06 .showroom-mobile .showroom__bg[data-key=livingRoom] {
+  grid-column: 1/span 10;
+  /* 1번 선부터 11번 선까지(전체 10칸) 다 차지 */
+  background-image: url(../images/showroom__section_01_bg.jpg);
+}
+.section06 .showroom-mobile .showroom__bg[data-key=livingRoom] .showroom__bg__hotspot {
+  top: 61%;
+  left: 35%;
+}
+.section06 .showroom-mobile .showroom__bg[data-key=kitchen] {
+  grid-column: 1/span 4;
+  /* 1번 선부터 4칸 차지 */
+  background-image: url(../images/showroom__section_02_bg.jpg);
+}
+.section06 .showroom-mobile .showroom__bg[data-key=kitchen] .showroom__bg__hotspot {
+  top: 30%;
+  right: 13%;
+}
+.section06 .showroom-mobile .showroom__bg[data-key=bedroom] {
+  grid-column: 5/span 6;
+  /* 5번 선부터 6칸 차지 */
+  background-image: url(../images/showroom__section_03_bg.jpg);
+}
+.section06 .showroom-mobile .showroom__bg[data-key=bedroom] .showroom__bg__hotspot {
+  bottom: 33%;
+  left: 35%;
+}
+.section06 .showroom-mobile .dimmed-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+.section06 .showroom-mobile .product-section {
+  position: fixed;
+  z-index: 1002;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  transition: bottom 0.3s ease;
+  background-color: var(--white);
+  height: 90%;
+  border-radius: 16px 16px 0 0;
+  padding: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.section06 .showroom-mobile .product-section__top {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+.section06 .showroom-mobile .product-section__list {
+  flex-grow: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card {
+  padding: 16px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card__hotspot {
+  display: none;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card__link {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card__link .thumb {
+  flex-shrink: 0;
+  width: 25vw;
+  aspect-ratio: 1/1;
+  background-color: var(--white);
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card__link .content__category {
+  font-size: 14px;
+  color: #777;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card__link .content__title {
+  font-size: 16px;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card__link .content__price {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card__link .icon {
+  margin-left: auto;
+}
+.section06 .showroom-mobile .product-section__list .showroom__section .product-card:last-child {
+  border-bottom: none;
+}
+.section06 .showroom-mobile .product-section.is-active {
+  bottom: 0;
+}
+.section06 .showroom-mobile {
+  display: none;
+}
+@media (max-width: 768px) {
+  .section06 .showroom-mobile {
+    display: block;
+  }
+}
+.section06 .showroom-mobile:has(.product-section.is-active) .dimmed-layer {
+  opacity: 1;
+  visibility: visible;
+}
 .section06 .btn-area {
   margin-top: 70px;
   text-align: center;
+}
+@media (max-width: 768px) {
+  .section06 .btn-area {
+    margin-top: 30px;
+  }
 }
 
 .section07 {

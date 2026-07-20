@@ -16,22 +16,35 @@ function initAllScripts() {
 
   // resize 최적화: 화면 크기 변화 시 이벤트가 과도하게 발생하는 것을 방지하기 위해 최적화를 함. 리사이징이 끝나고 0.3초 후에 syncMediaPosition를 실행한다.
   window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer); // clearTimeout() : setTimeout()으로 생성한 타임아웃을 취소하는 매서드 (resizeTimer에 값이 있을때 취소됨)
-    //리사이징 하기 전에 resizeTimer에 값이 있으면 타임아웃(취소)를 하고나서 setTimeout를 해야한다.
+    clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      syncMediaPosition();
-      if (thumbSwiper) {
-        thumbSwiper.params.spaceBetween = getSpaceBetween();
-        thumbSwiper.update();
-      }
-    }, DELAY); // setTimeout() : 특정 시간이 지난 다음에 코드를 실행하는 함수
-  });
+        
+        // [추가] 화면이 768px을 넘어설 때 강제 초기화
+        if (window.innerWidth > 768) {
+            const productSection = document.querySelector(".showroom-mobile .product-section");
+            
+            // 만약 열려 있다면 닫기
+            if (productSection && productSection.classList.contains('is-active')) {
+                productSection.classList.remove("is-active");
+                document.body.classList.remove('menu-is-open');
+                document.documentElement.classList.remove('menu-is-open');
+            }
+        }
+
+        syncMediaPosition();
+        if (thumbSwiper) {
+            thumbSwiper.params.spaceBetween = getSpaceBetween();
+            thumbSwiper.update();
+        }
+    }, DELAY);
+});
   syncMediaPosition();
 
   renderShoroomCards(".showroom-desktop .showroom__section");
   renderShoroomCards(".showroom-mobile .showroom__section");
   showroomMouseFollower();
   initShowroomClick();
+  initMobileShowroom()
   adjustLinkBoxPosition();
   initMobileSelection();
 }
@@ -338,16 +351,16 @@ function syncMediaPosition() {
 
 //showroom에 data.js에 있는 showroomData데이터 가져와서 뿌리기 (재사용 가능하도록)
 function renderShoroomCards(containerSelector) {
-    const sections = document.querySelectorAll(containerSelector);
+  const sections = document.querySelectorAll(containerSelector);
 
-    sections.forEach(section => {
-      const key = section.dataset.key;
-      const product = showroomData[key];
+  sections.forEach(section => {
+    const key = section.dataset.key;
+    const product = showroomData[key];
 
-      if(!product) return;
+    if (!product) return;
 
-      section.innerHTML = product.map(item => 
-        `
+    section.innerHTML = product.map(item =>
+      `
           <div class="product-card">
             <button class="product-card__hotspot"></button>
             <a href="#" class="product-card__link">
@@ -363,9 +376,9 @@ function renderShoroomCards(containerSelector) {
             </a>
           </div>
         `
-      ).join('');
+    ).join('');
 
-    });
+  });
 }
 
 // showroomMouseFollower: 특정 섹션 영역 진입 시 커스텀 커서(FollowGroup)를 활성화하고 마우스 좌표를 따라다니게 
@@ -427,6 +440,47 @@ function initShowroomClick() {
     const cursor = document.querySelector('.showroom-desktop .cursor-follow-group');
     if (cursor) cursor.classList.remove('active');
   });
+}
+
+// 모바일일때 쇼룸의 showroom__bg를 클릭시 일어나는 이벤틀 로직
+function initMobileShowroom() {
+  const bgList = document.querySelectorAll(".showroom-mobile .showroom__bg");
+  const productSection = document.querySelector(".showroom-mobile .product-section");
+  const productSections = document.querySelectorAll(".showroom-mobile .showroom__section");
+  const closeBtn = document.querySelector(".showroom-mobile .btn-list-close");
+  // 1. dimmed-layer 요소 선택 추가
+  const dimmedLayer = document.querySelector(".showroom-mobile .dimmed-layer");
+
+  bgList.forEach((bg) => {
+    bg.addEventListener("click", () => {
+      const clickedKey = bg.dataset.key;
+
+      productSections.forEach((section) => {
+        section.style.display = (section.dataset.key === clickedKey) ? "block" : "none";
+      });
+
+      productSection.classList.add("is-active");
+      document.body.classList.add('menu-is-open');
+      document.documentElement.classList.add('menu-is-open');
+    });
+  });
+
+  // 닫기 로직
+  const closeShowroom = () => {
+    productSection.classList.remove("is-active");
+    document.body.classList.remove('menu-is-open');
+    document.documentElement.classList.remove('menu-is-open');
+  };
+
+  // 닫기 버튼 클릭 시 닫기
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeShowroom);
+  }
+
+  // dimmed-layer 클릭 시 닫기
+  if (dimmedLayer) {
+    dimmedLayer.addEventListener("click", closeShowroom);
+  }
 }
 
 // adjustLinkBoxPosition: 쇼룸 핫스팟 클릭 시, 링크 박스가 쇼룸 영역 밖으로 나가지 않도록 좌표를 계산하여 위치(분면별 배치)를 조정

@@ -1,11 +1,4 @@
 @charset "UTF-8";
-/* 메뉴가 열렸을 때 페이지 스크롤 방지 */
-html.menu-is-open,
-body.menu-is-open {
-  overflow: hidden;
-  overscroll-behavior: none;
-}
-
 header {
   /* position: fixed; 상단 고정이 필요할 때 사용 */
   width: 100%;
