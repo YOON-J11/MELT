@@ -1512,6 +1512,8 @@
                                 height: 35%;
                             }
                         }
+
+                        animation: pulse 2s infinite ease-in-out;
                     }
 
                     &__link {
@@ -1859,6 +1861,10 @@
     padding: 40px 0;
     overflow: hidden;
 
+    @media (max-width:1024px) {
+        padding: 20px 0;
+    }
+
     .marquee {
         width: max-content;
 
@@ -1874,6 +1880,14 @@
             font-weight: 800;
             color: var(--white);
             margin-right: 10px;
+
+            @media (max-width:1024px) {
+                font-size: 60px;
+            }
+
+            @media (max-width:768px) {
+                font-size: 36px;
+            }
         }
 
         .marquee-img {
@@ -1882,6 +1896,16 @@
             height: 100px;
             border-radius: 99px;
             overflow: hidden;
+
+            @media (max-width:1024px) {
+                width: 200px;
+                height: 70px;
+            }
+
+            @media (max-width:768px) {
+                width: 150px;
+                height: 55px;
+            }
         }
     }
 }
@@ -1889,6 +1913,10 @@
 
 .section08 {
     padding: 210px 0;
+
+    @media (max-width:1024px) {
+        padding: 80px 0;
+    }
 
     .inner {
         .sec8__header {
@@ -1898,6 +1926,13 @@
                 line-height: 1.12;
                 letter-spacing: 0;
                 color: #535353;
+
+                @media (max-width:1024px) {
+                    font-size: 100px;
+                }
+                @media (max-width:1024px) {
+                    font-size: 50px;
+                }
             }
         }
 
@@ -1925,7 +1960,7 @@
             &__action {
                 flex: 0 0 auto;
                 padding-left: 1%;
-                margin-top: 50px;
+                margin-top: 70px;
 
                 a {
                     font-size: 18px;
@@ -1944,6 +1979,46 @@
                     }
                 }
             }
+
+            @media (max-width:1024px) {
+                flex-direction: column;
+                margin-top: 40px;
+                &__desc {
+                    padding-left: 0;
+                    flex-direction: column;
+                    
+                    &>p{
+                        word-break: keep-all;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
+                    }
+                    
+                    &__ko {
+                        padding-bottom: 0;
+                        padding-right: 30%;
+                    }
+    
+                    &__en {
+                        padding-top: 60px;
+                        padding-left: 30%;
+                    }
+                }
+            }
+            @media (max-width:768px) {
+                &__desc {
+                    &__ko {
+                        padding-right: 32%;
+                    }
+    
+                    &__en {
+                        padding-top: 30px;
+                        padding-left: 32%;
+                    }
+                }
+                &__action { 
+                    margin-top: 40px;
+                }
+            } 
         }
     }
 }
