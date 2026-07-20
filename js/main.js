@@ -229,7 +229,7 @@ function renderIconicSection() {
     `;
 
     contHtml += `
-      <div class="iconic-cont__item item__${num}">
+      <div class="iconic-cont__item item__${num} reveal">
         <div class="item-box">
           <img src="${item.img}" alt="${item.enName}">
         </div>
@@ -244,6 +244,10 @@ function renderIconicSection() {
 
   slideWrapper.innerHTML = slideHtml;
   iconicCont.innerHTML = contHtml;
+
+  if (typeof initRevealOnScroll === 'function') {
+    initRevealOnScroll();
+  }
 }
 
 // iconicSlideSwiper: 일반 스와이퍼 내비게이션 기능

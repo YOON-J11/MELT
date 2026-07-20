@@ -1116,7 +1116,8 @@
                     h2 {
                         font-size: 24px;
                         font-weight: 500;
-                        @media (max-width:480px){
+
+                        @media (max-width:480px) {
                             font-size: 20px;
                         }
                     }
@@ -1124,7 +1125,8 @@
                     p {
                         font-size: 16px;
                         font-weight: 400;
-                        @media (max-width:480px){
+
+                        @media (max-width:480px) {
                             font-size: 14px;
                         }
                     }
@@ -1302,6 +1304,7 @@
 
     @media (max-width:768px) {
         padding: 80px 20px;
+
         .sec-title {
             margin-bottom: 30px;
         }
@@ -1686,6 +1689,8 @@
 
                         transition: width .2s ease, height .2s ease;
                     }
+
+                    animation: pulse 2s infinite ease-in-out;
                 }
 
                 &[data-key="livingRoom"] {
@@ -1774,6 +1779,7 @@
                     .product-card {
                         padding: 16px 0;
                         border-bottom: 1px solid #e0e0e0;
+
                         &__hotspot {
                             display: none;
                         }
@@ -1782,6 +1788,7 @@
                             display: flex;
                             gap: 16px;
                             align-items: center;
+
                             .thumb {
                                 flex-shrink: 0;
                                 width: 25vw;
@@ -1811,7 +1818,7 @@
                             }
                         }
 
-                        &:last-child{
+                        &:last-child {
                             border-bottom: none;
                         }
                     }
@@ -1958,5 +1965,19 @@
 
     100% {
         transform: translateX(6px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
