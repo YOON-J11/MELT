@@ -13,7 +13,7 @@
 * **디자인 특징**: 심심할 수 있는 모던한 레이아웃에 불규칙적인 도형과 큰 폰트를 배치하여 시각적 리듬감을 부여했습니다.
 
 ## 3. Tech Stack
-* **Language/Markup**: HTML5, CSS3(SCSS), JavaScript(ES6+)
+* **Language/Markup**: HTML5, CSS3(SCSS), JavaScript(ES6+)  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 * **Library**: Swiper.js
 * **Tool**: Figma
 

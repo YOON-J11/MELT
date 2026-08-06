@@ -1,5 +1,5 @@
 
-//async : 내부에서 비동기작업(fetch)을 순서대로 기다리며 실행하겠다는 선언
+// async : 내부에서 await(기다리는 작업)를 사용하겠다고 함수에 미리 알려주는 선언문
 async function loadHeader() { //외부 html파일을을 가져와서 화면에 배치하고 관련된 모든 기능을 활성화하는 함수
   const headerContainer = document.querySelector('#header'); //헤더 찾고 선언
 
@@ -7,6 +7,9 @@ async function loadHeader() { //외부 html파일을을 가져와서 화면에 �
 
   try {
     const response = await fetch('./inc/header.html'); //1.외부파일 가져오기
+    // fetch : 외부 서버나 파일에 데이터를 가져와 달라고 요청(주문)하는 기능
+    // await : 데이터가 도착할 때까지 다음 줄로 넘어가지 않고 잠시 기다리게 만드는 지시어
+
     const data = await response.text(); //2.가져온 파일을 텍스트로 변환해서 저장
     headerContainer.innerHTML = data; //3.변환된 HTML내용을 비어있던 헤더그릇안에 집어넣기
 
@@ -21,8 +24,8 @@ async function loadHeader() { //외부 html파일을을 가져와서 화면에 �
   } catch (error) { //파일경로가 틀렸거나 네트워크 문제가 발생했을경우 에러메세지 출력
     console.error('헤더를 불러오는 데 실패했습니다.', error);
   }
-
 }
+
 async function loadFooter() {
   const footerContainer = document.querySelector('#footer');
   if (!footerContainer) return;
@@ -34,6 +37,18 @@ async function loadFooter() {
     console.error('푸터를 불러오는 데 실패했습니다.', error)
   }
 }
+// [컴포넌트 모듈화 : 헤더와 푸터를 별도 파일로 분리하여 `fetch` API로 동적 로딩]
+// 전체 순서: 1.자리찾기 -> 2.가져오기 -> 3.꽂고 기능켜기
+// 세부 순서:
+// 1. 위치잡기 - html문서에서 헤더가 들어갈 빈그릇(id="header")을 먼저 찾아 변수에 담고, 없으면 실행종료(return)한다.
+// 2. 파일요청하기 - 외부 html파일(header.html)을 가져오기위해 fetch를 쓰고, 파일이 도착할때까지 기다리기위해 await를 붙인다. (이때 한수 머리에는 asyns가 필수!)
+// 3. 텍스트로 바꾸기 -서버가 가져다준 날것의 응답(response)을 우리가 읽을 수 있는 HTML 텍스트로 변환하고, 이것도 끝날 때까지 await로 기다린다.
+// 4. 화면에 꽂아넣기: 변환된 텍스트 데이터를 아까 찾아둔 빈 그릇의 innerHTML에 통째로 집어넣는다. (이 순간 화면에 헤더 HTML이 생겨남)
+// 5. 기능(이벤트/라이브러리) 살리기: 헤더 HTML이 DOM에 생겼으니, 그 안에 들어있는 버튼이나 슬라이드, 스크롤 기능들이 작동하도록 관련 함수들을 차례대로 실행해 준다.
+// 6. 안전장치(에러 처리) 감싸기: 1~5번 과정 중 경로 오타나 네트워크 문제로 터질 수 있으니, 이 모든 핵심 과정을 try로 감싸고 만약의 경우를 대비해 catch로 에러를 잡아준다.
+
+
+
 
 function topBannerSwiper() {//탑배너 스와이퍼
   const topBannerSwiper = new Swiper(".swiper.top-banner", {
