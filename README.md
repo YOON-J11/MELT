@@ -2,7 +2,7 @@
 
 <p align="left">
   <a href="https://yoon-j11.github.io/MELT/" target="_blank">
-    <img src="https://img.shields.io/badge/🚀%20DEMO%20SITE%20VISIT-%2300C7AE?style=for-the-badge&logoColor=white" />
+    <img src="https://img.shields.io/badge/✨_MELT_Live_Preview_--_Click_to_Visit!-00C7AE?style=for-the-badge&logo=safari&logoColor=white" width="100%" />
   </a>
 </p>
 
