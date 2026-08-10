@@ -4,7 +4,9 @@
 
   <h3>MELT: 일상의 온도를 결정하는 가구 큐레이션</h3>
 
-    <img width="130" height="130" src="https://github.com/user-attachments/assets/03f0d1dc-f4e3-4a3b-ac6d-54d5f50dba6b" />
+  <div style="width: 100%; padding: 30px 0; background-color: #F2E8D0; display: flex; justify-content: center; align-items: center;">
+    <img width="160" height="auto" alt="MELT" src="https://github.com/user-attachments/assets/471c75bf-0544-44c8-99b7-46a7af256f98" />
+  </div>
 
 </div>
 
