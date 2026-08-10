@@ -6,7 +6,9 @@
   <img width="770" height="160" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
 
 </div>
-<br><br><br>
+
+<br>
+
 ---
 
 ### ➊ Project Overview
