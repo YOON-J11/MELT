@@ -1,3 +1,7 @@
+# Publishing Project
+
+<img align="center" width="130" height="130" src="https://github.com/user-attachments/assets/03f0d1dc-f4e3-4a3b-ac6d-54d5f50dba6b" />
+
 # MELT: 일상의 온도를 결정하는 가구 큐레이션
 
 <p align="left">
@@ -8,7 +12,7 @@
 
 ---
 
-## ➊ Project Overview
+### ➊ Project Overview
 * **프로젝트명**: `MELT`
 * **개요**: 모던하고 따뜻한 원목 감성을 지향하는 가구 브랜드 'MELT'의 브랜드 메인 페이지
 * **목표**: 단순한 시각적 포트폴리오를 넘어, 실제 카페24 등 상용 쇼핑몰 템플릿 제작을 상정하고 실무적인 예외 상황과 사용자 인터랙션을 완벽하게 고려한 완성도 높은 웹 서비스 구현
@@ -16,14 +20,14 @@
 
 ---
 
-## ➋ Concept & Design
+### ➋ Concept & Design
 * **브랜드 컨셉**: '일상의 온도를 녹이는(Melt) 가구'
 * **디자인 키워드**: `아이보리 톤` · `현대적 모던함` · `불규칙한 조형미` · `과감한 타이포그래피`
 * **디자인 특징**: 웹 쇼핑몰의 전형적인 틀을 깨는 감각적인 디자인 요소를 담으면서도, 실제 서비스 운영 시 발생할 수 있는 사용자의 모든 행동 반경을 염두에 두고 레이아웃 구축
 
 ---
 
-## ➌ Tech Stack
+### ➌ Tech Stack
 * **Language / Markup**: 
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" />
@@ -38,7 +42,7 @@
 
 ---
 
-## ➍ Section Highlights
+### ➍ Section Highlights
 #### [Global] Layout & Header
 > **1. 컴포넌트 모듈화**
 > * 헤더와 푸터를 별도 파일로 분리하여 `fetch` API로 동적 로딩
@@ -54,7 +58,7 @@
 
 ---
 
-## ➎ Retrospective
+### ➎ Retrospective
 이번 프로젝트는 단순히 눈에만 예쁜 포트폴리오용 화면을 넘어, 실제 카페24 등 상용 쇼핑몰 템플릿 제작을 목표로 시작했습니다. 웹쇼핑 특유의 정형화된 틀에서 벗어난 디자인적 요소를 담으면서도, **마우스 호버, 스크롤 업/다운, 화면 리사이즈 등 실제 사용 시 마주할 수 있는 모든 동선과 예외 상황**을 철저히 고려해 코딩하는 데 집중했습니다. 특히 헤더와 슬라이더, 반응형 레이아웃을 구현하며 수많은 예외 상황과 부딪혔고, 그 과정에서 **자바스크립트를 활용한 새로운 해결 접근법**들을 깊이 있게 체득할 수 있었습니다. 모든 코드를 완벽하게 암기하고 있지는 않더라도, 앞으로 실무에서 비슷한 문제를 마주했을 때 **"아, 그때 이런 방식으로 해결했었지!" 하고 떠올리며 찾아볼 수 있는 실무적 문제 해결의 뼈대**를 단단하게 다진 소중한 경험이 되었습니다.
 
 
