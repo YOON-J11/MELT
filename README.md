@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1>Publishing Project</h1>
+  <h1 style="border-bottom: none important;">Publishing Project</h1>
 
   <a href="https://yoon-j11.github.io/MELT/" target="_blank">
     <img width="2442" height="auto" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
