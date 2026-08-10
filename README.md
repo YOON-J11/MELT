@@ -1,10 +1,10 @@
 <div align="center">
 
-  <img width="130" height="130" src="https://github.com/user-attachments/assets/03f0d1dc-f4e3-4a3b-ac6d-54d5f50dba6b" />
+  <h1>Publishing Project</h1>
 
-  # Publishing Project
+  <h3>MELT: 일상의 온도를 결정하는 가구 큐레이션</h3>
 
-  ### MELT: 일상의 온도를 결정하는 가구 큐레이션
+    <img width="130" height="130" src="https://github.com/user-attachments/assets/03f0d1dc-f4e3-4a3b-ac6d-54d5f50dba6b" />
 
 </div>
 
