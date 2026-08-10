@@ -2,20 +2,16 @@
 
   <h1>Publishing Project</h1>
 
-  <!-- 이미지 링크 -->
   <a href="https://yoon-j11.github.io/MELT/" target="_blank">
     <img width="2442" height="auto" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
-  </a>
-  
-  <!-- 클릭 유도 배지 (이미지 바로 아래 배치) -->
-  <a href="https://yoon-j11.github.io/MELT/" target="_blank" style="text-decoration: none;">
-    <div style="margin-top: -15px; display: inline-block; background-color: #00C7AE; color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-size: 14px; letter-spacing: 0.5px;">
-      🚀 LIVE PREVIEW SITE 바로가기
-    </div>
   </a>
 
   <h3>일상의 온도를 결정하는 가구 큐레이션</h3>
 
+
+<p>
+    👉 <a href="https://yoon-j11.github.io/MELT/" target="_blank"><b>[ Click Here ] MELT 라이브 데모 사이트 보러가기</b></a> 👈
+  </p>
 </div>
 
 <br>
