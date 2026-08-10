@@ -1,12 +1,15 @@
 <div align="center">
 
   <h1>Publishing Project</h1>
-
   <h3>MELT: 일상의 온도를 결정하는 가구 큐레이션</h3>
 
-  <div style="width: 100%; padding: 30px 0; background-color: #F2E8D0; display: flex; justify-content: center; align-items: center;">
-    <img width="160" height="auto" alt="MELT" src="https://github.com/user-attachments/assets/471c75bf-0544-44c8-99b7-46a7af256f98" />
-  </div>
+  <table width="100%" bgcolor="#F2E8D0" style="background-color: #F2E8D0; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px;">
+    <tr>
+      <td align="center" style="padding: 40px 0;">
+        <img width="160" height="auto" alt="MELT" src="https://github.com/user-attachments/assets/471c75bf-0544-44c8-99b7-46a7af256f98" />
+      </td>
+    </tr>
+  </table>
 
 </div>
 
