@@ -1,7 +1,7 @@
 <div align="center">
   <h1>
     Publishing Project : <br>
-    <h2>일상의 온도를 결정하는 가구 큐레이션</h2>
+    <span>일상의 온도를 결정하는 가구 큐레이션</span>
   </h1>
   <a href="https://yoon-j11.github.io/MELT/" target="_blank">
     <img width="2442" height="auto" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
