@@ -1,9 +1,9 @@
 <div align="center">
   <h1>Publishing Project</h1>
+  <h2>일상의 온도를 결정하는 가구 큐레이션</h2>
   <a href="https://yoon-j11.github.io/MELT/" target="_blank">
     <img width="2442" height="auto" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
   </a>
-  <h2>일상의 온도를 결정하는 가구 큐레이션</h2>
   <p>
     👉 <a href="https://yoon-j11.github.io/MELT/" target="_blank"><b>[ Click Here ] MELT 라이브 데모 사이트 보러가기</b></a> 👈
   </p>
@@ -25,10 +25,6 @@
 * **브랜드 컨셉**: '일상의 온도를 녹이는(Melt) 가구'
 * **디자인 키워드**: `아이보리 톤` · `현대적 모던함` · `불규칙한 조형미` · `과감한 타이포그래피`
 * **디자인 특징**: 웹 쇼핑몰의 전형적인 틀을 깨는 감각적인 디자인 요소를 담으면서도, 실제 서비스 운영 시 발생할 수 있는 사용자의 모든 행동 반경을 염두에 두고 레이아웃 구축
-<div align="center">
-  <img width="2442" height="748" alt="Frame 131" src="https://github.com/user-attachments/assets/3afa2c92-114c-415e-a482-3e72ae752536" />
-
-</div>
 
   
 
