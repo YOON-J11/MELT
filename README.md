@@ -6,8 +6,6 @@
     <img width="2442" height="auto" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
   </a>
 
-  <div style="height: 10px;"></div>
-
   <p>
     <a href="https://yoon-j11.github.io/MELT/" target="_blank">
       <img src="https://img.shields.io/badge/🚀_CLICK_TO_VISIT_DEMO_SITE!-#00C7AE?style=for-the-badge&logo=safari&logoColor=white" />
