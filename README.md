@@ -1,14 +1,12 @@
 <div align="center">
 
-  <h1 style="border-bottom: none; padding-bottom: 0;">Publishing Project</h1>
+  <h1>Publishing Project</h1>
   <h3>MELT: 일상의 온도를 결정하는 가구 큐레이션</h3>
 
   <img width="770" height="160" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
 
-
-
 </div>
-
+<br><br><br>
 ---
 
 ### ➊ Project Overview
