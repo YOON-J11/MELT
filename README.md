@@ -1,14 +1,12 @@
-# Publishing Project
+<div align="center">
 
-<img align="center" width="130" height="130" src="https://github.com/user-attachments/assets/03f0d1dc-f4e3-4a3b-ac6d-54d5f50dba6b" />
+  <img width="130" height="130" src="https://github.com/user-attachments/assets/03f0d1dc-f4e3-4a3b-ac6d-54d5f50dba6b" />
 
-# MELT: 일상의 온도를 결정하는 가구 큐레이션
+  # Publishing Project
 
-<p align="left">
-  <a href="https://yoon-j11.github.io/MELT/" target="_blank">
-    <img src="https://img.shields.io/badge/✨_MELT_Live_Preview_--_Click_to_Visit!-00C7AE?style=for-the-badge&logo=safari&logoColor=white" width="100%" />
-  </a>
-</p>
+  ### MELT: 일상의 온도를 결정하는 가구 큐레이션
+
+</div>
 
 ---
 
