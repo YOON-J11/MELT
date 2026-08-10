@@ -35,6 +35,7 @@ ___
 * **브랜드 컨셉**: '일상의 온도를 녹이는(Melt) 가구'
 * **디자인 키워드**: `아이보리 톤` · `현대적 모던함` · `불규칙한 조형미` · `과감한 타이포그래피`
 * **디자인 특징**: 웹 쇼핑몰의 전형적인 틀을 깨는 감각적인 디자인 요소를 담으면서도, 실제 서비스 운영 시 발생할 수 있는 사용자의 모든 행동 반경을 염두에 두고 레이아웃 구축
+<img width="3019" height="854" alt="Group 27" style="background-color: transparent;" src="https://github.com/user-attachments/assets/6f656a1c-a71b-48cf-9bc2-20356ed5a613" />
 
   
 
