@@ -282,11 +282,11 @@ header {
 
         &.scrolled {
             transform: translateY(calc(var(--banner-height) * -1)); /*위로 스크롤시 탑배너만 숨기고 헤더는 보이게 (헤더를 탑배너높이만큼 위로 올림)*/;
+        }
 
-            @media (max-width: 1024px) { /*모바일에선 무조건 탑배너 숨김*/
-                top: 0 !important;
-                transform: translateY(0) !important;
-            }
+        @media (max-width: 1024px) { /*모바일에선 무조건 탑배너 숨김*/
+            top: 0;
+            transform: translateY(0);
         }
     }
     &:not(.has-banner) { /*탑배너가 없는경우*/
