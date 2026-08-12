@@ -27,7 +27,7 @@
   /* 추가로 이미지 드래그(파일 끌기)도 막고 싶다면 */
   -webkit-user-drag: none;
   width: 100%;
-  aspect-ratio: 1920/800;
+  aspect-ratio: 1920/900;
 }
 @media (max-width: 1024px) {
   .section01 .main-slide {
