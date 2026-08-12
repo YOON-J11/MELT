@@ -1,16 +1,21 @@
-header {
-    /* position: fixed; 상단 고정이 필요할 때 사용 */
-    width: 100%;
+#TopBanner {
     z-index: 1000;
-    top: 0;
+    height: 38px;
+    width: 100%;
+
     transition: all 0.3s ease-in-out;
-    transform: translateY(0);
+
+    &.hidden {
+        transform: translateY(-100%);
+    }
 
     .top-banner {
-        height: 38px;
+        height: 100%;
+        background-color: #f0f0f0;
 
         .swiper-slide {
             width: 100%;
+            height: 100%;
 
             &.bg-cream {
                 background-color: var(--bg-cream);
@@ -38,7 +43,20 @@ header {
         @media (max-width: 1024px) {
             display: none !important;
         }
+
     }
+}
+
+
+header {
+    /* position: fixed; 상단 고정이 필요할 때 사용 */
+    width: 100%;
+    z-index: 1000;
+    top: 0px;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(0);
+
+
 
     .header-main {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
@@ -255,18 +273,31 @@ header {
         }
     }
 
-    &.hidden {
-        transform: translateY(-100%);
-    }
+    &.has-banner { /*탑배너가 있는경우*/
+        top: var(--banner-height); /*헤더를 상단에서 탑배너 높이 만큼 띄움*/
 
-    &.scrolled {
-        transform: translateY(-38px);
+        &.hidden {
+            transform: translateY(calc(-100% - var(--banner-height)));/*아래로 스크롤시 헤더랑 탑배너 모두 숨김*/
+        }
 
-        @media (max-width: 1024px) {
-            top: 0 !important;
-            transform: translateY(0) !important;
+        &.scrolled {
+            transform: translateY(calc(var(--banner-height) * -1)); /*위로 스크롤시 탑배너만 숨기고 헤더는 보이게 (헤더를 탑배너높이만큼 위로 올림)*/;
+
+            @media (max-width: 1024px) { /*모바일에선 무조건 탑배너 숨김*/
+                top: 0 !important;
+                transform: translateY(0) !important;
+            }
         }
     }
+    &:not(.has-banner) { /*탑배너가 없는경우*/
+        &.hidden {
+            transform: translateY(-100%); /*아래로 스크롤시 헤더 숨김*/
+        }
+        &.scrolled {
+            transform: translateY(0); /*위로 스크롤시 헤더 보임*/
+        }
+    }
+
 
     .mobile-menu-overlay {
         display: none;
@@ -347,6 +378,7 @@ footer {
     width: 100%;
     border-top: 1px solid #d9d9d9;
     padding: 70px 0;
+
     @media (max-width:768px) {
         padding: 40px 0 60px;
     }
@@ -432,12 +464,16 @@ footer {
 
             .footer__right {
                 width: 100%;
+
                 &__cs {
-                    .number{
+                    .number {
                         font-size: 32px;
                     }
                 }
-                &__sns {margin-top: 20px;}
+
+                &__sns {
+                    margin-top: 20px;
+                }
             }
 
             .footer__left {
@@ -448,6 +484,7 @@ footer {
                     align-self: center;
                     margin-top: 30px;
                 }
+
                 &__policy {
                     font-size: 14px;
                 }
@@ -455,14 +492,14 @@ footer {
                 &__info {
                     font-size: 12px;
                 }
-    
+
                 &__notice {
                     font-size: 12px;
 
                     .copyright {
                         font-size: 14px;
                     }
-    
+
                 }
             }
         }

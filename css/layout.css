@@ -1,39 +1,51 @@
 @charset "UTF-8";
-header {
-  /* position: fixed; 상단 고정이 필요할 때 사용 */
-  width: 100%;
+#TopBanner {
   z-index: 1000;
-  top: 0;
-  transition: all 0.3s ease-in-out;
-  transform: translateY(0);
-}
-header .top-banner {
   height: 38px;
-}
-header .top-banner .swiper-slide {
   width: 100%;
+  transition: all 0.3s ease-in-out;
 }
-header .top-banner .swiper-slide.bg-cream {
+#TopBanner.hidden {
+  transform: translateY(-100%);
+}
+#TopBanner .top-banner {
+  height: 100%;
+  background-color: #f0f0f0;
+}
+#TopBanner .top-banner .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+#TopBanner .top-banner .swiper-slide.bg-cream {
   background-color: var(--bg-cream);
 }
-header .top-banner .swiper-slide.bg-oatmeal {
+#TopBanner .top-banner .swiper-slide.bg-oatmeal {
   background-color: var(--bg-oatmeal);
 }
-header .top-banner .swiper-slide.bg-main {
+#TopBanner .top-banner .swiper-slide.bg-main {
   background-color: var(--main-color);
 }
-header .top-banner .swiper-slide a {
+#TopBanner .top-banner .swiper-slide a {
   font-size: 12px;
   font-weight: 400;
 }
-header .top-banner .swiper-slide a span {
+#TopBanner .top-banner .swiper-slide a span {
   text-decoration: underline;
   font-weight: 500;
 }
 @media (max-width: 1024px) {
-  header .top-banner {
+  #TopBanner .top-banner {
     display: none !important;
   }
+}
+
+header {
+  /* position: fixed; 상단 고정이 필요할 때 사용 */
+  width: 100%;
+  z-index: 1000;
+  top: 0px;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(0);
 }
 header .header-main {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
@@ -194,17 +206,27 @@ header.active .header-main .inner .header-util button .icon {
     box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.1);
   }
 }
-header.hidden {
-  transform: translateY(-100%);
+header.has-banner { /*탑배너가 있는경우*/
+  top: var(--banner-height); /*헤더를 상단에서 탑배너 높이 만큼 띄움*/
 }
-header.scrolled {
-  transform: translateY(-38px);
+header.has-banner.hidden {
+  transform: translateY(calc(-100% - var(--banner-height))); /*아래로 스크롤시 헤더랑 탑배너 모두 숨김*/
+}
+header.has-banner.scrolled {
+  transform: translateY(calc(var(--banner-height) * -1)); /*위로 스크롤시 탑배너만 숨기고 헤더는 보이게 (헤더를 탑배너높이만큼 위로 올림)*/
 }
 @media (max-width: 1024px) {
-  header.scrolled {
+  header.has-banner.scrolled { /*모바일에선 무조건 탑배너 숨김*/
     top: 0 !important;
     transform: translateY(0) !important;
   }
+}
+header:not(.has-banner) { /*탑배너가 없는경우*/ }
+header:not(.has-banner).hidden {
+  transform: translateY(-100%); /*아래로 스크롤시 헤더 숨김*/
+}
+header:not(.has-banner).scrolled {
+  transform: translateY(0); /*위로 스크롤시 헤더 보임*/
 }
 header .mobile-menu-overlay {
   display: none;

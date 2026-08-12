@@ -1,5 +1,21 @@
 
 // async : 내부에서 await(기다리는 작업)를 사용하겠다고 함수에 미리 알려주는 선언문
+async function loadTopBanner() {
+  const topBannerContainer = document.querySelector('#TopBanner');
+  if (!topBannerContainer) return;
+  try {
+    const response = await fetch('./inc/top-banner.html');
+    const data = await response.text();
+    topBannerContainer.innerHTML = data;
+
+    handleTopBanner();
+
+  } catch (error) {
+    console.error('탑배너를 불러오는 데 실패했습니다.', error)
+  }
+}
+
+
 async function loadHeader() { //외부 html파일을을 가져와서 화면에 배치하고 관련된 모든 기능을 활성화하는 함수
   const headerContainer = document.querySelector('#header'); //헤더 찾고 선언
 
@@ -14,7 +30,6 @@ async function loadHeader() { //외부 html파일을을 가져와서 화면에 �
     headerContainer.innerHTML = data; //3.변환된 HTML내용을 비어있던 헤더그릇안에 집어넣기
 
 
-    topBannerSwiper(); //탑배너 슬라이드 활성화
     megaPromoSwiper(); //메가프로모 슬라이드 활성화
     handleHeader(); //헤더(메뉴들)로직 활성화
     initMobileMenu();
@@ -37,6 +52,9 @@ async function loadFooter() {
     console.error('푸터를 불러오는 데 실패했습니다.', error)
   }
 }
+
+
+
 // [컴포넌트 모듈화 : 헤더와 푸터를 별도 파일로 분리하여 `fetch` API로 동적 로딩]
 // 전체 순서: 1.자리찾기 -> 2.가져오기 -> 3.꽂고 기능켜기
 // 세부 순서:
@@ -49,8 +67,12 @@ async function loadFooter() {
 
 
 
+function handleTopBanner() {
+  const topBannerContainer = document.querySelector('#TopBanner');
+  const topBanner = document.querySelector('.top-banner');
+  if (!topBanner || !topBannerContainer) return; // 탑배너가 없으면 종료
 
-function topBannerSwiper() {//탑배너 스와이퍼
+  // 스와이퍼 초기화
   const topBannerSwiper = new Swiper(".swiper.top-banner", {
     direction: 'vertical', // 아래에서 위로 전환
     slidesPerView: 1, //한 화면에 보여질 슬라이드 수
@@ -64,7 +86,24 @@ function topBannerSwiper() {//탑배너 스와이퍼
       pauseOnMouseEnter: true, // 마우스를 올리면 멈춤 여부(일시정지)
     },
   });
+
+
+  // 스크롤 로직 
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY === 0) {
+      topBannerContainer.classList.remove('hidden');
+    } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      topBannerContainer.classList.add('hidden');
+    }
+    lastScrollY = currentScrollY;
+  });
+
 }
+
 
 function megaPromoSwiper() {//메가프로모 스와이퍼
   const megaPromoSwiper = new Swiper(".swiper.mega-promo", {
@@ -86,9 +125,21 @@ function megaPromoSwiper() {//메가프로모 스와이퍼
 function handleHeader() {
   const header = document.querySelector('header');
   const headerMain = document.querySelector('.header-main');
-  let lastScrollY = window.scrollY;
+  const topBannerContainer = document.querySelector('#TopBanner');
+  if (!header) return;
+
+  // 탑배너 유무, 탑배너 높이 감지 후 동적 설정
+  if (topBannerContainer) {
+    const bannerHeight = topBannerContainer.offsetHeight;
+    document.documentElement.style.setProperty('--banner-height', `${bannerHeight}px`);
+    header.classList.add('has-banner');
+  } else { 
+    document.documentElement.style.setProperty('--banner-height', '0px');
+    header.classList.remove('has-banner');
+  }
 
   // 스크롤 로직 
+  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
 
     // 모바일 메뉴가 열려있다면(is-open 클래스 확인) 스크롤 로직 무시
@@ -216,9 +267,9 @@ window.addEventListener('resize', () => {
 
 
 window.addEventListener('DOMContentLoaded', () => { //브라우저가 기본 HTML구조를 모두 읽었을때 실행
+  loadTopBanner();
   loadHeader();
   loadFooter();
   initScrollBtns();
-
 });
 
