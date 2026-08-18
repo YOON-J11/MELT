@@ -20,13 +20,13 @@ ___
 <br>
 
 ### ➊ Project Overview
-  <a href="https://yoon-j11.github.io/MELT/" target="_blank">
-    <img width="2442" height="auto" src="./images/readme/title.png" />
-  </a>
 * **프로젝트명**: `MELT`
 * **개요**: 모던하고 따뜻한 원목 감성을 지향하는 가구 브랜드 'MELT'의 브랜드 메인 페이지
 * **목표**: 단순한 시각적 포트폴리오를 넘어, 실제 카페24 등 상용 쇼핑몰 템플릿 제작을 상정하고 실무적인 예외 상황과 사용자 인터랙션을 완벽하게 고려한 완성도 높은 웹 서비스 구현
 * **진행 형태**: 1인 프로젝트 (브랜딩, 디자인, 퍼블리싱 전 과정 수행)
+  <a href="https://yoon-j11.github.io/MELT/" target="_blank">
+    <img width="2442" height="auto" src="./images/readme/title.png" />
+  </a>
 <br>
 
 
@@ -34,10 +34,10 @@ ___
 <br>
 
 ### ➋ Concept & Design
-<img width="3019" height="854" alt="Group 27" style="background-color: transparent;" src="./images/readme/2_layout.png" />
 * **브랜드 컨셉**: '일상의 온도를 녹이는(Melt) 가구'
 * **디자인 키워드**: `아이보리 톤` · `현대적 모던함` · `불규칙한 조형미` · `과감한 타이포그래피`
 * **디자인 특징**: 웹 쇼핑몰의 전형적인 틀을 깨는 감각적인 디자인 요소를 담으면서도, 실제 서비스 운영 시 발생할 수 있는 사용자의 모든 행동 반경을 염두에 두고 레이아웃 구축
+<img width="3019" height="854" alt="Group 27" style="background-color: transparent;" src="./images/readme/2_layout.png" />
 
   
 
