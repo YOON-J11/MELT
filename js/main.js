@@ -40,8 +40,8 @@ function initAllScripts() {
 });
   syncMediaPosition();
 
-  renderShoroomCards(".showroom-desktop .showroom__section");
-  renderShoroomCards(".showroom-mobile .showroom__section");
+  renderShowroomCards(".showroom-desktop .showroom__section");
+  renderShowroomCards(".showroom-mobile .showroom__section");
   showroomMouseFollower();
   initShowroomClick();
   initMobileShowroom()
@@ -85,15 +85,22 @@ function mainSlideSwiper() {
 let thumbSwiper = null; // 스와이퍼 인스턴스 저장 공간
 function selectionDisplay() {
   let currentMainId = 1; // 현재 메인 화면에 크게 보여줄 가구 ID (초기에는 1로 지정)
+  const container = document.querySelector(".selection-display");
+  if (!container) return;
 
+  const wrapper = container.querySelector(".swiper-wrapper");
+
+  wrapper.addEventListener("click", (e) => {
+    const slide = e.target.closest(".swiper-slide[data-id]");
+    if (!slide) return;
+
+    currentMainId = parseInt(slide.getAttribute("data-id"), 10);
+    updateScreen();
+  });
 
   function updateScreen() {
-    const container = document.querySelector(".selection-display");
-    if (!container) return;
-
     const imgBox = container.querySelector(".selection-display__img-box");
     const textBox = container.querySelector(".selection-display__text-box");
-    const wrapper = container.querySelector(".swiper-wrapper");
 
     //왼쪽 메인이미지에 데이터 찾아서 넣기
     const mainItem = furnitureList.find((item) => item.id === currentMainId);
@@ -129,15 +136,6 @@ function selectionDisplay() {
       thumbSwiper.params.spaceBetween = getSpaceBetween(); // 리사이즈 시 갱신할 값
       thumbSwiper.update();
     }
-
-    // [오른쪽 밑 썸네일] 클릭 이벤트 연결
-    const smallSlides = container.querySelectorAll(".swiper-slide");
-    smallSlides.forEach((slide) => {
-      slide.addEventListener("click", function () {
-        currentMainId = parseInt(this.getAttribute("data-id"));
-        updateScreen(); // 내부에 있는 함수를 다시 호출해서 화면 갱신
-      });
-    });
   }
   // 함수가 정의되었으니 최초에 딱 한 번 수동 실행해서 첫 화면 띄우기
   updateScreen();
@@ -275,6 +273,19 @@ function initIconicSlideMouseFollower() {
   const infoBoxInner = FollowGroup.querySelector(".info-box .info-box-inner");
   const slides = iconicSlider.querySelectorAll(".swiper-slide");
 
+  function showSlideInfo(slide) {
+    const targetInfo = slide.querySelector(".slide-info");
+    if (!targetInfo) return;
+
+    infoBoxInner.innerHTML = targetInfo.innerHTML;
+    FollowGroup.classList.add("active");
+  }
+
+  function hideSlideInfo() {
+    FollowGroup.classList.remove("active");
+    infoBoxInner.innerHTML = "";
+  }
+
   // iconicSlider 위에서 마우스가 움직일 때 좌표 갱신
   iconicSlider.addEventListener("mousemove", (e) => {
     const mouseX = e.clientX;
@@ -300,21 +311,14 @@ function initIconicSlideMouseFollower() {
     }
   });
 
-  // 슬라이드 호버 시 정보 가로채기 및 active 클래스 토글
+  // 슬라이드 호버·포커스 시 정보 표시
   slides.forEach((slide) => {
-    slide.addEventListener("mouseenter", () => {
-      const targetInfo = slide.querySelector(".slide-info");
-      if (targetInfo) {
-        infoBoxInner.innerHTML = targetInfo.innerHTML;
-        FollowGroup.classList.add("active");
-      }
-    });
+    slide.setAttribute("tabindex", "0");
 
-    // 마우스를 뺐을 때 active 클래스 비우고 infoBoxInner 비우기
-    slide.addEventListener("mouseleave", () => {
-      FollowGroup.classList.remove("active");
-      infoBoxInner.innerHTML = "";
-    });
+    slide.addEventListener("mouseenter", () => showSlideInfo(slide));
+    slide.addEventListener("mouseleave", hideSlideInfo);
+    slide.addEventListener("focus", () => showSlideInfo(slide));
+    slide.addEventListener("blur", hideSlideInfo);
   });
 }
 
@@ -354,7 +358,7 @@ function syncMediaPosition() {
 }
 
 //showroom에 data.js에 있는 showroomData데이터 가져와서 뿌리기 (재사용 가능하도록)
-function renderShoroomCards(containerSelector) {
+function renderShowroomCards(containerSelector) {
   const sections = document.querySelectorAll(containerSelector);
 
   sections.forEach(section => {
@@ -366,7 +370,7 @@ function renderShoroomCards(containerSelector) {
     section.innerHTML = product.map(item =>
       `
           <div class="product-card">
-            <button class="product-card__hotspot"></button>
+            <button type="button" class="product-card__hotspot" aria-label="${item.title} 상품 정보 보기" aria-expanded="false"></button>
             <a href="#" class="product-card__link">
               <div class="thumb">
                 <img src="${item.img}" alt="${item.title}" class="img-contain">
@@ -418,6 +422,18 @@ function showroomMouseFollower() {
 function initShowroomClick() {
   const sections = document.querySelectorAll('.showroom-desktop .showroom__section');
 
+  sections.forEach((section) => {
+    section.setAttribute('tabindex', '0');
+    section.setAttribute('role', 'button');
+
+    section.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+
+      e.preventDefault();
+      section.click();
+    });
+  });
+
   // 문서 전체에 클릭 이벤트
   document.addEventListener('click', (e) => {
 
@@ -452,39 +468,82 @@ function initMobileShowroom() {
   const productSection = document.querySelector(".showroom-mobile .product-section");
   const productSections = document.querySelectorAll(".showroom-mobile .showroom__section");
   const closeBtn = document.querySelector(".showroom-mobile .btn-list-close");
-  // 1. dimmed-layer 요소 선택 추가
   const dimmedLayer = document.querySelector(".showroom-mobile .dimmed-layer");
+  let lastFocusedElement = null;
+
+  if (!productSection) return;
+
+  function getFocusableElements(container) {
+    return Array.from(container.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    ));
+  }
+
+  const openShowroom = (triggerEl) => {
+    const clickedKey = triggerEl.closest(".showroom__bg")?.dataset.key;
+    if (!clickedKey) return;
+
+    lastFocusedElement = triggerEl;
+
+    productSections.forEach((section) => {
+      section.style.display = (section.dataset.key === clickedKey) ? "block" : "none";
+    });
+
+    productSection.classList.add("is-active");
+    productSection.setAttribute("aria-hidden", "false");
+    document.body.classList.add('menu-is-open');
+    document.documentElement.classList.add('menu-is-open');
+    closeBtn?.focus();
+  };
+
+  const closeShowroom = () => {
+    productSection.classList.remove("is-active");
+    productSection.setAttribute("aria-hidden", "true");
+    document.body.classList.remove('menu-is-open');
+    document.documentElement.classList.remove('menu-is-open');
+    lastFocusedElement?.focus();
+    lastFocusedElement = null;
+  };
 
   bgList.forEach((bg) => {
-    bg.addEventListener("click", () => {
-      const clickedKey = bg.dataset.key;
-
-      productSections.forEach((section) => {
-        section.style.display = (section.dataset.key === clickedKey) ? "block" : "none";
-      });
-
-      productSection.classList.add("is-active");
-      document.body.classList.add('menu-is-open');
-      document.documentElement.classList.add('menu-is-open');
+    bg.addEventListener("click", (e) => {
+      openShowroom(e.target);
     });
   });
 
-  // 닫기 로직
-  const closeShowroom = () => {
-    productSection.classList.remove("is-active");
-    document.body.classList.remove('menu-is-open');
-    document.documentElement.classList.remove('menu-is-open');
-  };
-
-  // 닫기 버튼 클릭 시 닫기
   if (closeBtn) {
     closeBtn.addEventListener("click", closeShowroom);
   }
 
-  // dimmed-layer 클릭 시 닫기
   if (dimmedLayer) {
     dimmedLayer.addEventListener("click", closeShowroom);
   }
+
+  productSection?.addEventListener("keydown", (e) => {
+    if (!productSection.classList.contains("is-active")) return;
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeShowroom();
+      return;
+    }
+
+    if (e.key !== "Tab") return;
+
+    const focusable = getFocusableElements(productSection);
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 }
 
 // adjustLinkBoxPosition: 쇼룸 핫스팟 클릭 시, 링크 박스가 쇼룸 영역 밖으로 나가지 않도록 좌표를 계산하여 위치(분면별 배치)를 조정
@@ -493,7 +552,10 @@ function adjustLinkBoxPosition() {
     const hotspot = e.target.closest('.showroom-desktop .product-card__hotspot'); //closest() 메서드는 주어진 CSS 선택자와 일치하는 요소를 찾을 때까지, 자기 자신을 포함해 위쪽(부모 방향, 문서 루트까지)으로 문서 트리를 순회한다
 
     if (!hotspot) { // hotspot이 없다면, 즉 클릭한곳이 hotspot 영역이 아니라면
-      document.querySelectorAll('.showroom-desktop .product-card').forEach(c => c.classList.remove('is-open')); //product-card에 is-open클래스를 지움
+      document.querySelectorAll('.showroom-desktop .product-card').forEach((card) => {
+        card.classList.remove('is-open');
+        card.querySelector('.product-card__hotspot')?.setAttribute('aria-expanded', 'false');
+      });
       return;
     }
 
@@ -502,6 +564,7 @@ function adjustLinkBoxPosition() {
     document.querySelectorAll('.showroom-desktop .product-card').forEach(c => {
       if (c !== card) {
         c.classList.remove('is-open');
+        c.querySelector('.product-card__hotspot')?.setAttribute('aria-expanded', 'false');
       }
     });
 
@@ -528,7 +591,8 @@ function adjustLinkBoxPosition() {
     linkBox.style.right = isRight ? '30px' : 'auto';
 
     // 토글 실행
-    card.classList.toggle('is-open');
+    const isOpen = card.classList.toggle('is-open');
+    hotspot.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 }
 

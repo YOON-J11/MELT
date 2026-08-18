@@ -129,7 +129,7 @@
     padding: 80px 0;
   }
 }
-@media (max-width: 768) {
+@media (max-width: 768px) {
   .section02 {
     padding: 50px 0;
   }
@@ -1507,20 +1507,23 @@
   justify-content: stretch;
   animation: marqueeScroll 30s linear infinite;
 }
-.section07 .marquee h1 {
+.section07 .marquee h1,
+.section07 .marquee .marquee__text {
   white-space: nowrap;
   font-size: 100px;
   font-weight: 800;
   color: var(--white);
-  margin-right: 10px;
+  margin: 0 10px 0 0;
 }
 @media (max-width: 1024px) {
-  .section07 .marquee h1 {
+  .section07 .marquee h1,
+  .section07 .marquee .marquee__text {
     font-size: 60px;
   }
 }
 @media (max-width: 768px) {
-  .section07 .marquee h1 {
+  .section07 .marquee h1,
+  .section07 .marquee .marquee__text {
     font-size: 36px;
   }
 }
@@ -1552,7 +1555,8 @@
     padding: 80px 0;
   }
 }
-.section08 .inner .sec8__header h1 {
+.section08 .inner .sec8__header h1,
+.section08 .inner .sec8__header h2 {
   font-size: 170px;
   font-weight: 300;
   line-height: 1.12;
@@ -1560,12 +1564,14 @@
   color: #535353;
 }
 @media (max-width: 1024px) {
-  .section08 .inner .sec8__header h1 {
+  .section08 .inner .sec8__header h1,
+  .section08 .inner .sec8__header h2 {
     font-size: 100px;
   }
 }
 @media (max-width: 1024px) {
-  .section08 .inner .sec8__header h1 {
+  .section08 .inner .sec8__header h1,
+  .section08 .inner .sec8__header h2 {
     font-size: 50px;
   }
 }

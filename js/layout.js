@@ -88,10 +88,9 @@ function handleTopBanner() {
   });
 
 
-  // 스크롤 로직 
+  // 스크롤 로직
   let lastScrollY = window.scrollY;
-  window.addEventListener('scroll', () => {
-
+  const onTopBannerScroll = throttleWithRaf(() => {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY === 0) {
@@ -101,6 +100,8 @@ function handleTopBanner() {
     }
     lastScrollY = currentScrollY;
   });
+
+  window.addEventListener('scroll', onTopBannerScroll, { passive: true });
 
 }
 
@@ -138,14 +139,12 @@ function handleHeader() {
     header.classList.remove('has-banner');
   }
 
-  // 스크롤 로직 
+  // 스크롤 로직
   let lastScrollY = window.scrollY;
-  window.addEventListener('scroll', () => {
-
+  const onHeaderScroll = throttleWithRaf(() => {
     // 모바일 메뉴가 열려있다면(is-open 클래스 확인) 스크롤 로직 무시
     const overlay = document.querySelector('.mobile-menu-overlay');
     if (overlay && overlay.classList.contains('is-open')) return;
-
 
     const currentScrollY = window.scrollY;
 
@@ -173,6 +172,8 @@ function handleHeader() {
     }
     lastScrollY = currentScrollY;
   });
+
+  window.addEventListener('scroll', onHeaderScroll, { passive: true });
 
   // PC 전용 호버 로직 (모바일은 무시)
   headerMain.addEventListener('mouseover', () => {

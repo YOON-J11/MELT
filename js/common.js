@@ -1,3 +1,18 @@
+// rAF 기반 스크롤 이벤트 throttle
+function throttleWithRaf(fn) {
+  let scheduled = false;
+
+  return function (...args) {
+    if (scheduled) return;
+
+    scheduled = true;
+    requestAnimationFrame(() => {
+      fn.apply(this, args);
+      scheduled = false;
+    });
+  };
+}
+
 // initRevealOnScroll: 뷰포트 진입 시 .reveal 요소에 is-visible 클래스를 추가
 function initRevealOnScroll() {
   const revealItems = document.querySelectorAll(".reveal");
@@ -72,8 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
         trigger.textContent = text; // 버튼 텍스트 변경
         trigger.classList.add("selected"); // 글자색 진하게
         select.classList.remove("active"); // 목록 닫기
-
-        console.log("선택된 값:", value); // 실제 값 활용 가능
       });
     });
   });
