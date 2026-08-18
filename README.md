@@ -4,9 +4,6 @@
     일상의 온도를 결정하는 가구 큐레이션
   </h1>
   <br>
-  <a href="https://yoon-j11.github.io/MELT/" target="_blank">
-    <img width="2442" height="auto" src="./images/readme/title.png" />
-  </a>
   <br><br>
   <p>
     👉 <a href="https://yoon-j11.github.io/MELT/" target="_blank"><b>[ Click Here ] MELT 라이브 데모 사이트 보러가기</b></a> 👈
@@ -27,7 +24,9 @@ ___
 * **개요**: 모던하고 따뜻한 원목 감성을 지향하는 가구 브랜드 'MELT'의 브랜드 메인 페이지
 * **목표**: 단순한 시각적 포트폴리오를 넘어, 실제 카페24 등 상용 쇼핑몰 템플릿 제작을 상정하고 실무적인 예외 상황과 사용자 인터랙션을 완벽하게 고려한 완성도 높은 웹 서비스 구현
 * **진행 형태**: 1인 프로젝트 (브랜딩, 디자인, 퍼블리싱 전 과정 수행)
-  
+    <a href="https://yoon-j11.github.io/MELT/" target="_blank">
+    <img width="2442" height="auto" src="./images/readme/title.png" />
+  </a>
 <br>
 
 
