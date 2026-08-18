@@ -7,8 +7,11 @@
   <a href="https://yoon-j11.github.io/MELT/" target="_blank">
     <img width="2442" height="auto" alt="Group 8" src="https://github.com/user-attachments/assets/815e9693-64b6-4623-aa07-a0dc2b6ca8a1" />
   </a>
+  <br><br>
   <p>
     👉 <a href="https://yoon-j11.github.io/MELT/" target="_blank"><b>[ Click Here ] MELT 라이브 데모 사이트 보러가기</b></a> 👈
+    <br><br>
+    🎨 <a href="여기에_피그마_공유_링크를_넣어주세요" target="_blank"><b>[ Figma ] 디자인 작업 보러가기</b></a> 🎨
   </p>
 </div>
 
