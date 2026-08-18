@@ -1,9 +1,9 @@
 <div align="center">
   <h1>
     Publishing Project : <br>
-    일상의 온도를 결정하는 가구 큐레이션
+    일상의 온도를 결정하는 가구 큐레이션 <br>
+    MELT<br>
   </h1>
-  <br>
   <br><br>
   <p>
     👉 <a href="https://yoon-j11.github.io/MELT/" target="_blank"><b>[ Click Here ] MELT 라이브 데모 사이트 보러가기</b></a> 👈
