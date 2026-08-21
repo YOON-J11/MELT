@@ -13,7 +13,7 @@
 </div>
 
 <br>
-___
+---
 <br>
 
 ### ➊ Project Overview
@@ -25,7 +25,7 @@ ___
     <img width="2442" height="auto" src="./images/readme/title.png" />
   </a>
 <br>
-___
+---
 <br>
 
 ### ➋ Concept & Design
@@ -35,7 +35,7 @@ ___
 <img width="3019" height="854" alt="Group 27" style="background-color: transparent;" src="./images/readme/2_layout.png" />
 
 <br>
-___
+---
 <br>
 
 ### ➌ Tech Stack
@@ -52,7 +52,7 @@ ___
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" />
 
 <br>
-___
+---
 <br>
 
 ### ➍ Section Highlights & Architecture
@@ -75,7 +75,7 @@ ___
 > * 화면 이동을 돕는 **상·하단 양방향 제어 버튼** 구현
 > * 위 버튼 클릭 시 화면 최상단으로 부드럽게 이동하며, 아래 화살표 버튼 클릭 시 화면 최하단으로 즉시 이동하여 사용자 탐색 편의성 극대화
 
-<hr style="border: none; height: 1px; background-color: #e1e4e8; margin: 24px 0;">
+<h1> </h1>
 
 #### ✨ Part 2. 페이지 섹션별 핵심 구현 (Section Highlights)
 
@@ -125,7 +125,7 @@ ___
 >   * **웹 접근성 및 키보드 네비게이션**: `Escape` 키를 통한 모달 닫기, `Tab` 및 `Shift + Tab`을 활용한 포커스 트랩(Focus Trap) 구현으로 스크린 리더 및 키보드 사용자 편의성 확보
 
 <br>
-___
+---
 <br>
 
 ### ➎ Retrospective
