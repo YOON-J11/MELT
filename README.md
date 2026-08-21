@@ -13,7 +13,7 @@
 </div>
 
 <br>
----
+<hr>
 <br>
 
 ### ➊ Project Overview
@@ -25,7 +25,7 @@
     <img width="2442" height="auto" src="./images/readme/title.png" />
   </a>
 <br>
----
+<hr>
 <br>
 
 ### ➋ Concept & Design
@@ -35,7 +35,7 @@
 <img width="3019" height="854" alt="Group 27" style="background-color: transparent;" src="./images/readme/2_layout.png" />
 
 <br>
----
+<hr>
 <br>
 
 ### ➌ Tech Stack
@@ -125,7 +125,7 @@
 >   * **웹 접근성 및 키보드 네비게이션**: `Escape` 키를 통한 모달 닫기, `Tab` 및 `Shift + Tab`을 활용한 포커스 트랩(Focus Trap) 구현으로 스크린 리더 및 키보드 사용자 편의성 확보
 
 <br>
----
+<hr>
 <br>
 
 ### ➎ Retrospective
