@@ -13,10 +13,7 @@
 </div>
 
 <br>
-
-
 ___
-
 <br>
 
 ### ➊ Project Overview
@@ -28,9 +25,7 @@ ___
     <img width="2442" height="auto" src="./images/readme/title.png" />
   </a>
 <br>
-
-
-
+___
 <br>
 
 ### ➋ Concept & Design
@@ -39,8 +34,9 @@ ___
 * **디자인 특징**: 웹 쇼핑몰의 전형적인 틀을 깨는 감각적인 디자인 요소를 담으면서도, 실제 서비스 운영 시 발생할 수 있는 사용자의 모든 행동 반경을 염두에 두고 레이아웃 구축
 <img width="3019" height="854" alt="Group 27" style="background-color: transparent;" src="./images/readme/2_layout.png" />
 
-  
-
+<br>
+___
+<br>
 
 ### ➌ Tech Stack
 * **Language / Markup**: 
@@ -55,7 +51,9 @@ ___
 * **Tool**: 
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" />
 
-
+<br>
+___
+<br>
 
 ### ➍ Section Highlights & Architecture
 
@@ -77,7 +75,7 @@ ___
 > * 화면 이동을 돕는 **상·하단 양방향 제어 버튼** 구현
 > * 위 버튼 클릭 시 화면 최상단으로 부드럽게 이동하며, 아래 화살표 버튼 클릭 시 화면 최하단으로 즉시 이동하여 사용자 탐색 편의성 극대화
 
----
+<hr style="border: none; height: 1px; background-color: #e1e4e8; margin: 24px 0;">
 
 #### ✨ Part 2. 페이지 섹션별 핵심 구현 (Section Highlights)
 
@@ -125,6 +123,10 @@ ___
 >   * 768px 이하 해상도에서는 데스크톱 인터랙션을 숨기고 그리드 기반 배경 이미지와 핫스팟 구조로 전환
 >   * 모바일 배경 터치 시 풀스크린 슬라이드업 바텀 시트 형태의 상품 목록(`.product-section`)이 활성화되며 반투명 딤드 레이어(`dimmed-layer`) 적용
 >   * **웹 접근성 및 키보드 네비게이션**: `Escape` 키를 통한 모달 닫기, `Tab` 및 `Shift + Tab`을 활용한 포커스 트랩(Focus Trap) 구현으로 스크린 리더 및 키보드 사용자 편의성 확보
+
+<br>
+___
+<br>
 
 ### ➎ Retrospective
 이번 프로젝트는 단순히 눈에만 예쁜 포트폴리오용 화면을 넘어, 실제 카페24 등 상용 쇼핑몰 템플릿 제작을 목표로 시작했습니다. 웹쇼핑 특유의 정형화된 틀에서 벗어난 디자인적 요소를 담으면서도, **마우스 호버, 스크롤 업/다운, 화면 리사이즈 등 실제 사용 시 마주할 수 있는 모든 동선과 예외 상황**을 철저히 고려해 코딩하는 데 집중했습니다. 특히 헤더와 슬라이더, 반응형 레이아웃을 구현하며 수많은 예외 상황과 부딪혔고, 그 과정에서 **자바스크립트를 활용한 새로운 해결 접근법**들을 깊이 있게 체득할 수 있었습니다. 모든 코드를 완벽하게 암기하고 있지는 않더라도, 앞으로 실무에서 비슷한 문제를 마주했을 때 **"아, 그때 이런 방식으로 해결했었지!" 하고 떠올리며 찾아볼 수 있는 실무적 문제 해결의 뼈대**를 단단하게 다진 소중한 경험이 되었습니다.
