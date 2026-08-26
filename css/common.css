@@ -7,6 +7,20 @@ body.is-locked {
   overscroll-behavior: none;
 }
 
+/* overflow:hidden으로 스크롤바가 사라져 화면이 가로로 넓어지는 만큼 보정 */
+html.is-locked {
+  padding-right: var(--scrollbar-width, 0px);
+}
+
+html.is-locked #header,
+html.is-locked #TopBanner {
+  padding-right: var(--scrollbar-width, 0px);
+}
+
+html.is-locked .page-controls {
+  right: calc(30px + var(--scrollbar-width, 0px));
+}
+
 :root {
   /* MELT Brand Colors */
   --main-color: #d4ccb9;

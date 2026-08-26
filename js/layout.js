@@ -22,23 +22,19 @@ function searchToggle() {
     // 1. 열기 버튼을 눌렀을 때
     if (e.target.closest('.btn-search-open')) {
       searchOverlay.classList.add('is-open');
-      // body와 html(documentElement) 둘 다에 클래스 추가 (모바일 메뉴 방식과 동일)
-      document.body.classList.add('is-locked');
-      document.documentElement.classList.add('is-locked');
+      lockBodyScroll();
     }
 
     // 2. 닫기(X) 버튼을 눌렀을 때
     if (e.target.closest('.btn-search-close')) {
       searchOverlay.classList.remove('is-open');
-      document.body.classList.remove('is-locked');
-      document.documentElement.classList.remove('is-locked');
+      unlockBodyScroll();
     }
 
     // 3. 검은색 불투명 배경을 눌렀을 때 (바깥 영역)
     if (e.target === searchOverlay) {
       searchOverlay.classList.remove('is-open');
-      document.body.classList.remove('is-locked');
-      document.documentElement.classList.remove('is-locked');
+      unlockBodyScroll();
     }
   });
 }
@@ -258,12 +254,10 @@ function toggleMenu(isOpen) {
 
   if (isOpen) {
     header.classList.add('active');
-    document.body.classList.add('is-locked');
-    document.documentElement.classList.add('is-locked');
+    lockBodyScroll();
   } else {
     if (window.scrollY === 0) header.classList.remove('active');
-    document.body.classList.remove('is-locked');
-    document.documentElement.classList.remove('is-locked');
+    unlockBodyScroll();
   }
 }
 

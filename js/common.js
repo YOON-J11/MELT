@@ -1,3 +1,17 @@
+// 스크롤 잠금 시 스크롤바가 사라지며 레이아웃이 밀리지 않도록 폭을 보정
+function lockBodyScroll() {
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+  document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+  document.body.classList.add('is-locked');
+  document.documentElement.classList.add('is-locked');
+}
+
+function unlockBodyScroll() {
+  document.body.classList.remove('is-locked');
+  document.documentElement.classList.remove('is-locked');
+  document.documentElement.style.removeProperty('--scrollbar-width');
+}
+
 // rAF 기반 스크롤 이벤트 throttle
 function throttleWithRaf(fn) {
   let scheduled = false;

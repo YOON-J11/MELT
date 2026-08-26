@@ -26,8 +26,7 @@ function initAllScripts() {
             // 만약 열려 있다면 닫기
             if (productSection && productSection.classList.contains('is-active')) {
                 productSection.classList.remove("is-active");
-                document.body.classList.remove('is-locked');
-                document.documentElement.classList.remove('is-locked');
+                unlockBodyScroll();
             }
         }
 
@@ -491,16 +490,14 @@ function initMobileShowroom() {
 
     productSection.classList.add("is-active");
     productSection.setAttribute("aria-hidden", "false");
-    document.body.classList.add('is-locked');
-    document.documentElement.classList.add('is-locked');
+    lockBodyScroll();
     closeBtn?.focus();
   };
 
   const closeShowroom = () => {
     productSection.classList.remove("is-active");
     productSection.setAttribute("aria-hidden", "true");
-    document.body.classList.remove('is-locked');
-    document.documentElement.classList.remove('is-locked');
+    unlockBodyScroll();
     lastFocusedElement?.focus();
     lastFocusedElement = null;
   };
