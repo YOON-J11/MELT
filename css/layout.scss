@@ -40,11 +40,18 @@
                 display: flex;
                 align-items: center;
                 padding: 5px;
+                gap: 5px;
                 border-bottom: 1px solid #000000;
                 .search-input {
                     width: 100%;
                     &::placeholder {
                         color: var(--gray);
+                    }
+                }
+                .btn-search-clear {
+                    display: none;
+                    &.is-show {
+                        display: block;
                     }
                 }
             }

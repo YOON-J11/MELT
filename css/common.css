@@ -630,6 +630,10 @@ html.is-locked .page-controls {
   background-image: url(../images/icon-close.svg);
 }
 
+.icon-search-clear {
+  background-image: url(../images/icon-search-clear.svg);
+}
+
 .icon-insta {
   background-image: url(../images/icon-sns-Instagram.svg);
 }

@@ -42,6 +42,7 @@
   display: flex;
   align-items: center;
   padding: 5px;
+  gap: 5px;
   border-bottom: 1px solid #000000;
 }
 #searchOverlay .search-container .search-box .search-form .search-input {
@@ -52,6 +53,12 @@
 }
 #searchOverlay .search-container .search-box .search-form .search-input::placeholder {
   color: var(--gray);
+}
+#searchOverlay .search-container .search-box .search-form .btn-search-clear {
+  display: none;
+}
+#searchOverlay .search-container .search-box .search-form .btn-search-clear.is-show {
+  display: block;
 }
 #searchOverlay .search-container .popular-search-title {
   font-weight: 500;

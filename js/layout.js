@@ -8,15 +8,40 @@ async function loadSearchOverlay() {
     const data = await response.text();
     SearchOverlayContainer.innerHTML = data;
 
+    initSearch();
+
   } catch (error) {
     console.error('검색창을 불러오는 데 실패했습니다.', error)
   }
 }
 
-function searchToggle() {
+function initSearch() {
   const searchOverlay = document.querySelector("#searchOverlay");
-
   if (!searchOverlay) return;
+
+  const searchInput = searchOverlay.querySelector('.search-input');
+  const clearBtn = searchOverlay.querySelector('.btn-search-clear');
+
+  if (searchInput && clearBtn) {
+    
+    // 키보드를 입력할때마다 글자 유무 체크
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value.trim().length > 0) {
+        clearBtn.classList.add('is-show'); //인풋박스에 글자를입력했으면 (value값이 있으면) x버튼을 표시하기
+      } else {
+        clearBtn.classList.remove('is-show');
+      }
+    });
+
+    //x버튼(clearBtn)을 눌럿을때
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = ''; //입력창 텍스트 비우기
+      clearBtn.classList.remove('is-show');
+      searchInput.focus(); //포커스 유지
+    });
+  }
+
+
 
   document.addEventListener('click', (e) => {
     // 1. 열기 버튼을 눌렀을 때
@@ -29,12 +54,24 @@ function searchToggle() {
     if (e.target.closest('.btn-search-close')) {
       searchOverlay.classList.remove('is-open');
       unlockBodyScroll();
+
+      // 닫힐 때 검색어랑 X 버튼도 초기화
+      if (searchInput && clearBtn) {
+        searchInput.value = '';
+        clearBtn.classList.remove('is-show');
+      }
+
     }
 
     // 3. 검은색 불투명 배경을 눌렀을 때 (바깥 영역)
     if (e.target === searchOverlay) {
       searchOverlay.classList.remove('is-open');
       unlockBodyScroll();
+
+      if (searchInput && clearBtn) {
+        searchInput.value = '';
+        clearBtn.classList.remove('is-show');
+      }
     }
   });
 }
@@ -92,7 +129,6 @@ async function loadFooter() {
 }
 
 
-
 // [컴포넌트 모듈화 : 헤더와 푸터를 별도 파일로 분리하여 `fetch` API로 동적 로딩]
 // 전체 순서: 1.자리찾기 -> 2.가져오기 -> 3.꽂고 기능켜기
 // 세부 순서:
@@ -102,7 +138,6 @@ async function loadFooter() {
 // 4. 화면에 꽂아넣기: 변환된 텍스트 데이터를 아까 찾아둔 빈 그릇의 innerHTML에 통째로 집어넣는다. (이 순간 화면에 헤더 HTML이 생겨남)
 // 5. 기능(이벤트/라이브러리) 살리기: 헤더 HTML이 DOM에 생겼으니, 그 안에 들어있는 버튼이나 슬라이드, 스크롤 기능들이 작동하도록 관련 함수들을 차례대로 실행해 준다.
 // 6. 안전장치(에러 처리) 감싸기: 1~5번 과정 중 경로 오타나 네트워크 문제로 터질 수 있으니, 이 모든 핵심 과정을 try로 감싸고 만약의 경우를 대비해 catch로 에러를 잡아준다.
-
 
 
 function handleTopBanner() {
@@ -143,7 +178,6 @@ function handleTopBanner() {
 
 }
 
-
 function megaPromoSwiper() {//메가프로모 스와이퍼
   const megaPromoSwiper = new Swiper(".swiper.mega-promo", {
     effect: 'fade', //페이드 효과
@@ -167,6 +201,10 @@ function handleHeader() {
   const topBannerContainer = document.querySelector('#TopBanner');
   if (!header) return;
 
+  // index.html이 아니면 서브페이지로 판단
+  const path = window.location.pathname;
+  const isMainPage = path.endsWith('/index.html') || path === '/' || path === '';
+
   // 탑배너 유무, 탑배너 높이 감지 후 동적 설정
   if (topBannerContainer) {
     const bannerHeight = topBannerContainer.offsetHeight;
@@ -175,6 +213,11 @@ function handleHeader() {
   } else {
     document.documentElement.style.setProperty('--banner-height', '0px');
     header.classList.remove('has-banner');
+  }
+
+  // 서브페이지면 로드 되자마자 active 부여
+  if (!isMainPage) {
+    header.classList.add('active');
   }
 
   // 스크롤 로직
@@ -190,9 +233,13 @@ function handleHeader() {
     const isHovering = header.classList.contains('hover');
 
     if (currentScrollY === 0) {
-      // 마우스 호버중이 아니고 최상단일때 투명 배경 복귀
-      if (!isHovering) {
-        header.classList.remove('active', 'hidden', 'scrolled');
+      // 최상단일때 hidden, scrolled 클래스를 무조건 지워서 탑배너가 보이게 하기
+      header.classList.remove('hidden', 'scrolled');
+
+      if (isMainPage && !isHovering) { // 메인페이지에서 헤더에 마우스호버중일 경우 active지우기
+        header.classList.remove('active');
+      } else {
+        header.classList.add('active');
       }
     } else {
       // 스크롤 시작: 흰색 배경 강제
@@ -222,7 +269,9 @@ function handleHeader() {
   header.addEventListener('mouseleave', () => {
     if (window.innerWidth <= 1024) return;
     header.classList.remove('hover');
-    if (window.scrollY === 0) header.classList.remove('active');
+    if (window.scrollY === 0 && isMainPage) { // 메인페이지에서 최상단일 경우 active제거
+      header.classList.remove('active');
+    }
   });
 }
 
@@ -256,7 +305,13 @@ function toggleMenu(isOpen) {
     header.classList.add('active');
     lockBodyScroll();
   } else {
-    if (window.scrollY === 0) header.classList.remove('active');
+    // 메인페이지 최상단일 때만 active 제거하고, 서브페이지는 active 유지
+    const path = window.location.pathname;
+    const isMainPage = path.endsWith('/index.html') || path === '/' || path === '';
+
+    if (isMainPage && window.scrollY === 0) { 
+      header.classList.remove('active'); 
+    }
     unlockBodyScroll();
   }
 }
@@ -295,10 +350,19 @@ function accordionMenu() {
 
 }
 
-// 리사이즈
+//  리사이즈 이벤트
 window.addEventListener('resize', () => {
+  const header = document.querySelector('header');
+  const path = window.location.pathname;
+  const isMainPage = path.endsWith('/index.html') || path === '/' || path === '';
+
   if (window.innerWidth > 1024) {
     toggleMenu(false); // PC 사이즈면 강제로 메뉴 닫기
+  }
+
+  // 화면 크기가 변할 때 서브페이지라면 active가 풀리지 않게 방어
+  if (header && !isMainPage) {
+    header.classList.add('active');
   }
 });
 
@@ -309,6 +373,5 @@ window.addEventListener('DOMContentLoaded', () => { //브라우저가 기본 HTM
   loadHeader();
   loadFooter();
   initScrollBtns();
-  searchToggle();
 });
 
