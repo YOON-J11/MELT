@@ -17,7 +17,7 @@
 #searchOverlay .search-container {
   background-color: var(--white);
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   #searchOverlay .search-container {
     height: 100%;
   }
