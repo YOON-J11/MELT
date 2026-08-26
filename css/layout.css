@@ -1,4 +1,67 @@
 @charset "UTF-8";
+#searchOverlay {
+  z-index: 2000;
+  inset: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#searchOverlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+#searchOverlay .search-container {
+  background-color: var(--white);
+}
+@media (max-width: 768px) {
+  #searchOverlay .search-container {
+    height: 100%;
+  }
+}
+#searchOverlay .search-container .search-header {
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+}
+#searchOverlay .search-container .search-box {
+  padding: 30px 20px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+#searchOverlay .search-container .search-box .search-form {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #000000;
+}
+#searchOverlay .search-container .search-box .search-form .search-input {
+  width: 100%;
+}
+#searchOverlay .search-container .search-box .search-form .search-input::-moz-placeholder {
+  color: var(--gray);
+}
+#searchOverlay .search-container .search-box .search-form .search-input::placeholder {
+  color: var(--gray);
+}
+#searchOverlay .search-container .popular-search-title {
+  font-weight: 500;
+}
+#searchOverlay .search-container .popular-search-list {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+}
+
 #TopBanner {
   z-index: 1000;
   height: 38px;
@@ -206,14 +269,18 @@ header.active .header-main .inner .header-util button .icon {
     box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.1);
   }
 }
-header.has-banner { /*탑배너가 있는경우*/
-  top: var(--banner-height); /*헤더를 상단에서 탑배너 높이 만큼 띄움*/
+header.has-banner {
+  /*탑배너가 있는경우*/
+  top: var(--banner-height);
+  /*헤더를 상단에서 탑배너 높이 만큼 띄움*/
 }
 header.has-banner.hidden {
-  transform: translateY(calc(-100% - var(--banner-height))); /*아래로 스크롤시 헤더랑 탑배너 모두 숨김*/
+  transform: translateY(calc(-100% - var(--banner-height)));
+  /*아래로 스크롤시 헤더랑 탑배너 모두 숨김*/
 }
 header.has-banner.scrolled {
-  transform: translateY(calc(var(--banner-height) * -1)); /*위로 스크롤시 탑배너만 숨기고 헤더는 보이게 (헤더를 탑배너높이만큼 위로 올림)*/
+  transform: translateY(calc(var(--banner-height) * -1));
+  /*위로 스크롤시 탑배너만 숨기고 헤더는 보이게 (헤더를 탑배너높이만큼 위로 올림)*/
 }
 @media (max-width: 1024px) {
   header.has-banner.scrolled {
@@ -221,17 +288,22 @@ header.has-banner.scrolled {
   }
 }
 @media (max-width: 1024px) {
-  header.has-banner { /*모바일에선 무조건 탑배너 숨김*/
+  header.has-banner {
+    /*모바일에선 무조건 탑배너 숨김*/
     top: 0;
     transform: translateY(0);
   }
 }
-header:not(.has-banner) { /*탑배너가 없는경우*/ }
+header:not(.has-banner) {
+  /*탑배너가 없는경우*/
+}
 header:not(.has-banner).hidden {
-  transform: translateY(-100%); /*아래로 스크롤시 헤더 숨김*/
+  transform: translateY(-100%);
+  /*아래로 스크롤시 헤더 숨김*/
 }
 header:not(.has-banner).scrolled {
-  transform: translateY(0); /*위로 스크롤시 헤더 보임*/
+  transform: translateY(0);
+  /*위로 스크롤시 헤더 보임*/
 }
 header .mobile-menu-overlay {
   display: none;

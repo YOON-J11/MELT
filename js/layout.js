@@ -1,5 +1,48 @@
 
 // async : 내부에서 await(기다리는 작업)를 사용하겠다고 함수에 미리 알려주는 선언문
+async function loadSearchOverlay() {
+  const SearchOverlayContainer = document.querySelector('#searchOverlay');
+  if (!SearchOverlayContainer) return;
+  try {
+    const response = await fetch('./inc/search.html');
+    const data = await response.text();
+    SearchOverlayContainer.innerHTML = data;
+
+  } catch (error) {
+    console.error('검색창을 불러오는 데 실패했습니다.', error)
+  }
+}
+
+function searchToggle() {
+  const searchOverlay = document.querySelector("#searchOverlay");
+
+  if (!searchOverlay) return;
+
+  document.addEventListener('click', (e) => {
+    // 1. 열기 버튼을 눌렀을 때
+    if (e.target.closest('.btn-search-open')) {
+      searchOverlay.classList.add('is-open');
+      // body와 html(documentElement) 둘 다에 클래스 추가 (모바일 메뉴 방식과 동일)
+      document.body.classList.add('is-locked');
+      document.documentElement.classList.add('is-locked');
+    }
+
+    // 2. 닫기(X) 버튼을 눌렀을 때
+    if (e.target.closest('.btn-search-close')) {
+      searchOverlay.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      document.documentElement.classList.remove('is-locked');
+    }
+
+    // 3. 검은색 불투명 배경을 눌렀을 때 (바깥 영역)
+    if (e.target === searchOverlay) {
+      searchOverlay.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      document.documentElement.classList.remove('is-locked');
+    }
+  });
+}
+
 async function loadTopBanner() {
   const topBannerContainer = document.querySelector('#TopBanner');
   if (!topBannerContainer) return;
@@ -14,7 +57,6 @@ async function loadTopBanner() {
     console.error('탑배너를 불러오는 데 실패했습니다.', error)
   }
 }
-
 
 async function loadHeader() { //외부 html파일을을 가져와서 화면에 배치하고 관련된 모든 기능을 활성화하는 함수
   const headerContainer = document.querySelector('#header'); //헤더 찾고 선언
@@ -134,7 +176,7 @@ function handleHeader() {
     const bannerHeight = topBannerContainer.offsetHeight;
     document.documentElement.style.setProperty('--banner-height', `${bannerHeight}px`);
     header.classList.add('has-banner');
-  } else { 
+  } else {
     document.documentElement.style.setProperty('--banner-height', '0px');
     header.classList.remove('has-banner');
   }
@@ -216,12 +258,12 @@ function toggleMenu(isOpen) {
 
   if (isOpen) {
     header.classList.add('active');
-    document.body.classList.add('menu-is-open');
-    document.documentElement.classList.add('menu-is-open');
+    document.body.classList.add('is-locked');
+    document.documentElement.classList.add('is-locked');
   } else {
     if (window.scrollY === 0) header.classList.remove('active');
-    document.body.classList.remove('menu-is-open');
-    document.documentElement.classList.remove('menu-is-open');
+    document.body.classList.remove('is-locked');
+    document.documentElement.classList.remove('is-locked');
   }
 }
 
@@ -268,9 +310,11 @@ window.addEventListener('resize', () => {
 
 
 window.addEventListener('DOMContentLoaded', () => { //브라우저가 기본 HTML구조를 모두 읽었을때 실행
+  loadSearchOverlay();
   loadTopBanner();
   loadHeader();
   loadFooter();
   initScrollBtns();
+  searchToggle();
 });
 

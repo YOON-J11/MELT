@@ -1,3 +1,69 @@
+#searchOverlay {
+    z-index: 2000;
+    inset: 0;
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    &.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .search-container {
+        background-color: var(--white);
+        @media (max-width:768px){
+            height: 100%;
+        }
+        .search-header {
+            height: 60px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            padding: 30px 20px 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+
+            .search-form {
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                border-bottom: 1px solid #000000;
+                .search-input {
+                    width: 100%;
+                    &::placeholder {
+                        color: var(--gray);
+                    }
+                }
+            }
+        }
+
+        .popular-search {
+            &-title {
+                font-weight: 500;
+            }
+            &-list {
+                display: flex;
+                gap: 16px;
+                margin-top: 6px;
+            }
+        }
+    }
+
+}
+
 #TopBanner {
     z-index: 1000;
     height: 38px;
@@ -273,31 +339,44 @@ header {
         }
     }
 
-    &.has-banner { /*탑배너가 있는경우*/
-        top: var(--banner-height); /*헤더를 상단에서 탑배너 높이 만큼 띄움*/
+    &.has-banner {
+        /*탑배너가 있는경우*/
+        top: var(--banner-height);
+        /*헤더를 상단에서 탑배너 높이 만큼 띄움*/
 
         &.hidden {
-            transform: translateY(calc(-100% - var(--banner-height)));/*아래로 스크롤시 헤더랑 탑배너 모두 숨김*/
+            transform: translateY(calc(-100% - var(--banner-height)));
+            /*아래로 스크롤시 헤더랑 탑배너 모두 숨김*/
         }
 
         &.scrolled {
-            transform: translateY(calc(var(--banner-height) * -1)); /*위로 스크롤시 탑배너만 숨기고 헤더는 보이게 (헤더를 탑배너높이만큼 위로 올림)*/;
+            transform: translateY(calc(var(--banner-height) * -1));
+            /*위로 스크롤시 탑배너만 숨기고 헤더는 보이게 (헤더를 탑배너높이만큼 위로 올림)*/
+            ;
+
             @media (max-width: 1024px) {
                 transform: translateY(0);
             }
         }
 
-        @media (max-width: 1024px) { /*모바일에선 무조건 탑배너 숨김*/
+        @media (max-width: 1024px) {
+            /*모바일에선 무조건 탑배너 숨김*/
             top: 0;
             transform: translateY(0);
         }
     }
-    &:not(.has-banner) { /*탑배너가 없는경우*/
+
+    &:not(.has-banner) {
+
+        /*탑배너가 없는경우*/
         &.hidden {
-            transform: translateY(-100%); /*아래로 스크롤시 헤더 숨김*/
+            transform: translateY(-100%);
+            /*아래로 스크롤시 헤더 숨김*/
         }
+
         &.scrolled {
-            transform: translateY(0); /*위로 스크롤시 헤더 보임*/
+            transform: translateY(0);
+            /*위로 스크롤시 헤더 보임*/
         }
     }
 

@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-/* 메뉴가 열렸을 때 페이지 스크롤 방지 */
-html.menu-is-open,
-body.menu-is-open {
+/* is-locked클래스가 붙으면 페이지 스크롤 방지 */
+html.is-locked,
+body.is-locked {
   overflow: hidden;
   overscroll-behavior: none;
 }
