@@ -23,7 +23,7 @@ function initSearch() {
   const clearBtn = searchOverlay.querySelector('.btn-search-clear');
 
   if (searchInput && clearBtn) {
-    
+
     // 키보드를 입력할때마다 글자 유무 체크
     searchInput.addEventListener('input', () => {
       if (searchInput.value.trim().length > 0) {
@@ -203,7 +203,7 @@ function handleHeader() {
 
   // index.html이 아니면 서브페이지로 판단
   const path = window.location.pathname;
-  const isMainPage = path.endsWith('/index.html') || path === '/' || path === '';
+  const isMainPage = path.endsWith('/index.html') || path.endsWith('/MELT/') || path === '/' || path === '';
 
   // 탑배너 유무, 탑배너 높이 감지 후 동적 설정
   if (topBannerContainer) {
@@ -307,10 +307,10 @@ function toggleMenu(isOpen) {
   } else {
     // 메인페이지 최상단일 때만 active 제거하고, 서브페이지는 active 유지
     const path = window.location.pathname;
-    const isMainPage = path.endsWith('/index.html') || path === '/' || path === '';
+    const isMainPage = path.endsWith('/index.html') || path.endsWith('/MELT/') || path === '/' || path === '';
 
-    if (isMainPage && window.scrollY === 0) { 
-      header.classList.remove('active'); 
+    if (isMainPage && window.scrollY === 0) {
+      header.classList.remove('active');
     }
     unlockBodyScroll();
   }
@@ -354,7 +354,7 @@ function accordionMenu() {
 window.addEventListener('resize', () => {
   const header = document.querySelector('header');
   const path = window.location.pathname;
-  const isMainPage = path.endsWith('/index.html') || path === '/' || path === '';
+  const isMainPage = path.endsWith('/index.html') || path.endsWith('/MELT/') || path === '/' || path === '';
 
   if (window.innerWidth > 1024) {
     toggleMenu(false); // PC 사이즈면 강제로 메뉴 닫기
